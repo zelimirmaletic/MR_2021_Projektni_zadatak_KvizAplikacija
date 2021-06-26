@@ -11,4 +11,8 @@
     <string name="login_card_forgot_message">Заборавили сте лозинку?</string>
 
 
+    <string name="bottom_menu_home">Почетна</string>
+    <string name="bottom_menu_settings">Подешавања</string>
+    <string name="bottom_menu_statistika">Статистика</string>
+
 </resources>
