@@ -2,14 +2,13 @@
     <string name="app_name">Квизолог</string>
 
     <string name="login_card_welcome_message">Добродошли!</string>
-    <string name="login_card_username_message">Корисничко име</string>
-    <string name="username_hint">Унесите Ваше корисничко име...</string>
+    <string name="login_card_username_message">Имејл</string>
+    <string name="username_hint">Унесите Вашу имејл адресу...</string>
     <string name="login_card_password_message">Лозинка</string>
     <string name="password_hint">Унесите Вашу лозинку...</string>
     <string name="login_card_login_message">Пријави се</string>
     <string name="login_card_register_message">Регистрација</string>
-    <string name="login_card_forgot_message">Заборавили сте шифру?</string>
-
+    <string name="login_card_forgot_message">Заборавили сте лозинку?</string>
 
 
 </resources>

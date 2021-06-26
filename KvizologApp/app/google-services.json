@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "688449173086",
+    "project_id": "kvizologapp",
+    "storage_bucket": "kvizologapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:688449173086:android:e43f7e8d4668cf23a1e6cf",
+        "android_client_info": {
+          "package_name": "com.example.kvizologapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "688449173086-jtsvqq33tj9a2m4g30bsa5ipejfp8sha.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhnFrCVIk_E7rysxJf3Oni0kpw5Pu1lTA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "688449173086-jtsvqq33tj9a2m4g30bsa5ipejfp8sha.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
