@@ -35,6 +35,7 @@ public class MainScreenAcitivty extends AppCompatActivity {
 
     private BottomNavigationView.OnNavigationItemSelectedListener  navListener = item -> {
         Fragment selectedFragment = null;
+        boolean flag = false;
         switch (item.getItemId()){
             case R.id.homeFragment:
                 selectedFragment = new HomeFragment();
@@ -45,14 +46,19 @@ public class MainScreenAcitivty extends AppCompatActivity {
             case R.id.statisticsFragment:
                 selectedFragment = new StatisticsFragment();
                 break;
+            case R.id.logout:
+                flag=true;
+                break;
         }
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView,selectedFragment).commit();
+        if(flag)
+            signOut();
+        else
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView,selectedFragment).commit();
         return true;
     };
 
     private void signOut(){
         mAuth.signOut();
         startActivity(new Intent(MainScreenAcitivty.this, MainActivity.class));
-        finish();
     }
 }

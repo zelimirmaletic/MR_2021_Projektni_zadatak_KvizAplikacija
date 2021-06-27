@@ -1,18 +1,17 @@
 <resources>
-    <string name="app_name">Квизолог</string>
+    <string name="app_name" translatable="false">Quizolog</string>
 
-    <string name="login_card_welcome_message">Добродошли!</string>
-    <string name="login_card_username_message">Имејл</string>
-    <string name="username_hint">Унесите Вашу имејл адресу...</string>
-    <string name="login_card_password_message">Лозинка</string>
-    <string name="password_hint">Унесите Вашу лозинку...</string>
-    <string name="login_card_login_message">Пријави се</string>
-    <string name="login_card_register_message">Регистрација</string>
-    <string name="login_card_forgot_message">Заборавили сте лозинку?</string>
-
-
-    <string name="bottom_menu_home">Почетна</string>
-    <string name="bottom_menu_settings">Подешавања</string>
-    <string name="bottom_menu_statistika">Статистика</string>
+    <string name="login_card_welcome_message" translatable="false">Welcome</string>
+    <string name="login_card_username_message" translatable="false">Email</string>
+    <string name="username_hint" translatable="false">Enter your Email adress...</string>
+    <string name="login_card_password_message" translatable="false">Password</string>
+    <string name="password_hint" translatable="false">Enter your password</string>
+    <string name="login_card_login_message" translatable="false">Log in</string>
+    <string name="login_card_register_message" translatable="false">Registration</string>
+    <string name="login_card_forgot_message" translatable="false">Forgot your password?</string>
+    <string name="bottom_menu_home" translatable="false">Home</string>
+    <string name="bottom_menu_settings" translatable="false">Settings</string>
+    <string name="bottom_menu_statistika" translatable="false">Statistics</string>
+    <string name="bottom_menu_logout" translatable="false">Log out</string>
 
 </resources>
