@@ -16,4 +16,14 @@
     <string name="login_invalid_credentials_error_message">Неисправан имејл или лозинка!</string>
     <string name="login_empty_field_error_message">Празна поља нису дозвољена!</string>
     <string name="login_invalid_email_error_message">Унесена имејл адреса није валидна!</string>
+    <string name="preference_num_of_questions_title">Број питања по квизу</string>
+    <string name="preference_num_of_questioms_sumary">Изаберите колико питања из сваке од области желите у квизу.</string>
+    <string name="preference_language_title">Језик</string>
+    <string name="preference_language_sumary">Изаберите језик апликације.</string>
+    <string name="preferences_chache_title">Кеширање</string>
+    <string name="preferences_chache_sumart">Омогућавање и онемогућавање кеширања.</string>
+    <string name="preferences_on">Укључено</string>
+    <string name="preferences_off">Искључено</string>
+    <string name="preferences_language_english">Енглески</string>
+    <string name="preferences_language_serbian">Српски</string>
 </resources>

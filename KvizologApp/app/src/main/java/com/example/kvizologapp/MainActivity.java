@@ -29,14 +29,17 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
+    static String SELECTED_LANGUAGE = "Locale.Helper.Selected.Language";
+
+
     private Button btnLogin, btnRegister;
     private EditText tbEmail,tbPassword;
     FirebaseAuth mAuth;
-    private static final String SELECTED_LANGUAGE = "Locale.Helper.Selected.Language";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadLanguage();
         SharedPreferences shPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String lang = shPreferences.getString(SELECTED_LANGUAGE, Locale.getDefault().getLanguage());
         setLocale(MainActivity.this,lang);
@@ -102,5 +105,25 @@ public class MainActivity extends AppCompatActivity {
         return context;
     }
 
+    private void loadLanguage(){
+        String language = readPreference("key_language");
+        if("English".equals(language) || "Енглески".equals(language))
+            writePreference("SELECTED_LANGUAGE","en");
+        if("Serbian".equals(language) || "Српски".equals(language))
+            writePreference("SELECTED_LANGUAGE","sr");
+    }
+
+    public void writePreference(String key, String value){
+        SharedPreferences shPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = shPreferences.edit();
+        editor.putString(key, value);
+        editor.apply();
+    }
+
+    public String readPreference(String key){
+        SharedPreferences shPreferences = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
+        String value = shPreferences.getString(key, "");
+        return value;
+    }
 
 }

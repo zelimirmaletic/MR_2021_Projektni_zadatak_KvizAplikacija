@@ -18,4 +18,16 @@
     <string name="login_empty_field_error_message">Blak fields are not allowed!</string>
     <string name="login_invalid_email_error_message">Entered email is not valid!</string>
 
+
+    <string name="preference_num_of_questions_title">Number of questions per quiz</string>
+    <string name="preference_num_of_questioms_sumary">Choose how many questions from each cathegory do you want per quiz.</string>
+    <string name="preference_language_title">Language</string>
+    <string name="preference_language_sumary">Choose default application language.</string>
+    <string name="preferences_chache_title">Chaching</string>
+    <string name="preferences_chache_sumart">Enabling or disablig chaching mode.</string>
+    <string name="preferences_on">On</string>
+    <string name="preferences_off">Off</string>
+    <string name="preferences_language_english">English</string>
+    <string name="preferences_language_serbian">Serbian</string>
+
 </resources>

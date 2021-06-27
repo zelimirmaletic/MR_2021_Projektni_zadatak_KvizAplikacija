@@ -26,14 +26,12 @@ import java.util.Locale;
 public class MainScreenAcitivty extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private static final String SELECTED_LANGUAGE = "Locale.Helper.Selected.Language";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences shPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String lang = shPreferences.getString(SELECTED_LANGUAGE, Locale.getDefault().getLanguage());
+        String lang = shPreferences.getString(MainActivity.SELECTED_LANGUAGE, Locale.getDefault().getLanguage());
         setLocale(MainScreenAcitivty.this,lang);
         setContentView(R.layout.activity_main_screen_acitivty);
         mAuth = FirebaseAuth.getInstance();
@@ -68,13 +66,14 @@ public class MainScreenAcitivty extends AppCompatActivity {
 
     private void signOut(){
         mAuth.signOut();
+        finish();
         startActivity(new Intent(MainScreenAcitivty.this, MainActivity.class));
     }
 
-    public void changeLanguage(View view){
-        SharedPreferences shPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String lang = shPreferences.getString(SELECTED_LANGUAGE, Locale.getDefault().getLanguage());
+    public void changeLanguage(){
 
+        SharedPreferences shPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String lang = shPreferences.getString(MainActivity.SELECTED_LANGUAGE, Locale.getDefault().getLanguage());
         if(lang.equals("en"))
             setLocale(MainScreenAcitivty.this, "sr");
         else
@@ -87,7 +86,7 @@ public class MainScreenAcitivty extends AppCompatActivity {
         // sacuvamo novi jezik u SharedPreferences
         SharedPreferences shPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = shPreferences.edit();
-        editor.putString(SELECTED_LANGUAGE, language);
+        editor.putString(MainActivity.SELECTED_LANGUAGE, language);
         editor.apply();
 
         // sacuvamo promjene u konfiguraciji aplikacije
@@ -104,7 +103,7 @@ public class MainScreenAcitivty extends AppCompatActivity {
     protected void attachBaseContext(Context base) {
         // uzimamo trenutni jezik iz SharedPreferences-a
         SharedPreferences shPreferences = PreferenceManager.getDefaultSharedPreferences(base);
-        String lang = shPreferences.getString(SELECTED_LANGUAGE, Locale.getDefault().getLanguage());
+        String lang = shPreferences.getString(MainActivity.SELECTED_LANGUAGE, Locale.getDefault().getLanguage());
 
         // sacuvamo promjene u konfiguraciji aplikacije
         Locale locale = new Locale(lang);
@@ -115,6 +114,5 @@ public class MainScreenAcitivty extends AppCompatActivity {
                 base.getResources().getDisplayMetrics());
         super.attachBaseContext(base);
     }
-
 
 }

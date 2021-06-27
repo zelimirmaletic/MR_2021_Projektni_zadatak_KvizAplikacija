@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:icon="@drawable/ic_baseline_format_list_numbered_24"
+        android:defaultValue="5"
+        android:entries="@array/listValues"
+        android:entryValues="@array/listValues"
+        android:key="key_num_of_questions"
+        android:summary="@string/preference_num_of_questioms_sumary"
+        android:title="@string/preference_num_of_questions_title" />
+
+    <ListPreference
+        android:icon="@drawable/ic_baseline_cloud_download_24"
+        android:defaultValue="@string/preferences_off"
+        android:entries="@array/onOfValues"
+        android:entryValues="@array/onOfValues"
+        android:key="key_caching"
+        android:summary="@string/preferences_chache_sumart"
+        android:title="@string/preferences_chache_title" />
+
+    <ListPreference
+        android:icon="@drawable/ic_baseline_language_24"
+        android:defaultValue="@string/preferences_language_english"
+        android:entries="@array/languageValues"
+        android:entryValues="@array/languageValues"
+        android:key="key_language"
+        android:summary="@string/preference_language_sumary"
+        android:title="@string/preference_language_title" />
+
+</PreferenceScreen>
