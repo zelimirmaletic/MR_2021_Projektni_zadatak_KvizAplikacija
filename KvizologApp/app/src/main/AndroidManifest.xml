@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KvizologApp">
         <activity android:name=".MainScreenAcitivty"></activity>
-        <activity android:name=".RegisterActivity" />
+        <activity android:name=".RegisterActivity" android:theme="@style/NoActionBarTheme"/>
         <activity
             android:name=".MainActivity"
             android:theme="@style/NoActionBarTheme"

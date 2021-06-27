@@ -3,8 +3,12 @@ package com.example.kvizologapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -21,15 +25,21 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
 
     private Button btnLogin, btnRegister;
     private EditText tbEmail,tbPassword;
     FirebaseAuth mAuth;
+    private static final String SELECTED_LANGUAGE = "Locale.Helper.Selected.Language";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences shPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String lang = shPreferences.getString(SELECTED_LANGUAGE, Locale.getDefault().getLanguage());
+        setLocale(MainActivity.this,lang);
         setContentView(R.layout.activity_main);
         btnLogin = findViewById(R.id.btnLogin);
         btnRegister = findViewById(R.id.btnRegister);
@@ -44,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intet);
         });
 
-
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,28 +62,45 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void loginUser(){
+    private void loginUser() {
         String email = tbEmail.getText().toString();
         String password = tbPassword.getText().toString();
 
-        if(!email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            if(!password.isEmpty()){
-                mAuth.signInWithEmailAndPassword(email,password).addOnSuccessListener(authResult -> {
-                    Toast.makeText(this, "Успјешно пријављен!", Toast.LENGTH_SHORT).show();
+        if (!email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            if (!password.isEmpty()) {
+                mAuth.signInWithEmailAndPassword(email, password).addOnSuccessListener(authResult -> {
                     startActivity(new Intent(MainActivity.this, MainScreenAcitivty.class));
                     finish();
                 }).addOnFailureListener(e -> {
-                    Toast.makeText(this, "Грешка при пријављивању!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.login_invalid_credentials_error_message), Toast.LENGTH_SHORT).show();
                 });
 
-            }else{
-                tbPassword.setError("Празна поља нису дозвољена!");//Prevesti i na egleski!!
+            } else {
+                tbPassword.setError(getString(R.string.login_empty_field_error_message));
             }
-        }else if (email.isEmpty()){
-            tbPassword.setError("Празна поља нису дозвољена!");//Prevesti i na egleski!!
-        }else{
-            tbPassword.setError("Молимо Вас да унесете исправан имејл !");//Prevesti i na egleski!!
+        } else if (email.isEmpty()) {
+            tbPassword.setError(getString(R.string.login_empty_field_error_message));
+        } else {
+            tbPassword.setError(getString(R.string.login_invalid_email_error_message));
         }
     }
+
+    public Context setLocale(Context context, String language) {
+        // sacuvamo novi jezik u SharedPreferences
+        SharedPreferences shPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = shPreferences.edit();
+        editor.putString(SELECTED_LANGUAGE, language);
+        editor.apply();
+
+        // sacuvamo promjene u konfiguraciji aplikacije
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+        return context;
+    }
+
 
 }

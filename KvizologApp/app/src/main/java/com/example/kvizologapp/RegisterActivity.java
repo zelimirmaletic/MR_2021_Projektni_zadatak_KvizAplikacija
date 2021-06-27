@@ -58,23 +58,22 @@ public class RegisterActivity extends AppCompatActivity {
                 mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull @org.jetbrains.annotations.NotNull Task<AuthResult> task) {
-                        Toast.makeText(RegisterActivity.this, "Успјешно сте регистровани!", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(RegisterActivity.this, MainActivity.class));
                         finish();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull @NotNull Exception e) {
-                        Toast.makeText(RegisterActivity.this, "Грешка при регистрацији!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, getString(R.string.login_invalid_credentials_error_message), Toast.LENGTH_SHORT).show();
                     }
                 });
              }else{
-                 tbPassword.setError("Празна поља нису дозвољена!");//Prevesti i na egleski!!
+                 tbPassword.setError(getString(R.string.login_empty_field_error_message));
              }
         }else if (email.isEmpty()){
-            tbPassword.setError("Празна поља нису дозвољена!");//Prevesti i na egleski!!
+            tbPassword.setError(getString(R.string.login_empty_field_error_message));
         }else{
-            tbPassword.setError("Молимо Вас да унесете исправан имејл !");//Prevesti i na egleski!!
+            tbPassword.setError(getString(R.string.login_invalid_email_error_message));
         }
     }
 }

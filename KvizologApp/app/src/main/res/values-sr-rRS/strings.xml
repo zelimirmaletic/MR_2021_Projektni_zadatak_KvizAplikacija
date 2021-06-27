@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="login_card_welcome_message" translatable="false">Добродошли!</string>
-    <string name="username_hint" translatable="false">Унесите Вашу имејл адресу...</string>
-    <string name="login_card_password_message" translatable="false">Лозинка</string>
-    <string name="login_card_username_message" translatable="false">Имејл</string>
-    <string name="app_name" translatable="false">Квизолог</string>
-    <string name="password_hint" translatable="false">Унесите Вашу лозинку...</string>
-    <string name="login_card_login_message" translatable="false">Пријави се</string>
-    <string name="login_card_register_message" translatable="false">Регистрација</string>
-    <string name="login_card_forgot_message" translatable="false">Заборавили сте лозинку?</string>
-    <string name="bottom_menu_home" translatable="false">Почетна</string>
-    <string name="bottom_menu_settings" translatable="false">Подешавања</string>
-    <string name="bottom_menu_statistika" translatable="false">Статистика</string>
-    <string name="bottom_menu_logout" translatable="false">Одјави се</string>
+    <string name="login_card_welcome_message" >Добродошли!</string>
+    <string name="username_hint">Унесите Вашу имејл адресу...</string>
+    <string name="login_card_password_message" >Лозинка</string>
+    <string name="login_card_username_message">Имејл</string>
+    <string name="app_name" >Квизолог</string>
+    <string name="password_hint">Унесите Вашу лозинку...</string>
+    <string name="login_card_login_message" >Пријави се</string>
+    <string name="login_card_register_message" >Регистрација</string>
+    <string name="login_card_forgot_message" >Заборавили сте лозинку?</string>
+    <string name="bottom_menu_home" >Почетна</string>
+    <string name="bottom_menu_settings" >Подешавања</string>
+    <string name="bottom_menu_statistika">Статистика</string>
+    <string name="bottom_menu_logout" >Одјави се</string>
+    <string name="login_invalid_credentials_error_message">Неисправан имејл или лозинка!</string>
+    <string name="login_empty_field_error_message">Празна поља нису дозвољена!</string>
+    <string name="login_invalid_email_error_message">Унесена имејл адреса није валидна!</string>
 </resources>
