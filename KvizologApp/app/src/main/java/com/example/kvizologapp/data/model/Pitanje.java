@@ -172,6 +172,7 @@ public class Pitanje implements Serializable {
         this.slika = slika;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

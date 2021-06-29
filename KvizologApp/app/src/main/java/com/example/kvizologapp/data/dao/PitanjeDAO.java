@@ -14,10 +14,16 @@ import java.util.List;
 @Dao
 public interface PitanjeDAO {
     @Insert
-    void insert(Pitanje pitanje);
+    long insert(Pitanje pitanje);
 
     @Query("SELECT * FROM " + Constants.TABLE_NAME_PITANJE)
     List<Pitanje> readAll();
+
+    @Query("SELECT * FROM " + Constants.TABLE_NAME_PITANJE + " WHERE tipPitanja= :idTipPitanja ")
+    List<Pitanje> readByTipPitanja(int idTipPitanja);
+
+    @Query("SELECT * FROM " + Constants.TABLE_NAME_PITANJE + " WHERE Id=id " )
+    Pitanje getById(int id);
 
     @Update
     void update(Pitanje pitanje);
