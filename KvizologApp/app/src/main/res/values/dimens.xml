@@ -24,4 +24,7 @@
     <dimen name="next_button_question_stroke_width">5dp</dimen>
     <dimen name="answer_message_text_size">20sp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="check_box_text_size">30sp</dimen>
+    <dimen name="check_box_top_margin">20dp</dimen>
+    <dimen name="neigh_countries_title_top_margin">100dp</dimen>
 </resources>

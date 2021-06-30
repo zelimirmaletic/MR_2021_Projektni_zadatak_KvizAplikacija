@@ -47,8 +47,14 @@
     </style>
 
     <style name="circle_button">
-        <item name="cornerRadius">50dp</item>
         <item name="backgroundTint">@color/primary</item>
+    </style>
+
+    <style name="CustomCheckBoxAnswer">
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:textSize">@dimen/check_box_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginTop">@dimen/check_box_top_margin</item>
     </style>
 
     <style name="QuestionTitleText">

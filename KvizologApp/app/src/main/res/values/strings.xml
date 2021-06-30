@@ -47,6 +47,7 @@
     <string name="previous" translatable="false">Previous</string>
 
     <string name="capital_city_explanation_text">Capitol city of this coutry is:</string>
+    <string name="neigbour_countries_explanation_text">Neighbouring countries are:</string>
     <string name="hint">hint</string>
 
     <string name="hello_first_fragment" translatable="false">Hello first fragment</string>

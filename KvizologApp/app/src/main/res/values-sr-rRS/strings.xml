@@ -34,4 +34,5 @@
     <string name="register_card_button_message">Региструј се</string>
     <string name="capital_city_explanation_text">Главни град ове државе је:</string>
     <string name="hint">помоћ</string>
+    <string name="neigbour_countries_explanation_text">Сусједне државе су:</string>
 </resources>
