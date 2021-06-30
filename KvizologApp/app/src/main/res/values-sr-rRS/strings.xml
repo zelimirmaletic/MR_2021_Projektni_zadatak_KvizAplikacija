@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Квизолог</string>
+
     <string name="login_card_welcome_message" >Добродошли!</string>
     <string name="username_hint">Унесите Вашу имејл адресу...</string>
     <string name="login_card_password_message" >Лозинка</string>
     <string name="login_card_username_message">Имејл</string>
-    <string name="app_name">Квизолог</string>
     <string name="password_hint">Унесите Вашу лозинку...</string>
     <string name="login_card_login_message" >Пријави се</string>
     <string name="login_card_register_message" >Регистрација</string>
@@ -19,7 +20,7 @@
     <string name="preference_num_of_questions_title">Број питања по квизу</string>
     <string name="preference_num_of_questioms_sumary">Изаберите колико питања из сваке од области желите у квизу.</string>
     <string name="preference_language_title">Језик</string>
-    <string name="preference_language_sumary">Изаберите језик апликације.</string>
+    <string name="preference_language_sumary">Промијените језик апликације на енглески.</string>
     <string name="preferences_chache_title">Кеширање</string>
     <string name="preferences_chache_sumart">Омогућавање и онемогућавање кеширања.</string>
     <string name="preferences_on">Укључено</string>
@@ -30,4 +31,5 @@
     <string name="correct_answer_message">Тачан одговор!</string>
     <string name="wrong_answer_message">"Грешка! Тачан одговор је "</string>
     <string name="home_fragment_start_new_quiz_button_text">Покрени квиз!</string>
+    <string name="register_card_button_message">Региструј се</string>
 </resources>

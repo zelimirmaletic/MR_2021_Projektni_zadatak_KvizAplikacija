@@ -1,13 +1,14 @@
 <resources>
     <string name="app_name">Quizolog</string>
 
-    <string name="login_card_welcome_message">Welcome</string>
+    <string name="login_card_welcome_message">Welcome!</string>
     <string name="login_card_username_message">Email</string>
     <string name="username_hint">Enter your Email adress...</string>
     <string name="login_card_password_message">Password</string>
     <string name="password_hint">Enter your password</string>
     <string name="login_card_login_message">Log in</string>
     <string name="login_card_register_message">Registration</string>
+    <string name="register_card_button_message">Register</string>
     <string name="login_card_forgot_message">Forgot your password?</string>
     <string name="bottom_menu_home">Home</string>
     <string name="bottom_menu_settings">Settings</string>
@@ -22,7 +23,7 @@
     <string name="preference_num_of_questions_title">Number of questions per quiz</string>
     <string name="preference_num_of_questioms_sumary">Choose how many questions from each cathegory do you want per quiz.</string>
     <string name="preference_language_title">Language</string>
-    <string name="preference_language_sumary">Choose default application language.</string>
+    <string name="preference_language_sumary">Change language to Serbian.</string>
     <string name="preferences_chache_title">Chaching</string>
     <string name="preferences_chache_sumart">Enabling or disablig chaching mode.</string>
     <string name="preferences_on">On</string>

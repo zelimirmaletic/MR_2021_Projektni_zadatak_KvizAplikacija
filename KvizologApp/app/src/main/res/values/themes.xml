@@ -4,11 +4,11 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/primary_dark</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/icons</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/accent</item>
         <item name="colorSecondaryVariant">@color/accent</item>
-        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorOnSecondary">@color/icons</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
@@ -18,11 +18,11 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/primary_dark</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/icons</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/accent</item>
         <item name="colorSecondaryVariant">@color/accent</item>
-        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorOnSecondary">@color/icons</item>
     </style>
 
 
@@ -33,13 +33,13 @@
         <item name="android:textSize">@dimen/answer_button_text_size</item>
         <item name="android:textStyle">bold</item>
         <item name="background">@drawable/answer_button_border</item>
-        <item name="backgroundTint">@color/white</item>
+        <item name="backgroundTint">@color/icons</item>
     </style>
 
     <style name="NextQuestionButton" parent="TextAppearance.MaterialComponents.Button">
         <item name="backgroundColor">@color/accent</item>
         <item name="android:width">@dimen/next_question_button_width</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/icons</item>
         <item name="android:textSize">@dimen/answer_button_text_size</item>
         <item name="android:textStyle">bold</item>
         <item name="android:backgroundTint" tools:targetApi="lollipop">@color/accent</item>

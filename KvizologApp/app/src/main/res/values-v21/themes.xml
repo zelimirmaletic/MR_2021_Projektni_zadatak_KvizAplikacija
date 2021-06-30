@@ -3,7 +3,7 @@
     <style name="NextQuestionButton" parent="TextAppearance.MaterialComponents.Button">
         <item name="backgroundColor">@color/accent</item>
         <item name="android:width">@dimen/next_question_button_width</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/icons</item>
         <item name="android:textSize">@dimen/answer_button_text_size</item>
         <item name="android:textStyle">bold</item>
         <item name="android:backgroundTint">@color/accent</item>
