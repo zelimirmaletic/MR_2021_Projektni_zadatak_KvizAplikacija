@@ -46,6 +46,11 @@
         <item name="cornerRadius">@dimen/answer_button_corner_radius</item>
     </style>
 
+    <style name="circle_button">
+        <item name="cornerRadius">50dp</item>
+        <item name="backgroundTint">@color/primary</item>
+    </style>
+
     <style name="QuestionTitleText">
         <item name="android:textSize">@dimen/capital_city_fragment_title_text_size</item>
         <item name="android:textStyle">bold</item>

@@ -32,4 +32,6 @@
     <string name="wrong_answer_message">"Грешка! Тачан одговор је "</string>
     <string name="home_fragment_start_new_quiz_button_text">Покрени квиз!</string>
     <string name="register_card_button_message">Региструј се</string>
+    <string name="capital_city_explanation_text">Главни град ове државе је:</string>
+    <string name="hint">помоћ</string>
 </resources>
