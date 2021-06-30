@@ -35,4 +35,5 @@
     <string name="capital_city_explanation_text">Главни град ове државе је:</string>
     <string name="hint">помоћ</string>
     <string name="neigbour_countries_explanation_text">Сусједне државе су:</string>
+    <string name="flags_question_text">Приказана застава припада:</string>
 </resources>

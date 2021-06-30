@@ -73,6 +73,12 @@
         <item name="android:width">10dp</item>
     </style>
 
+    <style name="FlagImageStyle">
+        <item name="android:layout_height">@dimen/flag_image_height</item>
+        <item name="android:layout_width">@dimen/flag_image_width</item>
+        <item name="android:layout_marginTop">@dimen/flag_image_top_margin</item>
+    </style>
+
     <style name="Theme.KvizologApp.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

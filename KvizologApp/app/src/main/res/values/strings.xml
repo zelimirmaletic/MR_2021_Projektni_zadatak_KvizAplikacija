@@ -53,4 +53,6 @@
     <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
     <string name="hello_second_fragment" translatable="false">Hello second fragment</string>
 
+    <string name="flags_question_text">This flag belongs to:</string>
+
 </resources>
