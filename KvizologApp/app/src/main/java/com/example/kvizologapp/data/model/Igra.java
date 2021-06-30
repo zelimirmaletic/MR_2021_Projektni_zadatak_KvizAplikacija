@@ -1,10 +1,10 @@
 package com.example.kvizologapp.data.model;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import com.example.kvizologapp.util.Constants;
 

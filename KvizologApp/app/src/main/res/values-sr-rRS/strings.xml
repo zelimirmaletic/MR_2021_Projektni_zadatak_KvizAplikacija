@@ -4,7 +4,7 @@
     <string name="username_hint">Унесите Вашу имејл адресу...</string>
     <string name="login_card_password_message" >Лозинка</string>
     <string name="login_card_username_message">Имејл</string>
-    <string name="app_name" >Квизолог</string>
+    <string name="app_name">Квизолог</string>
     <string name="password_hint">Унесите Вашу лозинку...</string>
     <string name="login_card_login_message" >Пријави се</string>
     <string name="login_card_register_message" >Регистрација</string>
@@ -26,4 +26,8 @@
     <string name="preferences_off">Искључено</string>
     <string name="preferences_language_english">Енглески</string>
     <string name="preferences_language_serbian">Српски</string>
+    <string name="next_question_string">Сљедеће питање</string>
+    <string name="correct_answer_message">Тачан одговор!</string>
+    <string name="wrong_answer_message">"Грешка! Тачан одговор је "</string>
+    <string name="home_fragment_start_new_quiz_button_text">Покрени квиз!</string>
 </resources>

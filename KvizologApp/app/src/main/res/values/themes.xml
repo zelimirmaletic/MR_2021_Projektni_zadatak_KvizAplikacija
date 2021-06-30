@@ -28,11 +28,47 @@
 
     <style name="AnswerButton" parent="TextAppearance.MaterialComponents.Button">
         <item name="android:width">@dimen/answer_button_width</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="borderWidth">2dp</item>
+        <item name="android:textSize">@dimen/answer_button_text_size</item>
         <item name="android:textStyle">bold</item>
-        <item name="cornerRadius">20dp</item>
-        <item name="android:fillColor">@color/white</item>
+        <item name="background">@drawable/answer_button_border</item>
+        <item name="backgroundTint">@color/white</item>
     </style>
+
+    <style name="NextQuestionButton" parent="TextAppearance.MaterialComponents.Button">
+        <item name="backgroundColor">@color/accent</item>
+        <item name="android:width">@dimen/next_question_button_width</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/answer_button_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:backgroundTint" tools:targetApi="lollipop">@color/accent</item>
+        <item name="cornerRadius">@dimen/answer_button_corner_radius</item>
+    </style>
+
+    <style name="QuestionTitleText">
+        <item name="android:textSize">@dimen/capital_city_fragment_title_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/primary</item>
+    </style>
+
+    <style name="AnswerMessageText">
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:textSize">@dimen/answer_message_text_size</item>
+    </style>
+
+    <style name="aditional_info_button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="cornerRadius">@dimen/additional_info_button_corner_radius</item>
+        <item name="android:width">10dp</item>
+    </style>
+
+    <style name="Theme.KvizologApp.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.KvizologApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.KvizologApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

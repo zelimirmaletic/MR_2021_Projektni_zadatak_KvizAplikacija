@@ -15,6 +15,13 @@
     <dimen name="capital_city_fragment_title_text_size">40sp</dimen>
     <dimen name="capital_city_fragment_title_top_margin">80dp</dimen>
     <dimen name="capital_city_fragment_title_bottom_margin">60dp</dimen>
-    <dimen name="answer_button_width">240dp</dimen>
-    <dimen name="answer_button_top_margin">15dp</dimen>
+    <dimen name="answer_button_width">260dp</dimen>
+    <dimen name="answer_button_top_margin">20dp</dimen>
+    <dimen name="answer_button_corner_radius">20dp</dimen>
+    <dimen name="answer_button_text_size">15sp</dimen>
+    <dimen name="additional_info_button_corner_radius">50dp</dimen>
+    <dimen name="next_question_button_width">180dp</dimen>
+    <dimen name="next_button_question_stroke_width">5dp</dimen>
+    <dimen name="answer_message_text_size">20sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

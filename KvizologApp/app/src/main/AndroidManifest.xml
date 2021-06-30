@@ -9,8 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KvizologApp">
-        <activity android:name=".MainScreenAcitivty"></activity>
-        <activity android:name=".RegisterActivity" android:theme="@style/NoActionBarTheme"/>
+        <activity
+            android:name=".QuizGameActivity"
+            android:label="@string/title_activity_quiz_game"
+            android:theme="@style/Theme.KvizologApp.NoActionBar"></activity>
+        <activity android:name=".MainScreenAcitivty"
+            />
+        <activity
+            android:name=".RegisterActivity"
+            android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/NoActionBarTheme"

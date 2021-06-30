@@ -29,7 +29,23 @@
     <string name="preferences_off">Off</string>
     <string name="preferences_language_english">English</string>
     <string name="preferences_language_serbian">Serbian</string>
+
+    <string name="next_question_string">Next question</string>
+    <string name="correct_answer_message">Correct!</string>
+    <string name="wrong_answer_message">Wrong! Correct answer is </string>
+
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+
+    <string name="home_fragment_start_new_quiz_button_text">Let\'s play!</string>
+    <string name="title_activity_quiz_game" translatable="false">QuizGameActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="previous" translatable="false">Previous</string>
+
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
+    <string name="hello_second_fragment" translatable="false">Hello second fragment</string>
 
 </resources>
