@@ -36,4 +36,5 @@
     <string name="hint">помоћ</string>
     <string name="neigbour_countries_explanation_text">Сусједне државе су:</string>
     <string name="flags_question_text">Приказана застава припада:</string>
+    <string name="heritage_question_text">Ова знаменитост се налази у:</string>
 </resources>

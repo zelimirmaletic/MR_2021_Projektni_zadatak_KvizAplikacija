@@ -29,6 +29,12 @@
     <dimen name="neigh_countries_title_top_margin">100dp</dimen>
 
     <dimen name="flag_image_height">130dp</dimen>
-    <dimen name="flag_image_top_margin">50dp</dimen>
+    <dimen name="flag_image_top_margin">20dp</dimen>
     <dimen name="flag_image_width">200dp</dimen>
+
+    <dimen name="heritage_image_height">200dp</dimen>
+    <dimen name="heritage_image_width">200dp</dimen>
+
+    <dimen name="letter_button_width">40dp</dimen>
+    <dimen name="letter_button_margin">5dp</dimen>
 </resources>

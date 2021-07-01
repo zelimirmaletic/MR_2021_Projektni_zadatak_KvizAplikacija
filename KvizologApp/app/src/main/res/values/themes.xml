@@ -50,6 +50,13 @@
         <item name="backgroundTint">@color/primary</item>
     </style>
 
+    <style name="letter_button">
+        <item name="android:textColor">@color/icons</item>
+        <item name="backgroundTint">@color/primary_dark</item>
+        <item name="cornerRadius">25dp</item>
+        <item name="android:layout_margin">@dimen/letter_button_margin</item>
+    </style>
+
     <style name="CustomCheckBoxAnswer">
         <item name="android:textColor">@color/primary</item>
         <item name="android:textSize">@dimen/check_box_text_size</item>
@@ -78,6 +85,13 @@
         <item name="android:layout_width">@dimen/flag_image_width</item>
         <item name="android:layout_marginTop">@dimen/flag_image_top_margin</item>
     </style>
+
+    <style name="HeritageImageStyle">
+        <item name="android:layout_height">@dimen/heritage_image_height</item>
+        <item name="android:layout_width">@dimen/heritage_image_width</item>
+        <item name="android:layout_marginTop">@dimen/flag_image_top_margin</item>
+    </style>
+
 
     <style name="Theme.KvizologApp.NoActionBar">
         <item name="windowActionBar">false</item>
