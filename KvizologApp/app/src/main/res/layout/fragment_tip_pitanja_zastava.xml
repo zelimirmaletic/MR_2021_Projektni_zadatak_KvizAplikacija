@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/ic_greece" />
+        android:src="@drawable/ic_greece" />
 
     <TextView
         android:id="@+id/textView3"
@@ -36,6 +36,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
+    <Button
+        android:id="@+id/btnClear"
+        android:layout_width="wrap_content"
+        style="@style/clearEntryButton"
+        android:layout_height="wrap_content"
+        android:text="@string/clear_entry"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+
+    <Button
+        android:id="@+id/btnCheck"
+        style="@style/checkAnswerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/check_entry_button_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnClear" />
+
 
     <ImageView
         android:id="@+id/imageView"
@@ -44,7 +64,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnClear"
+        app:layout_constraintTop_toBottomOf="@+id/btnCheck"
         tools:src="@drawable/ic_baseline_check_circle_outline_24" />
 
     <TextView
@@ -66,8 +86,7 @@
         android:text="@string/next_question_string"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TableLayout
         android:id="@+id/tableLayout"
@@ -264,15 +283,6 @@
             android:layout_height="match_parent" />
     </TableLayout>
 
-    <Button
-        android:id="@+id/btnClear"
-        android:layout_width="wrap_content"
-        style="@style/clearEntryButton"
-        android:layout_height="wrap_content"
-        android:text="@string/clear_entry"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,8 +1,5 @@
 package com.example.kvizologapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,21 +12,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
+import androidx.appcompat.app.AppCompatActivity;
 
-import org.jetbrains.annotations.NotNull;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
     static String SELECTED_LANGUAGE = "Locale.Helper.Selected.Language";
+    public static String lang;
 
 
     private Button btnLogin, btnRegister;
@@ -41,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         loadLanguage();
         SharedPreferences shPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String lang = shPreferences.getString(SELECTED_LANGUAGE, Locale.getDefault().getLanguage());
+        lang = shPreferences.getString(SELECTED_LANGUAGE, Locale.getDefault().getLanguage());
         setLocale(MainActivity.this,lang);
         setContentView(R.layout.activity_main);
         btnLogin = findViewById(R.id.btnLogin);
@@ -50,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         tbPassword = findViewById(R.id.editTextPass);
         mAuth = FirebaseAuth.getInstance();
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+        Toast.makeText(this, lang, Toast.LENGTH_SHORT).show();
 
         //Using labmda
         btnRegister.setOnClickListener(v -> {
@@ -89,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public Context setLocale(Context context, String language) {
+        lang = language;
         // sacuvamo novi jezik u SharedPreferences
         SharedPreferences shPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = shPreferences.edit();

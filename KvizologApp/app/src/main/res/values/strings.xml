@@ -57,6 +57,13 @@
     <string name="heritage_question_text">This heritage place is located in:</string>
     <string name="points_text">POINTS:</string>
 
+    <string name="check_entry_button_text">Check</string>
+
+    <string name="finish_quiz_button_text">Finish quiz</string>
+    <string name="share_on_facebook_button_text">Share result on Facebook!</string>
+    <string name="result_message">Result</string>
+    <string name="social_media_share_message">Share your result!</string>
+
     <string name="clear_entry">clear</string>
 
 </resources>

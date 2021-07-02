@@ -29,6 +29,7 @@ public class QuizGameActivity extends AppCompatActivity {
         adapter.addFragment(new TipPitanjaZastavaFragment(),"Flag");
         adapter.addFragment(new TipPitanjaSusjednaDrzavaFragment(),"Neighbour countries");
         adapter.addFragment(new TipPitanjaZnamenitostFragment(),"Heritage");
+        adapter.addFragment(new QuizResultsFragment(),"Results");
         viewPager.setAdapter(adapter);
     }
 

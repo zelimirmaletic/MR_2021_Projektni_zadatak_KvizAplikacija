@@ -54,6 +54,14 @@
         <item name="cornerRadius">@dimen/answer_button_corner_radius</item>
     </style>
 
+    <style name="checkAnswerButton" parent="TextAppearance.MaterialComponents.Button">
+        <item name="backgroundColor">@color/primary</item>
+        <item name="android:textColor">@color/icons</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:backgroundTint" tools:targetApi="lollipop">@color/primary</item>
+        <item name="cornerRadius">@dimen/answer_button_corner_radius</item>
+    </style>
+
     <style name="circle_button">
         <item name="backgroundTint">@color/primary_light</item>
         <item name="cornerRadius">20dp</item>
@@ -76,6 +84,12 @@
         <item name="android:textSize">@dimen/capital_city_fragment_title_text_size</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/primary</item>
+    </style>
+
+    <style name="PointsResultText">
+        <item name="android:textSize">@dimen/capital_city_fragment_title_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/yellow</item>
     </style>
 
     <style name="FlagNameTitle">

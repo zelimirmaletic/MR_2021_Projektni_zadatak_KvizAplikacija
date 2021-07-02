@@ -29,7 +29,6 @@ public class MainScreenAcitivty extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
-
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener  navListener = item -> {
@@ -66,10 +65,12 @@ public class MainScreenAcitivty extends AppCompatActivity {
 
         SharedPreferences shPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String lang = shPreferences.getString(MainActivity.SELECTED_LANGUAGE, Locale.getDefault().getLanguage());
-        if(lang.equals("en"))
+        if(lang.equals("en")) {
             setLocale(MainScreenAcitivty.this, "sr");
-        else
+        }
+        else {
             setLocale(MainScreenAcitivty.this, "en");
+        }
         // restartujemo activity
         recreate();
     }
@@ -79,6 +80,7 @@ public class MainScreenAcitivty extends AppCompatActivity {
         SharedPreferences shPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = shPreferences.edit();
         editor.putString(MainActivity.SELECTED_LANGUAGE, language);
+        MainActivity.lang=language;
         editor.apply();
 
         // sacuvamo promjene u konfiguraciji aplikacije

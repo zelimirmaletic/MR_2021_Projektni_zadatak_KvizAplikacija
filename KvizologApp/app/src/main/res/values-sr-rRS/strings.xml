@@ -39,4 +39,9 @@
     <string name="heritage_question_text">Ова знаменитост се налази у:</string>
     <string name="points_text">"БОДОВИ: "</string>
     <string name="clear_entry">очисти унос</string>
+    <string name="check_entry_button_text">Провјери</string>
+    <string name="finish_quiz_button_text">Заврши квиз</string>
+    <string name="share_on_facebook_button_text">Подијли резултат на Фејсбук!</string>
+    <string name="result_message">Резултат</string>
+    <string name="social_media_share_message">Подијели резултат!</string>
 </resources>
