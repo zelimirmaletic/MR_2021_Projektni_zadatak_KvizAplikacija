@@ -28,11 +28,10 @@
 
     <TextView
         android:id="@+id/txbCountryName"
-        style="@style/QuestionTitleText"
+        style="@style/FlagNameTitle"
         android:layout_width="match_parent"
         android:gravity="center"
         android:layout_height="wrap_content"
-        android:text="GREECE"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -45,7 +44,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+        app:layout_constraintTop_toBottomOf="@+id/btnClear"
         tools:src="@drawable/ic_baseline_check_circle_outline_24" />
 
     <TextView
@@ -110,12 +109,6 @@
                 android:layout_width="@dimen/letter_button_width"
                 android:layout_height="wrap_content"
                 android:text="D" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
 
             <Button
                 android:id="@+id/btnLetter5"
@@ -123,6 +116,12 @@
                 android:layout_width="@dimen/letter_button_width"
                 android:layout_height="wrap_content"
                 android:text="A" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
 
             <Button
                 android:id="@+id/btnLetter6"
@@ -146,12 +145,6 @@
                 android:layout_width="@dimen/letter_button_width"
                 android:layout_height="wrap_content"
                 android:text="D" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
 
             <Button
                 android:id="@+id/btnLetter9"
@@ -166,6 +159,12 @@
                 android:layout_width="@dimen/letter_button_width"
                 android:layout_height="wrap_content"
                 android:text="B" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
 
             <Button
                 android:id="@+id/btnLette11"
@@ -182,12 +181,6 @@
                 android:layout_width="@dimen/letter_button_width"
                 android:layout_height="wrap_content"
                 android:text="D" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
 
             <Button
                 android:id="@+id/btnLetter13"
@@ -211,6 +204,13 @@
                 android:layout_height="wrap_content"
                 android:text="C" />
 
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
             <Button
                 android:id="@+id/btnLetter16"
 
@@ -218,12 +218,6 @@
                 android:layout_width="@dimen/letter_button_width"
                 android:layout_height="wrap_content"
                 android:text="D" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
 
             <Button
                 android:id="@+id/btnLetter17"
@@ -269,6 +263,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </TableLayout>
+
+    <Button
+        android:id="@+id/btnClear"
+        android:layout_width="wrap_content"
+        style="@style/clearEntryButton"
+        android:layout_height="wrap_content"
+        android:text="@string/clear_entry"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

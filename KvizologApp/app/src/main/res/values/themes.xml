@@ -46,14 +46,22 @@
         <item name="cornerRadius">@dimen/answer_button_corner_radius</item>
     </style>
 
+    <style name="clearEntryButton" parent="TextAppearance.MaterialComponents.Button">
+        <item name="backgroundColor">@color/accent</item>
+        <item name="android:textColor">@color/icons</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:backgroundTint" tools:targetApi="lollipop">@color/accent</item>
+        <item name="cornerRadius">@dimen/answer_button_corner_radius</item>
+    </style>
+
     <style name="circle_button">
-        <item name="backgroundTint">@color/primary</item>
+        <item name="backgroundTint">@color/primary_light</item>
+        <item name="cornerRadius">20dp</item>
     </style>
 
     <style name="letter_button">
         <item name="android:textColor">@color/icons</item>
         <item name="backgroundTint">@color/primary_dark</item>
-        <item name="cornerRadius">25dp</item>
         <item name="android:layout_margin">@dimen/letter_button_margin</item>
     </style>
 
@@ -68,6 +76,18 @@
         <item name="android:textSize">@dimen/capital_city_fragment_title_text_size</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/primary</item>
+    </style>
+
+    <style name="FlagNameTitle">
+        <item name="android:textSize">@dimen/flag_name_title_font_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/accent</item>
+    </style>
+
+    <style name="PointsText">
+        <item name="android:textSize">@dimen/points_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/yellow</item>
     </style>
 
     <style name="AnswerMessageText">
