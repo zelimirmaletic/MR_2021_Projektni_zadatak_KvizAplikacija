@@ -27,6 +27,8 @@ public class Pitanje implements Serializable {
     private String odgovorBr2Srpski;
     private String odgovorBr3Srpski;
     private String odgovorBr4Srpski;
+    private String tacniOdgovoriEngleski;
+    private String tacniOdgovoriSrpski;
     private String hintEngleski;
     private String hintSrpski;
     private String slika;
@@ -35,7 +37,7 @@ public class Pitanje implements Serializable {
     public  Pitanje(){
     }
 
-    public Pitanje(int tipPitanja, String tekstPitanjaEngleski, String odgovorBr1Engleski, String odgovorBr2Engleski, String odgovorBr3Engleski, String odgovorBr4Engleski, String tekstPitanjaSrpski, String odgovorBr1Srpski, String odgovorBr2Srpski, String odgovorBr3Srpski, String odgovorBr4Srpski, String hintEngleski, String hintSrpski, String slika) {
+    public Pitanje(int tipPitanja, String tekstPitanjaEngleski, String odgovorBr1Engleski, String odgovorBr2Engleski, String odgovorBr3Engleski, String odgovorBr4Engleski, String tekstPitanjaSrpski, String odgovorBr1Srpski, String odgovorBr2Srpski, String odgovorBr3Srpski, String odgovorBr4Srpski,String tacniOdgovoriEngleski,String tacniOdgovoriSrpski, String hintEngleski, String hintSrpski, String slika) {
         this.tipPitanja = tipPitanja;
         this.tekstPitanjaEngleski = tekstPitanjaEngleski;
         this.odgovorBr1Engleski = odgovorBr1Engleski;
@@ -47,6 +49,8 @@ public class Pitanje implements Serializable {
         this.odgovorBr2Srpski = odgovorBr2Srpski;
         this.odgovorBr3Srpski = odgovorBr3Srpski;
         this.odgovorBr4Srpski = odgovorBr4Srpski;
+        this.tacniOdgovoriEngleski = tacniOdgovoriEngleski;
+        this.tacniOdgovoriSrpski = tacniOdgovoriSrpski;
         this.hintEngleski = hintEngleski;
         this.hintSrpski = hintSrpski;
         this.slika = slika;
@@ -92,12 +96,29 @@ public class Pitanje implements Serializable {
         this.odgovorBr2Engleski = odgovorBr2Engleski;
     }
 
+
     public String getOdgovorBr3Engleski() {
         return odgovorBr3Engleski;
     }
 
     public void setOdgovorBr3Engleski(String odgovorBr3Engleski) {
         this.odgovorBr3Engleski = odgovorBr3Engleski;
+    }
+
+    public String getTacniOdgovoriEngleski() {
+        return tacniOdgovoriEngleski;
+    }
+
+    public void setTacniOdgovoriEngleski(String tacniOdgovoriEngleski) {
+        this.tacniOdgovoriEngleski = tacniOdgovoriEngleski;
+    }
+
+    public String getTacniOdgovoriSrpski() {
+        return tacniOdgovoriSrpski;
+    }
+
+    public void setTacniOdgovoriSrpski(String tacniOdgovoriSrpski) {
+        this.tacniOdgovoriSrpski = tacniOdgovoriSrpski;
     }
 
     public String getOdgovorBr4Engleski() {

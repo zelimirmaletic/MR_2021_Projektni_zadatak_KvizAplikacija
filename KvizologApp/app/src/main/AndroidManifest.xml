@@ -9,9 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KvizologApp">
-        <activity android:name=".QuizGameActivity"
-            android:theme="@style/NoActionBarTheme"
-            ></activity>
+        <service
+            android:name=".PopulateDatabaseService"
+            android:enabled="true"
+            android:exported="true"></service>
+
+        <activity
+            android:name=".QuizGameActivity"
+            android:theme="@style/NoActionBarTheme" />
         <activity android:name=".MainScreenAcitivty" />
         <activity
             android:name=".RegisterActivity"
@@ -22,6 +27,7 @@
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
