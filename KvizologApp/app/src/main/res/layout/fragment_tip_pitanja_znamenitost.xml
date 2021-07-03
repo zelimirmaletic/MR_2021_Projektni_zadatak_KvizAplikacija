@@ -11,20 +11,33 @@
     <ImageView
         android:id="@+id/imgHeritage"
         style="@style/HeritageImageStyle"
+        android:layout_marginTop="@dimen/heritage_image_top_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:src="@drawable/al_hijr_madain"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/txbHeritageName"
+        style="@style/QuestionTitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The Great Wall"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/great_wall" />
+        app:layout_constraintTop_toBottomOf="@+id/imgHeritage" />
 
     <TextView
         android:id="@+id/textView3"
         style="@style/AnswerMessageText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="285dp"
+        android:layout_height="32dp"
         android:text="@string/heritage_question_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgHeritage" />
+        app:layout_constraintTop_toBottomOf="@+id/txbHeritageName"/>
 
     <Button
         android:id="@+id/btnAnswer1"
@@ -88,9 +101,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/wrong_answer_message"
+        app:layout_constraintBottom_toTopOf="@+id/btnNextQuestion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAnswer4" />
 
 
     <Button

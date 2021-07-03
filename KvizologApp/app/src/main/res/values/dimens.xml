@@ -35,6 +35,8 @@
 
     <dimen name="heritage_image_height">200dp</dimen>
     <dimen name="heritage_image_width">200dp</dimen>
+    <dimen name="heritage_image_top_margin">0dp</dimen>
+
 
     <dimen name="points_text_size">20dp</dimen>
 
@@ -42,4 +44,5 @@
     <dimen name="result_icon_top_margin">50dp</dimen>
     <dimen name="letter_button_margin">5dp</dimen>
     <dimen name="horizontal_bias">0.5</dimen>
+
 </resources>
