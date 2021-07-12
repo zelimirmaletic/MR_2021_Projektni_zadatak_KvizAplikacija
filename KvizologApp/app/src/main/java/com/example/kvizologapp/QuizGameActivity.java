@@ -9,17 +9,17 @@ public class QuizGameActivity extends AppCompatActivity {
 
     private SectionsStatePagerAdapter sectionsStatePagerAdapter;
     private ViewPager viewPager;
-
-
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_game);
-
         sectionsStatePagerAdapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
         viewPager = findViewById(R.id.quizViewPager);
         setupViewPager(viewPager);
+        //Disable scroll on view pager
+        viewPager.setOnTouchListener((v, event) -> true);
+
 
     }
 
