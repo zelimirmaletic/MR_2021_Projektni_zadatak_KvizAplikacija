@@ -17,31 +17,31 @@ public class PopulateDatabaseService extends Service {
         Pitanje pitanje1 = new Pitanje(1,"Russia","Moscow","London","Kiev","Vladivostok", "Русија","Москва","Лондон","Кијев","Владивосток", "Moscow","Москва","Red square","Црвени трг","NO_IMAGE");
         Pitanje pitanje2 = new Pitanje(1,"Slovenia","Maribor","Ljubljana","Skopje","Belgrade", "Словенија","Марибор","Љубљана","Скопље","Београд", "Ljubljana","Љубљана","Dragon is the most recognizable symbol.","Најпрепознатљивији сибол града је змај.","NO_IMAGE");
         Pitanje pitanje3 = new Pitanje(1,"Serbia","Skopje","Blegrade","Novi Sad","Trebinje","Србија","Скопље","Београд","Нови Сад","Требиње","Belgrade","Београд","Biggest orthodox church in the Balkans","Највећа православна црква на Балкану","NO_IMAGE");
-        Pitanje pitanje4 = new Pitanje(1, "United Kingdom","London","Berlin","Edinburg","Paris","Уједињено Краљевств","Лондон","Берлин","Единбург","Париз","London","Лондон","Big eye.","Велико око.","NO_IMAGE");
+        Pitanje pitanje4 = new Pitanje(1,"United Kingdom","London","Berlin","Edinburg","Paris","Уједињено Краљевств","Лондон","Берлин","Единбург","Париз","London","Лондон","Big eye.","Велико око.","NO_IMAGE");
         Pitanje pitanje5 = new Pitanje(1,"Germany", "Hamburg","Berlin","Hanover","Munch","Њемачка","Хамбург","Берлин","Минхен","Хановер","Berlin","Берлин","Used to be divided by a wall.","Био је подијељен зидом.","NO_IMAGE");
         Pitanje pitanje6 = new Pitanje(1,"Greece","Heraklion","Athens","Thessaloniki","Berlin","Грчка","Херклион","Атина","Тесалоники","Берлин","Athens","Атина","Partenon","Партенон","NO_IMAGE");
 
         //PITANJA - ZASTAVE
         Pitanje pitanje21 = new Pitanje(2,"","GREECE","","","","ГРЧКА","","","","","","","Birthplace of philosopy...","Родно мјесто философије...","ic_greece");
-        Pitanje pitanje22 = new Pitanje(2,"","SERBIA","","","","СРБИЈА","","","","","","","","","ic_serbia");
+        Pitanje pitanje22 = new Pitanje(2,"","SERBIA","","","","СРБИЈА","","","","","","","Biggest orthodox church in the Balkans","Највећа православна црква на Балкану","ic_serbia");
         Pitanje pitanje23 = new Pitanje(2,"","BHUTAN","","","","БУТАН","","","","","","","","","ic_bhutan");
-        Pitanje pitanje24 = new Pitanje(2,"","JAPAN","","","","ЈАПАН","","","","","","","","","ic_japan");
-        Pitanje pitanje25 = new Pitanje(2,"","SPAIN","","","","ШПАНИЈА","","","","","","","","","ic_spain");
+        Pitanje pitanje24 = new Pitanje(2,"","JAPAN","","","","ЈАПАН","","","","","","","Country of rising sun.","Земља излазећег сунца.","ic_japan");
+        Pitanje pitanje25 = new Pitanje(2,"","SPAIN","","","","ШПАНИЈА","","","","","","","Gaudi's home country.","Гаудијева земља рођења.","ic_spain");
         Pitanje pitanje26 = new Pitanje(2,"","BANGLADESH","","","","БАНГЛАДЕШ","","","","","","","","","ic_bangladesh");
-        Pitanje pitanje27 = new Pitanje(4,"","","","","","","","","","","","","","","");
-        Pitanje pitanje28 = new Pitanje(4,"","","","","","","","","","","","","","","");
-        Pitanje pitanje29 = new Pitanje(4,"","","","","","","","","","","","","","","");
-        Pitanje pitanje30 = new Pitanje(4,"","","","","","","","","","","","","","","");
-        Pitanje pitanje31 = new Pitanje(4,"","","","","","","","","","","","","","","");
-        Pitanje pitanje32 = new Pitanje(4,"","","","","","","","","","","","","","","");
-        Pitanje pitanje33 = new Pitanje(4,"","","","","","","","","","","","","","","");
-        Pitanje pitanje34 = new Pitanje(4,"","","","","","","","","","","","","","","");
-        Pitanje pitanje35 = new Pitanje(4,"","","","","","","","","","","","","","","");
-        Pitanje pitanje36 = new Pitanje(4,"","","","","","","","","","","","","","","");
-        Pitanje pitanje37 = new Pitanje(4,"","","","","","","","","","","","","","","");
-        Pitanje pitanje38 = new Pitanje(4,"","","","","","","","","","","","","","","");
-        Pitanje pitanje39 = new Pitanje(4,"","","","","","","","","","","","","","","");
-        Pitanje pitanje40 = new Pitanje(4,"","","","","","","","","","","","","","","");
+        Pitanje pitanje27 = new Pitanje(4,"","BOSNIA AND HERZEGOVINA","","","","БОСНА И ХЕРЦЕГОВИНА","","","","","","","","","ic_bih");
+        Pitanje pitanje28 = new Pitanje(4,"","BRAZIL","","","","БРАЗИЛ","","","","","","","","","ic_brazil");
+        Pitanje pitanje29 = new Pitanje(4,"","CANADA","","","","КАНАДА","","","","","","","","","ic_canada");
+        Pitanje pitanje30 = new Pitanje(4,"","CHAD","","","","ЧАД","","","","","","","","","ic_chad");
+        Pitanje pitanje31 = new Pitanje(4,"","CHINA","","","","КИНА","","","","","","","","","ic_china");
+        Pitanje pitanje32 = new Pitanje(4,"","DENMARK","","","","ДАНСКА","","","","","","","","","ic_denmark");
+        Pitanje pitanje33 = new Pitanje(4,"","KYRGYZSTAN","","","","КИРГИСТАН","","","","","","","","","ic_kyrgyzstan");
+        Pitanje pitanje34 = new Pitanje(4,"","NORTH MACEDONIA","","","","СЈЕВЕРНА МАКЕДОНИЈА","","","","","","","","","ic_north_macedonia");
+        Pitanje pitanje35 = new Pitanje(4,"","PAPA NEW GUINEA","","","","НОВА ГВИНЕЈА","","","","","","","","","ic_papa_new_guinea");
+        Pitanje pitanje36 = new Pitanje(4,"","RUSSIA","","","","РУСИЈА","","","","","","","","","ic_russia");
+        Pitanje pitanje37 = new Pitanje(4,"","SWITZERLAND","","","","ШВАЈЦАРСКА","","","","","","","","","ic_switzerland");
+        Pitanje pitanje38 = new Pitanje(4,"","UNITED KINGDOM","","","","ВЕЛИКА БРИТАНИЈА","","","","","","","","","ic_uk");
+        Pitanje pitanje39 = new Pitanje(4,"","VIETNAM","","","","ВИЈЕТНАМ","","","","","","","","","ic_vietnam");
+        Pitanje pitanje40 = new Pitanje(4,"","YEMEN","","","","ЈЕМЕН","","","","","","","","","ic_yemen");
 
         //INSERT TYPE 3 QUESTIONS
         Pitanje pitanje41 = new Pitanje(3,"Russia","Germany","China","Estonia","Ukraine","Русија","Њемачка","Кина","Украјина","Естонија","China:Estonia:Ukraine","Кина:Естониа:Украјина","One Baltic country is a neigbour.","Једна балтичка земља је сусједна","NO_IMAGE");
