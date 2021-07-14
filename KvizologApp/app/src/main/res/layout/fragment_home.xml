@@ -7,6 +7,11 @@
     android:background="@drawable/ic_home_fragment_background"
     tools:context=".HomeFragment">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/globe"
+        app:layout_constraintBottom_toTopOf="@+id/btnStartQuiz" />
 
     <Button
         android:id="@+id/btnStartQuiz"

@@ -28,6 +28,11 @@
             android:orientation="vertical"
             android:padding="@dimen/login_card_padding">
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/globe"/>
+
             <TextView
                 android:id="@+id/app_name"
                 android:layout_width="match_parent"

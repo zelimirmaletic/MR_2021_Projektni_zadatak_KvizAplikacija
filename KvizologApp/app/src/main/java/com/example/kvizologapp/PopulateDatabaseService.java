@@ -21,6 +21,9 @@ public class PopulateDatabaseService extends Service {
         Pitanje pitanje5 = new Pitanje(1,"Germany", "Hamburg","Berlin","Hanover","Munch","Њемачка","Хамбург","Берлин","Минхен","Хановер","Berlin","Берлин","Used to be divided by a wall.","Био је подијељен зидом.","NO_IMAGE");
         Pitanje pitanje6 = new Pitanje(1,"Greece","Heraklion","Athens","Thessaloniki","Berlin","Грчка","Херклион","Атина","Тесалоники","Берлин","Athens","Атина","Partenon","Партенон","NO_IMAGE");
 
+
+
+
         //PITANJA - ZASTAVE
         Pitanje pitanje21 = new Pitanje(2,"","GREECE","","","","ГРЧКА","","","","","","","Birthplace of philosopy...","Родно мјесто философије...","ic_greece");
         Pitanje pitanje22 = new Pitanje(2,"","SERBIA","","","","СРБИЈА","","","","","","","Biggest orthodox church in the Balkans","Највећа православна црква на Балкану","ic_serbia");
