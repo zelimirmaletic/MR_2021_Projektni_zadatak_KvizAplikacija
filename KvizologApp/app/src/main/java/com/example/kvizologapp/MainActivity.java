@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         tbPassword = findViewById(R.id.editTextPass);
         mAuth = FirebaseAuth.getInstance();
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
-        Toast.makeText(this, lang, Toast.LENGTH_SHORT).show();
 
         //Using labmda
         btnRegister.setOnClickListener(v -> {
@@ -119,5 +118,4 @@ public class MainActivity extends AppCompatActivity {
         String value = shPreferences.getString(key, "");
         return value;
     }
-
 }

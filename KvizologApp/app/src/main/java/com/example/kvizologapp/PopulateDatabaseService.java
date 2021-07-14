@@ -80,12 +80,12 @@ public class PopulateDatabaseService extends Service {
         Pitanje pitanje72 = new Pitanje(4,"Machu Picchu","Argentina","Mexico","Brazil","Chile","Мачу Пикчу","Аргентина","Мексико","Бразил","Чиле","Mexico","Мексико","Tequila!","Текила!","machu_picchu");
         Pitanje pitanje73 = new Pitanje(4,"Notre Dame","Germany","France","Italy","Austria","Нотр Дам","Њемачка","Француска","Италија","Аустрија","France","Француска","Croissant!","Кроасан!","notre_dame");
         Pitanje pitanje74 = new Pitanje(4,"Petra","Saudi Arabia","Ethiopia","Jordan","Ruanda","Петра","Саудијска Арабија","Јордан","Руанда","Етиопија","Jordan","Јордан","Amman is the capital city of this coutry.","Аман је главни град ове државе.","petra_jordan");
-        Pitanje pitanje75 = new Pitanje(4,"","","","","","","","","","","","","","","");
-        Pitanje pitanje76 = new Pitanje(4,"","","","","","","","","","","","","","","");
-        Pitanje pitanje77 = new Pitanje(4,"","","","","","","","","","","","","","","");
-        Pitanje pitanje78 = new Pitanje(4,"","","","","","","","","","","","","","","");
-        Pitanje pitanje79 = new Pitanje(4,"","","","","","","","","","","","","","","");
-        Pitanje pitanje80 = new Pitanje(4,"","","","","","","","","","","","","","","");
+        Pitanje pitanje75 = new Pitanje(4,"Pyramids Giza","Saudi Arabia","Sudan","Egypt","Ethiopia","Пирамиде у Гизи","Саудијска Арабија","Судан","Египат","Етиопија","Egypt","Египат","Great river Nile splits this country on two.","Велика ријека Нил дијели ову државу на два дијела.","pyramids_giza");
+        Pitanje pitanje76 = new Pitanje(4,"Shinto Shrine","China","South Korea","Mongolia","Japan","Шинто Шрајн","Кина","Јужна Кореја","Монголија","Јапан","Japan","Јапан","Miso soup!","Мизо супа!","shinto_shrine");
+        Pitanje pitanje77 = new Pitanje(4,"Taj Mahal","Bhutan","Nepal","India","Mongolia","Таџ Махал","Бутан","Непал","Индија","Монголија","India","Индија","Ghandi's country.","Гандијева земља.","taj_mahal");
+        Pitanje pitanje78 = new Pitanje(4,"Uluru Kata Tjuta","USA","New Zeland","Australia","Somalia","Улуру Ката Тјута","САД","Нови Зеланд","Аустралија","Сомалија","Australia","Аустралија","Kangaroo!","Кенгур!","uluru_kata_tjuta");
+        Pitanje pitanje79 = new Pitanje(4,"Yellowstone","Australia","USA","New Zeland","Brazil","Јелоустон","Аустралија","САД","Нови Зеланд","Бразил","USA","САД","Country which bought Alaska.","Земља која је купила Аљаску.","yellowstone");
+        Pitanje pitanje80 = new Pitanje(4,"Church of Christ The Saviour","Bosnia and Herzegovina","Serbia","Montenegro","North Macedonia","Храм Христа Спаситеља","Босна и Херцеговина","Србија","Црна Гора","Сјеверна Македонија","Bosnia and Herzegovina","Босна и Херцеговина","Sarajevo is a capital city.","Сарајево је главни град.","christ_the_saviour");
 
         //CORRECT THIS RETURN STATEMENT!
         return null;
