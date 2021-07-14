@@ -24,6 +24,7 @@
             android:src="@drawable/ic_baseline_stars_24"/>
 
         <TextView
+            android:id="@+id/txbPoints"
             style="@style/PointsText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -168,11 +168,12 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        android:src="@drawable/ic_baseline_check_circle_outline_24"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/btnHint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLocation4"
-        tools:src="@drawable/ic_baseline_check_circle_outline_24" />
+        app:layout_constraintTop_toBottomOf="@+id/btnLocation4" />
 
     <Button
         android:id="@+id/btnNextQuestion"
@@ -185,14 +186,15 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/txbCorrectnessMessage"
         style="@style/AnswerMessageText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/wrong_answer_message"
-        app:layout_constraintBottom_toTopOf="@+id/btnHint"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
         android:id="@+id/btnHint"
