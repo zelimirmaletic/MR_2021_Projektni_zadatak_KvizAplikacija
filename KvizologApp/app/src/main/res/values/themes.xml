@@ -54,6 +54,12 @@
         <item name="cornerRadius">@dimen/answer_button_corner_radius</item>
     </style>
 
+    <style name="SpaceButtonStyle" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textSize">@dimen/space_button_text_size</item>
+        <item name="android:textColor">@color/icons</item>
+        <item name="android:backgroundTint" tools:targetApi="lollipop">@color/primary_dark</item>
+    </style>
+
     <style name="checkAnswerButton" parent="TextAppearance.MaterialComponents.Button">
         <item name="backgroundColor">@color/primary</item>
         <item name="android:textColor">@color/icons</item>

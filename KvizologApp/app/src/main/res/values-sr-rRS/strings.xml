@@ -44,4 +44,5 @@
     <string name="share_on_facebook_button_text">Подијли резултат на Фејсбук!</string>
     <string name="result_message">Резултат</string>
     <string name="social_media_share_message">Подијели резултат!</string>
+    <string name="space_button_text">размак</string>
 </resources>

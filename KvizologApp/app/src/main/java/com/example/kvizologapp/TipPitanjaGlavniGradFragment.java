@@ -103,19 +103,16 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
         btnAnswer3.setOnClickListener(v -> processButtonClick(btnAnswer3));
         btnAnswer4.setOnClickListener(v -> processButtonClick(btnAnswer4));
 
-        btnHint.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(QuizGameActivity.HINT_COUNTER != 0){
-                    mpHint.start();
-                    QuizGameActivity.HINT_COUNTER--;
-                    if("en".equals(MainActivity.lang))
-                        Toast.makeText(getContext(), QuizGameActivity.TRENUTNO_PITANJE.getHintEngleski(), Toast.LENGTH_LONG).show();
-                    else
-                        Toast.makeText(getContext(), QuizGameActivity.TRENUTNO_PITANJE.getHintSrpski(), Toast.LENGTH_LONG).show();
-                }
-                btnHint.setVisibility(View.INVISIBLE);
+        btnHint.setOnClickListener(v -> {
+            if(QuizGameActivity.HINT_COUNTER != 0){
+                mpHint.start();
+                QuizGameActivity.HINT_COUNTER--;
+                if("en".equals(MainActivity.lang))
+                    Toast.makeText(getContext(), QuizGameActivity.TRENUTNO_PITANJE.getHintEngleski(), Toast.LENGTH_LONG).show();
+                else
+                    Toast.makeText(getContext(), QuizGameActivity.TRENUTNO_PITANJE.getHintSrpski(), Toast.LENGTH_LONG).show();
             }
+            btnHint.setVisibility(View.INVISIBLE);
         });
 
         return view;

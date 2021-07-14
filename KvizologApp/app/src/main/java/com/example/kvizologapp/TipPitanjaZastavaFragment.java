@@ -1,11 +1,14 @@
 package com.example.kvizologapp;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -14,22 +17,18 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link TipPitanjaZastavaFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class TipPitanjaZastavaFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     Button btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn10,btn11,btn12,btn13,btn14,btn15,btn16,btn17,btn18,btn19,btn20;
+    ArrayList<Button> disabledButtons;
     private static List<Character> CYRILIC_LETTERS = Arrays.asList('А','Б','В','Г','Д','Ђ','Е','Ж','З','И','Ј','К','Л','Љ','М','Н','Њ','О','П','Р','С','Т','Ћ','У','Ф','Х','Ц','Ч','Џ','Ш');
-    Button clearEntry;
-    Button btnNextQuestion;
+    Button clearEntry, btnNextQuestion, btnSpace, btnHint;
     TextView flagName;
+    ImageView imgFlag;
+    MediaPlayer mpHint;
     private static final int MAX_NUM_OF_LETTERS = 20;
     private static final int NUM_OF_LETTER_BUTTONS = 20;
 
@@ -38,18 +37,8 @@ public class TipPitanjaZastavaFragment extends Fragment {
     private String mParam2;
 
     public TipPitanjaZastavaFragment() {
-        // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment TipPitanjaZastavaFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static TipPitanjaZastavaFragment newInstance(String param1, String param2) {
         TipPitanjaZastavaFragment fragment = new TipPitanjaZastavaFragment();
         Bundle args = new Bundle();
@@ -74,19 +63,26 @@ public class TipPitanjaZastavaFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tip_pitanja_zastava, container, false);
         flagName = view.findViewById(R.id.txbCountryName);
+        clearEntry=(Button)view.findViewById(R.id.btnClear);
+        btnSpace = (Button)view.findViewById(R.id.btnSpace);
+        imgFlag = (ImageView) view.findViewById(R.id.imgFlag);
         btnNextQuestion = (Button) view.findViewById(R.id.btnNextQuestion);
+        btnHint = (Button) view.findViewById(R.id.btnHint);
+        mpHint = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.hint);
+        disabledButtons = new ArrayList<>();
+
+        //Initialize views from Pitanje object
+        imgFlag.setImageResource(getResources().getIdentifier(QuizGameActivity.TRENUTNO_PITANJE.getSlika(),"drawable",((QuizGameActivity)getActivity()).getPackageName()));
         initializeLetterButtons(view);
         setListeners();
-        setAndRandomizeLetterButtons("ГРЧКА");
+        if("en".equals(MainActivity.lang))
+            setAndRandomizeLetterButtons(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr1Engleski());
+        else
+            setAndRandomizeLetterButtons(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr1Srpski());
 
-
-        btnNextQuestion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((QuizGameActivity)getActivity()).setViewPager(2);//go to the next question type
-            }
+        btnNextQuestion.setOnClickListener(v -> {
+            ((QuizGameActivity)getActivity()).setViewPager(2);//go to the next question type
         });
-
         return view;
     }
 
@@ -111,7 +107,6 @@ public class TipPitanjaZastavaFragment extends Fragment {
         btn18=(Button)view.findViewById(R.id.btnLetter18);
         btn19=(Button)view.findViewById(R.id.btnLetter19);
         btn20=(Button)view.findViewById(R.id.btnLetter20);
-        clearEntry=(Button)view.findViewById(R.id.btnClear);
     }
 
     private void setListeners(){
@@ -135,12 +130,38 @@ public class TipPitanjaZastavaFragment extends Fragment {
         btn18.setOnClickListener(v -> { writeLetter(btn18); });
         btn19.setOnClickListener(v -> { writeLetter(btn19); });
         btn20.setOnClickListener(v -> { writeLetter(btn20); });
-        clearEntry.setOnClickListener(v -> {flagName.setText("");});
+        clearEntry.setOnClickListener(v -> {
+            flagName.setText("");
+            for(Button btn : disabledButtons)
+            {
+                btn.setEnabled(true);
+                btn.setBackgroundColor(getResources().getColor(R.color.primary_dark));
+            }
+            disabledButtons.clear();
+        });
+        btnSpace.setOnClickListener(v -> {
+            if(flagName.getText().toString().length()<MAX_NUM_OF_LETTERS)
+                flagName.setText(flagName.getText().toString().concat(" "));
+        });
+        btnHint.setOnClickListener(v -> {
+            if(QuizGameActivity.HINT_COUNTER != 0){
+                mpHint.start();
+                QuizGameActivity.HINT_COUNTER--;
+                if("en".equals(MainActivity.lang))
+                    Toast.makeText(getContext(), QuizGameActivity.TRENUTNO_PITANJE.getHintEngleski(), Toast.LENGTH_LONG).show();
+                else
+                    Toast.makeText(getContext(), QuizGameActivity.TRENUTNO_PITANJE.getHintSrpski(), Toast.LENGTH_LONG).show();
+            }
+            btnHint.setVisibility(View.INVISIBLE);
+        });
     }
 
     private void writeLetter(Button button){
         if(flagName.getText().toString().length()<MAX_NUM_OF_LETTERS)
             flagName.setText(flagName.getText().toString().concat(button.getText().toString()));
+        button.setEnabled(false);
+        button.setBackgroundColor(getResources().getColor(R.color.primary_light));
+        disabledButtons.add(button);
     }
 
     private void setAndRandomizeLetterButtons(String requiredLetters){

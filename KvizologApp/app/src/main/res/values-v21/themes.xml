@@ -9,4 +9,5 @@
         <item name="android:backgroundTint">@color/accent</item>
         <item name="cornerRadius">@dimen/answer_button_corner_radius</item>
     </style>
+
 </resources>

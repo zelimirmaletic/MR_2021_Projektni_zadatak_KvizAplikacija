@@ -17,7 +17,9 @@ public class QuizGameActivity extends AppCompatActivity {
 
     //TEST DATA
     private static Pitanje pitanje1 = new Pitanje(1,"Russia","Moscow","London","Kiev","Vladivostok", "Русија","Москва","Лондон","Кијев","Владивосток", "Moscow","Москва","Red square","Црвени трг","NO_IMAGE");
-    public static Pitanje TRENUTNO_PITANJE = pitanje1;
+    private static Pitanje pitanje21 = new Pitanje(2,"","GREECE","","","","","ГРЧКА","","","","","","Birthplace of philosopy...","Родно мјесто философије...","ic_greece");
+    //Treba pomjeriti poziciju naziva na srpskom sa [7] na [8], dakle za jedno mjesto!
+    public static Pitanje TRENUTNO_PITANJE = pitanje21;
 
     TextView txvPoints;
 
