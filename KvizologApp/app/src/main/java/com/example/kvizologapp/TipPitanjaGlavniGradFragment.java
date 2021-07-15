@@ -12,11 +12,7 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link TipPitanjaGlavniGradFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class TipPitanjaGlavniGradFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";

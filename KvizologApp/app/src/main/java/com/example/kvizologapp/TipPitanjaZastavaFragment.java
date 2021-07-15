@@ -1,7 +1,9 @@
 package com.example.kvizologapp;
 
+import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,10 +27,11 @@ public class TipPitanjaZastavaFragment extends Fragment {
     Button btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn10,btn11,btn12,btn13,btn14,btn15,btn16,btn17,btn18,btn19,btn20;
     ArrayList<Button> disabledButtons;
     private static List<Character> CYRILIC_LETTERS = Arrays.asList('А','Б','В','Г','Д','Ђ','Е','Ж','З','И','Ј','К','Л','Љ','М','Н','Њ','О','П','Р','С','Т','Ћ','У','Ф','Х','Ц','Ч','Џ','Ш');
-    Button clearEntry, btnNextQuestion, btnSpace, btnHint;
-    TextView flagName;
-    ImageView imgFlag;
-    MediaPlayer mpHint;
+    Button clearEntry, btnNextQuestion, btnSpace, btnHint, btnCheck;
+    TextView txbCountryName, txvCornectnessMessage;
+    ImageView imgFlag, imgView;
+    MediaPlayer mpCorrect, mpWrong, mpHint;
+    Vibrator vibe;
     private static final int MAX_NUM_OF_LETTERS = 20;
     private static final int NUM_OF_LETTER_BUTTONS = 20;
 
@@ -62,12 +65,18 @@ public class TipPitanjaZastavaFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tip_pitanja_zastava, container, false);
-        flagName = view.findViewById(R.id.txbCountryName);
+        txbCountryName = view.findViewById(R.id.txbCountryName);
         clearEntry=(Button)view.findViewById(R.id.btnClear);
         btnSpace = (Button)view.findViewById(R.id.btnSpace);
         imgFlag = (ImageView) view.findViewById(R.id.imgFlag);
+        txvCornectnessMessage = (TextView) view.findViewById(R.id.txbCorectnessMessage);
         btnNextQuestion = (Button) view.findViewById(R.id.btnNextQuestion);
         btnHint = (Button) view.findViewById(R.id.btnHint);
+        btnCheck = (Button) view.findViewById(R.id.btnCheck);
+        imgView = (ImageView) view.findViewById(R.id.imageView);
+        vibe = (Vibrator) ((QuizGameActivity)getActivity()).getSystemService(Context.VIBRATOR_SERVICE);
+        mpCorrect = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.correct);
+        mpWrong = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.wrong);
         mpHint = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.hint);
         disabledButtons = new ArrayList<>();
 
@@ -79,10 +88,6 @@ public class TipPitanjaZastavaFragment extends Fragment {
             setAndRandomizeLetterButtons(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr1Engleski());
         else
             setAndRandomizeLetterButtons(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr1Srpski());
-
-        btnNextQuestion.setOnClickListener(v -> {
-            ((QuizGameActivity)getActivity()).setViewPager(2);//go to the next question type
-        });
         return view;
     }
 
@@ -130,8 +135,11 @@ public class TipPitanjaZastavaFragment extends Fragment {
         btn18.setOnClickListener(v -> { writeLetter(btn18); });
         btn19.setOnClickListener(v -> { writeLetter(btn19); });
         btn20.setOnClickListener(v -> { writeLetter(btn20); });
+        btnNextQuestion.setOnClickListener(v -> {
+            ((QuizGameActivity)getActivity()).setViewPager(2);//go to the next question type
+        });
         clearEntry.setOnClickListener(v -> {
-            flagName.setText("");
+            txbCountryName.setText("");
             for(Button btn : disabledButtons)
             {
                 btn.setEnabled(true);
@@ -140,8 +148,8 @@ public class TipPitanjaZastavaFragment extends Fragment {
             disabledButtons.clear();
         });
         btnSpace.setOnClickListener(v -> {
-            if(flagName.getText().toString().length()<MAX_NUM_OF_LETTERS)
-                flagName.setText(flagName.getText().toString().concat(" "));
+            if(txbCountryName.getText().toString().length()<MAX_NUM_OF_LETTERS)
+                txbCountryName.setText(txbCountryName.getText().toString().concat(" "));
         });
         btnHint.setOnClickListener(v -> {
             if(QuizGameActivity.HINT_COUNTER != 0){
@@ -154,11 +162,49 @@ public class TipPitanjaZastavaFragment extends Fragment {
             }
             btnHint.setVisibility(View.INVISIBLE);
         });
+        btnCheck.setOnClickListener(v -> {
+            btnHint.setVisibility(View.GONE);
+            //Check the answer
+            boolean corectlyAnswered = false;
+            if((txbCountryName.getText()).equals(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr1Engleski()))
+                corectlyAnswered = true;
+            if((txbCountryName.getText()).equals(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr1Srpski()))
+                corectlyAnswered = true;
+            //Show message about corectness
+            if(corectlyAnswered){
+                //Increment points
+                QuizGameActivity.POINTS_COUNTER++;
+                ((QuizGameActivity)getActivity()).incrementPointsView();
+                //Show message of correct answer
+                txvCornectnessMessage.setText(getString(R.string.correct_answer_message));
+                txvCornectnessMessage.setTextColor(getResources().getColor(R.color.primary));
+                txvCornectnessMessage.setVisibility(View.VISIBLE);
+                imgView.setImageResource(R.drawable.ic_baseline_check_circle_outline_24);
+                imgView.setVisibility(View.VISIBLE);
+                //SOUND EFFECT
+                mpCorrect.start();
+            }else{
+                String correctAnswer = "en".equals(MainActivity.lang)?QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr1Engleski():QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr1Srpski();
+                txvCornectnessMessage.setText(getString(R.string.wrong_answer_message) + " " + correctAnswer);
+                txvCornectnessMessage.setTextColor(getResources().getColor(R.color.accent));
+                txvCornectnessMessage.setVisibility(View.VISIBLE);
+                imgView.setImageResource(R.drawable.ic_baseline_cancel_24);
+                imgView.setVisibility(View.VISIBLE);
+                //SOUND EFFECT
+                mpWrong.start();
+            }
+            //DISABLE CHECK BUTTONS
+            btnCheck.setEnabled(false);
+            btnCheck.setBackgroundColor(getResources().getColor(R.color.primary_light));
+        });
     }
 
     private void writeLetter(Button button){
-        if(flagName.getText().toString().length()<MAX_NUM_OF_LETTERS)
-            flagName.setText(flagName.getText().toString().concat(button.getText().toString()));
+        //VIBRATION EFFECT
+        vibe.vibrate(50);
+        //FILL TEXT VIEW WITH A LETTER
+        if(txbCountryName.getText().toString().length()<MAX_NUM_OF_LETTERS)
+            txbCountryName.setText(txbCountryName.getText().toString().concat(button.getText().toString()));
         button.setEnabled(false);
         button.setBackgroundColor(getResources().getColor(R.color.primary_light));
         disabledButtons.add(button);
