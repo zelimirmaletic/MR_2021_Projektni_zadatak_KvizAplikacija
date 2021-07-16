@@ -90,6 +90,7 @@
         <item name="android:textSize">@dimen/capital_city_fragment_title_text_size</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/primary</item>
+        <item name="android:textAlignment" tools:targetApi="jelly_bean_mr1">center</item>
     </style>
 
     <style name="PointsResultText">
@@ -113,7 +114,7 @@
     <style name="AnswerMessageText">
         <item name="android:textColor">@color/primary</item>
         <item name="android:textSize">@dimen/answer_message_text_size</item>
-        <item name="android:textAlignment">center</item>
+        <item name="android:textAlignment" tools:targetApi="jelly_bean_mr1">center</item>
     </style>
 
     <style name="aditional_info_button" parent="TextAppearance.MaterialComponents.Button">

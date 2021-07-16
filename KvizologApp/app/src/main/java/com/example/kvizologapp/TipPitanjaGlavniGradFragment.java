@@ -146,7 +146,7 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
             mpWrong.start();
         }
         //DISABLE OTHER BUTTONS
-        btnAnswer1.setEnabled(false);btnAnswer2.setEnabled(false);
-        btnAnswer3.setEnabled(false);btnAnswer4.setEnabled(false);
+        btnAnswer1.setClickable(false);btnAnswer2.setClickable(false);
+        btnAnswer3.setClickable(false);btnAnswer4.setClickable(false);
     }
 }

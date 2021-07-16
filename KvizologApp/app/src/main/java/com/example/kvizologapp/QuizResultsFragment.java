@@ -1,27 +1,22 @@
 package com.example.kvizologapp;
 
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link QuizResultsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class QuizResultsFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
     private String mParam1;
     private String mParam2;
 
-    MediaPlayer mpResults;
+    TextView txvPoints;
+
 
 
     public QuizResultsFragment() {
@@ -46,13 +41,14 @@ public class QuizResultsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_quiz_results, container, false);
-        mpResults = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.results);
-        mpResults.start();
+        txvPoints = (TextView)view.findViewById(R.id.txbResultPoints);
 
+        //Set points number
+        txvPoints.setText((++QuizGameActivity.POINTS_COUNTER) + "/20");
         return view;
     }
+
 }
