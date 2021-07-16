@@ -1,11 +1,13 @@
 package com.example.kvizologapp;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +28,8 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
     Button btnNextQuestion, btnHint;
     TextView txbCountryName, txvCornectnessMessage;
     Button btnAnswer1, btnAnswer2, btnAnswer3, btnAnswer4;
+    ImageButton btnInfo1,btnInfo2, btnInfo3, btnInfo4;
+    ImageButton btnMap1, btnMap2, btnMap3, btnMap4;
     ImageView imgView;
 
     public TipPitanjaGlavniGradFragment() {
@@ -60,6 +64,16 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
         btnAnswer3 = (Button) view.findViewById(R.id.btnAnswer3);
         btnAnswer4 = (Button) view.findViewById(R.id.btnAnswer4);
         btnHint = (Button) view.findViewById(R.id.btnHint);
+        btnInfo1 = (ImageButton) view.findViewById(R.id.btnInfo1);
+        btnInfo2 = (ImageButton) view.findViewById(R.id.btnInfo2);
+        btnInfo3 = (ImageButton) view.findViewById(R.id.btnInfo3);
+        btnInfo4 = (ImageButton) view.findViewById(R.id.btnInfo4);
+        btnMap1 = (ImageButton) view.findViewById(R.id.btnLocation1);
+        btnMap2 = (ImageButton) view.findViewById(R.id.btnLocation2);
+        btnMap3 = (ImageButton) view.findViewById(R.id.btnLocation3);
+        btnMap4 = (ImageButton) view.findViewById(R.id.btnLocation4);
+
+
         imgView = (ImageView) view.findViewById(R.id.imageView);
         txvCornectnessMessage = (TextView) view.findViewById(R.id.txbCorrectnessMessage);
         mpCorrect = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.correct);
@@ -116,6 +130,7 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
 
     private void processButtonClick(Button btnAnswer){
         btnHint.setVisibility(View.GONE);
+        setAdditionalInfoButtonsVisible();
         //Check the answer
         boolean corectlyAnswered = false;
         if((btnAnswer.getText()).equals(QuizGameActivity.TRENUTNO_PITANJE.getTacniOdgovoriEngleski()))
@@ -148,5 +163,19 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
         //DISABLE OTHER BUTTONS
         btnAnswer1.setClickable(false);btnAnswer2.setClickable(false);
         btnAnswer3.setClickable(false);btnAnswer4.setClickable(false);
+        btnMap1.setOnClickListener(v -> {
+            startActivity(new Intent(((QuizGameActivity)getActivity()),MapsActivity.class));
+        });
+    }
+
+    private void setAdditionalInfoButtonsVisible(){
+        btnInfo1.setVisibility(View.VISIBLE);
+        btnInfo2.setVisibility(View.VISIBLE);
+        btnInfo3.setVisibility(View.VISIBLE);
+        btnInfo4.setVisibility(View.VISIBLE);
+        btnMap1.setVisibility(View.VISIBLE);
+        btnMap2.setVisibility(View.VISIBLE);
+        btnMap3.setVisibility(View.VISIBLE);
+        btnMap4.setVisibility(View.VISIBLE);
     }
 }

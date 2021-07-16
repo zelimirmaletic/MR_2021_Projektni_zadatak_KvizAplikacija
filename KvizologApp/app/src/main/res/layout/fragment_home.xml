@@ -7,7 +7,19 @@
     android:background="@drawable/ic_home_fragment_background"
     tools:context=".HomeFragment">
 
+    <TextView
+        android:id="@+id/app_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@color/login_app_name"
+        android:textSize="@dimen/login_app_name_size"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/imageView3" />
+
     <ImageView
+        android:id="@+id/imageView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/globe"

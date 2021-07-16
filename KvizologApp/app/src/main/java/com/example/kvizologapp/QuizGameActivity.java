@@ -32,6 +32,7 @@ public class QuizGameActivity extends AppCompatActivity {
     MediaPlayer mpResults;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,8 +45,13 @@ public class QuizGameActivity extends AppCompatActivity {
         setupViewPager(viewPager);
         //Disable scroll on view pager
         viewPager.setOnTouchListener((v, event) -> true);
+    }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        HINT_COUNTER=3;
+        POINTS_COUNTER=0;
     }
 
     private void setupViewPager(ViewPager viewPager){

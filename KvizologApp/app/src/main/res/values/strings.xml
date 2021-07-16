@@ -66,5 +66,6 @@
 
     <string name="clear_entry">clear</string>
     <string name="space_button_text">space</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>
