@@ -1,27 +1,29 @@
 package com.example.kvizologapp;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link TipPitanjaSusjednaDrzavaFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class TipPitanjaSusjednaDrzavaFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    Button btnNextQuestion;
+    Button btnNextQuestion, btnHint, btnCheck;
+    //Sound efects
+    MediaPlayer mpCorrect, mpWrong, mpHint;
+    ImageView imgView;
+    TextView tvCountryName, txvCornectnessMessage;
+    CheckBox cbAnswer1, cbAnswer2, cbAnswer3, cbAnswer4;
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -29,15 +31,6 @@ public class TipPitanjaSusjednaDrzavaFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment TipPitanjaSusjednaDrzavaFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static TipPitanjaSusjednaDrzavaFragment newInstance(String param1, String param2) {
         TipPitanjaSusjednaDrzavaFragment fragment = new TipPitanjaSusjednaDrzavaFragment();
         Bundle args = new Bundle();
@@ -57,20 +50,106 @@ public class TipPitanjaSusjednaDrzavaFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view  = inflater.inflate(R.layout.fragment_tip_pitanja_susjedna_drzava, container, false);
-         btnNextQuestion = (Button) view.findViewById(R.id.btnNextQuestion);
+        btnNextQuestion = (Button) view.findViewById(R.id.btnNextQuestion);
+        tvCountryName = (TextView) view.findViewById(R.id.txbCountryName);
+        txvCornectnessMessage = (TextView) view.findViewById(R.id.tvCorectnessMessage);
+        CheckBox cbAnswer1 = (CheckBox) view.findViewById(R.id.cbAnswer1);
+        CheckBox cbAnswer2 = (CheckBox) view.findViewById(R.id.cbAnswer2);
+        CheckBox cbAnswer3 = (CheckBox) view.findViewById(R.id.cbAnswer3);
+        CheckBox cbAnswer4 = (CheckBox) view.findViewById(R.id.cbAnswer4);
+        btnCheck = (Button) view.findViewById(R.id.btnCheck);
+        imgView =(ImageView) view.findViewById(R.id.imageView);
+        btnHint = (Button) view.findViewById(R.id.btnHint);
+        mpCorrect = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.correct);
+        mpWrong = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.wrong);
+        mpHint = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.hint);
 
 
-         btnNextQuestion.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 ((QuizGameActivity)getActivity()).setViewPager(3);//go to the next question type
-             }
-         });
+        //Initialize question data
+        if("en".equals(MainActivity.lang)){
+            tvCountryName.setText(QuizGameActivity.TRENUTNO_PITANJE.getTekstPitanjaEngleski());
+            cbAnswer1.setText(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr1Engleski());
+            cbAnswer2.setText(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr2Engleski());
+            cbAnswer3.setText(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr3Engleski());
+            cbAnswer4.setText(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr4Engleski());
+        }else {
+            tvCountryName.setText(QuizGameActivity.TRENUTNO_PITANJE.getTekstPitanjaSrpski());
+            cbAnswer1.setText(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr1Srpski());
+            cbAnswer2.setText(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr2Srpski());
+            cbAnswer3.setText(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr3Srpski());
+            cbAnswer4.setText(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr4Srpski());
+        }
 
+
+        btnNextQuestion.setOnClickListener(v -> {
+            ((QuizGameActivity)getActivity()).setViewPager(3);//go to the next question type
+        });
+        btnHint.setOnClickListener(v -> {
+            if(QuizGameActivity.HINT_COUNTER != 0){
+                mpHint.start();
+                QuizGameActivity.HINT_COUNTER--;
+                if("en".equals(MainActivity.lang))
+                    Toast.makeText(getContext(), QuizGameActivity.TRENUTNO_PITANJE.getHintEngleski(), Toast.LENGTH_LONG).show();
+                else
+                    Toast.makeText(getContext(), QuizGameActivity.TRENUTNO_PITANJE.getHintSrpski(), Toast.LENGTH_LONG).show();
+            }
+            btnHint.setVisibility(View.INVISIBLE);
+        });
+        btnCheck.setOnClickListener(v -> {
+            btnHint.setVisibility(View.GONE);
+
+            boolean corectlyAnswered = true;
+            //Check the corectness of the answer
+            if("en".equals(MainActivity.lang)){
+                if(cbAnswer1.isChecked() && !QuizGameActivity.TRENUTNO_PITANJE.getTacniOdgovoriEngleski().contains(cbAnswer1.getText().toString()))
+                    corectlyAnswered=false;
+                else if(cbAnswer2.isChecked() && !QuizGameActivity.TRENUTNO_PITANJE.getTacniOdgovoriEngleski().contains(cbAnswer2.getText().toString()))
+                    corectlyAnswered=false;
+                else if(cbAnswer3.isChecked() && !QuizGameActivity.TRENUTNO_PITANJE.getTacniOdgovoriEngleski().contains(cbAnswer3.getText().toString()))
+                    corectlyAnswered=false;
+                else if(cbAnswer4.isChecked() && !QuizGameActivity.TRENUTNO_PITANJE.getTacniOdgovoriEngleski().contains(cbAnswer4.getText().toString()))
+                    corectlyAnswered=false;
+            }else{
+                if(cbAnswer1.isChecked() && !QuizGameActivity.TRENUTNO_PITANJE.getTacniOdgovoriSrpski().contains(cbAnswer1.getText().toString()))
+                    corectlyAnswered=false;
+                else if(cbAnswer2.isChecked() && !QuizGameActivity.TRENUTNO_PITANJE.getTacniOdgovoriSrpski().contains(cbAnswer2.getText().toString()))
+                    corectlyAnswered=false;
+                else if(cbAnswer3.isChecked() && !QuizGameActivity.TRENUTNO_PITANJE.getTacniOdgovoriSrpski().contains(cbAnswer3.getText().toString()))
+                    corectlyAnswered=false;
+                else if(cbAnswer4.isChecked() && !QuizGameActivity.TRENUTNO_PITANJE.getTacniOdgovoriSrpski().contains(cbAnswer4.getText().toString()))
+                    corectlyAnswered=false;
+            }
+            //Show message about corectness
+            if(corectlyAnswered){
+                //Increment points
+                QuizGameActivity.POINTS_COUNTER++;
+                ((QuizGameActivity)getActivity()).incrementPointsView();
+                //Show message of correct answer
+                txvCornectnessMessage.setText(getString(R.string.correct_answer_message));
+                txvCornectnessMessage.setTextColor(getResources().getColor(R.color.primary));
+                txvCornectnessMessage.setVisibility(View.VISIBLE);
+                imgView.setImageResource(R.drawable.ic_baseline_check_circle_outline_24);
+                imgView.setVisibility(View.VISIBLE);
+                //SOUND EFFECT
+                mpCorrect.start();
+            }else{
+                String correctAnswer = "en".equals(MainActivity.lang)?QuizGameActivity.TRENUTNO_PITANJE.getTacniOdgovoriEngleski():QuizGameActivity.TRENUTNO_PITANJE.getTacniOdgovoriSrpski();
+                txvCornectnessMessage.setText(getString(R.string.wrong_answer_message) + " " + correctAnswer);
+                txvCornectnessMessage.setTextColor(getResources().getColor(R.color.accent));
+                txvCornectnessMessage.setVisibility(View.VISIBLE);
+                imgView.setImageResource(R.drawable.ic_baseline_cancel_24);
+                imgView.setVisibility(View.VISIBLE);
+                //SOUND EFFECT
+                mpWrong.start();
+            }
+            //DISABLE CHECK BUTTON
+            btnCheck.setEnabled(false);
+            btnCheck.setBackgroundColor(getResources().getColor(R.color.primary_light));
+            cbAnswer1.setClickable(false);cbAnswer2.setClickable(false);cbAnswer3.setClickable(false);cbAnswer4.setClickable(false);
+        });
 
         return view;
     }

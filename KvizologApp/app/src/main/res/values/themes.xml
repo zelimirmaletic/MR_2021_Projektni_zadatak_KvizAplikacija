@@ -113,6 +113,7 @@
     <style name="AnswerMessageText">
         <item name="android:textColor">@color/primary</item>
         <item name="android:textSize">@dimen/answer_message_text_size</item>
+        <item name="android:textAlignment">center</item>
     </style>
 
     <style name="aditional_info_button" parent="TextAppearance.MaterialComponents.Button">

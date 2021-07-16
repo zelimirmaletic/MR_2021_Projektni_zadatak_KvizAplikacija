@@ -18,8 +18,10 @@ public class QuizGameActivity extends AppCompatActivity {
     //TEST DATA
     private static Pitanje pitanje1 = new Pitanje(1,"Russia","Moscow","London","Kiev","Vladivostok", "Русија","Москва","Лондон","Кијев","Владивосток", "Moscow","Москва","Red square","Црвени трг","NO_IMAGE");
     private static Pitanje pitanje21 = new Pitanje(2,"","GREECE","","","","","ГРЧКА","","","","","","Birthplace of philosopy...","Родно мјесто философије...","ic_greece");
+    private static Pitanje pitanje42 = new Pitanje(3, "Germany","Russia","Austria","Poland","Switzerland","Њемачка","Русија","Аустрија","Пољаска","Швајцарска","Austria Switzerland","Аустрија Швајцарска","German speaking countries.","Државе њемачког говорног подручја.","NO_IMAGE");
+
     //Treba pomjeriti poziciju naziva na srpskom sa [7] na [8], dakle za jedno mjesto!
-    public static Pitanje TRENUTNO_PITANJE = pitanje21;
+    public static Pitanje TRENUTNO_PITANJE = pitanje42;
 
     TextView txvPoints;
 

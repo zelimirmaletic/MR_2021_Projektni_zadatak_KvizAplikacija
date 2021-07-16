@@ -38,21 +38,23 @@
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox4" />
+        app:layout_constraintTop_toBottomOf="@+id/cbAnswer4" />
 
 
     <ImageView
         android:id="@+id/imageView"
+        android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toTopOf="@+id/tvCorectnessMessage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         tools:src="@drawable/ic_baseline_check_circle_outline_24" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvCorectnessMessage"
+        android:visibility="invisible"
         style="@style/AnswerMessageText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -83,7 +85,7 @@
 
     <CheckBox
         style="@style/CustomCheckBoxAnswer"
-        android:id="@+id/checkBox1"
+        android:id="@+id/cbAnswer1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="China"
@@ -93,33 +95,33 @@
 
     <CheckBox
         style="@style/CustomCheckBoxAnswer"
-        android:id="@+id/checkBox2"
+        android:id="@+id/cbAnswer2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Estonia"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox1" />
+        app:layout_constraintTop_toBottomOf="@+id/cbAnswer1" />
 
     <CheckBox
         style="@style/CustomCheckBoxAnswer"
-        android:id="@+id/checkBox3"
+        android:id="@+id/cbAnswer3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Turkey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+        app:layout_constraintTop_toBottomOf="@+id/cbAnswer2" />
 
     <CheckBox
         style="@style/CustomCheckBoxAnswer"
-        android:id="@+id/checkBox4"
+        android:id="@+id/cbAnswer4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Letonia"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
+        app:layout_constraintTop_toBottomOf="@+id/cbAnswer3" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
