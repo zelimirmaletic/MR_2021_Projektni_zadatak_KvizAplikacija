@@ -22,7 +22,6 @@
         style="@style/UsernameTextBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Vanessa"
         app:layout_constraintTop_toBottomOf="@+id/txvWelcomeMessage" />
 
     <TextView

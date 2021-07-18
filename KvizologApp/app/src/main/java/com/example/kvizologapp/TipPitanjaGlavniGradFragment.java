@@ -72,8 +72,6 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
         btnMap2 = (ImageButton) view.findViewById(R.id.btnLocation2);
         btnMap3 = (ImageButton) view.findViewById(R.id.btnLocation3);
         btnMap4 = (ImageButton) view.findViewById(R.id.btnLocation4);
-
-
         imgView = (ImageView) view.findViewById(R.id.imageView);
         txvCornectnessMessage = (TextView) view.findViewById(R.id.txbCorrectnessMessage);
         mpCorrect = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.correct);
@@ -112,6 +110,12 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
         btnAnswer2.setOnClickListener(v -> processButtonClick(btnAnswer2));
         btnAnswer3.setOnClickListener(v -> processButtonClick(btnAnswer3));
         btnAnswer4.setOnClickListener(v -> processButtonClick(btnAnswer4));
+        btnMap1.setOnClickListener(v -> {
+            startActivity(new Intent(((QuizGameActivity)getActivity()),MapsActivity.class));
+        });
+        btnInfo1.setOnClickListener(v -> {
+            startActivity(new Intent(((QuizGameActivity)getActivity()),NewsActivity.class));
+        });
 
         btnHint.setOnClickListener(v -> {
             if(QuizGameActivity.HINT_COUNTER != 0){
@@ -124,7 +128,6 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
             }
             btnHint.setVisibility(View.INVISIBLE);
         });
-
         return view;
     }
 
@@ -163,9 +166,6 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
         //DISABLE OTHER BUTTONS
         btnAnswer1.setClickable(false);btnAnswer2.setClickable(false);
         btnAnswer3.setClickable(false);btnAnswer4.setClickable(false);
-        btnMap1.setOnClickListener(v -> {
-            startActivity(new Intent(((QuizGameActivity)getActivity()),MapsActivity.class));
-        });
     }
 
     private void setAdditionalInfoButtonsVisible(){

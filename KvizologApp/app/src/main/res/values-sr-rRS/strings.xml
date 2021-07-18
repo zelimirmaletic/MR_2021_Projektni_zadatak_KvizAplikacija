@@ -49,4 +49,5 @@
     <string name="guest_login_button_message">Офлајн пријава</string>
     <string name="username_title">Корисничко име</string>
     <string name="username_placeholder">Унесите Ваше корисничко име...</string>
+    <string name="news_main_title">Вијести</string>
 </resources>
