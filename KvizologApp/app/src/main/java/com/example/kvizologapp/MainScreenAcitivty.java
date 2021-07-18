@@ -18,6 +18,7 @@ import java.util.Locale;
 public class MainScreenAcitivty extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    public static String USERNAME;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class MainScreenAcitivty extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
+        USERNAME = getIntent().getStringExtra("username");
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener  navListener = item -> {

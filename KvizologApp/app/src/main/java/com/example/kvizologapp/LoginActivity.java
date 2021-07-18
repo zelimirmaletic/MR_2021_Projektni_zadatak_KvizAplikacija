@@ -35,7 +35,9 @@ public class LoginActivity extends AppCompatActivity {
         if (!email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             if (!password.isEmpty()) {
                 mAuth.signInWithEmailAndPassword(email, password).addOnSuccessListener(authResult -> {
-                    startActivity(new Intent(LoginActivity.this, MainScreenAcitivty.class));
+                    Intent intent = new Intent(LoginActivity.this, MainScreenAcitivty.class);
+                    intent.putExtra("username",getUsernameFromEmail());
+                    startActivity(intent);
                     finish();
                 }).addOnFailureListener(e -> {
                     Toast.makeText(this, getString(R.string.login_invalid_credentials_error_message), Toast.LENGTH_SHORT).show();
@@ -49,6 +51,10 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             tbPassword.setError(getString(R.string.login_invalid_email_error_message));
         }
+    }
+    private String getUsernameFromEmail(){
+        String[] splited = tbEmail.getText().toString().split("@");
+        return splited[0];
     }
 
 }

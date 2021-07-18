@@ -47,4 +47,6 @@
     <string name="space_button_text">размак</string>
     <string name="login_card_button_message">Пријави се</string>
     <string name="guest_login_button_message">Офлајн пријава</string>
+    <string name="username_title">Корисничко име</string>
+    <string name="username_placeholder">Унесите Ваше корисничко име...</string>
 </resources>

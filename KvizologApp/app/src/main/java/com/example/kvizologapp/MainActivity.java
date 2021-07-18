@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intet);
         });
         btnGuestLogin.setOnClickListener(v -> {
-            Intent intet = new Intent(this, MainScreenAcitivty.class);
+            Intent intet = new Intent(this, GuestLoginActivity.class);
             startActivity(intet);
         });
     }

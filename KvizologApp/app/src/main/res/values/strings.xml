@@ -4,8 +4,10 @@
     <string name="login_card_welcome_message">Welcome!</string>
     <string name="login_card_username_message">Email</string>
     <string name="username_hint">Enter your Email adress...</string>
+    <string name="username_title">Username</string>
     <string name="login_card_password_message">Password</string>
     <string name="password_hint">Enter your password</string>
+    <string name="username_placeholder">Enter your username...</string>
     <string name="login_card_login_message">Login</string>
     <string name="guest_login_button_message">Offline Guest Login</string>
     <string name="login_card_register_message">Registration</string>
