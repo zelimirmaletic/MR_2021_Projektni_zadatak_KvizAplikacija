@@ -4,8 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_home_fragment_background"
+    android:background="@drawable/ic_quiz_question_background"
     tools:context=".HomeFragment">
+
+    <TextView
+        android:id="@+id/txvWelcomeMessage"
+        style="@style/QuestionTitleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login_card_welcome_message"
+        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/txvUsername"
+        style="@style/UsernameTextBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Vanessa"
+        app:layout_constraintTop_toBottomOf="@+id/txvWelcomeMessage" />
 
     <TextView
         android:id="@+id/app_name"
@@ -16,7 +34,10 @@
         android:textColor="@color/login_app_name"
         android:textSize="@dimen/login_app_name_size"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageView3" />
+        app:layout_constraintBottom_toTopOf="@+id/txvWelcomeMessage"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -33,6 +54,5 @@
         android:text="@string/home_fragment_start_new_quiz_button_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
+import com.example.kvizologapp.data.model.Grad;
 import com.example.kvizologapp.data.model.Pitanje;
 
 public class PopulateDatabaseService extends Service {
@@ -13,6 +14,7 @@ public class PopulateDatabaseService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         //Run insert functions for all questions
+        
         //PITANJA - GLAVNI GRADOVI
         Pitanje pitanje1 = new Pitanje(1,"Russia","Moscow","London","Kiev","Vladivostok", "Русија","Москва","Лондон","Кијев","Владивосток", "Moscow","Москва","Red square","Црвени трг","NO_IMAGE");
         Pitanje pitanje2 = new Pitanje(1,"Slovenia","Maribor","Ljubljana","Skopje","Belgrade", "Словенија","Марибор","Љубљана","Скопље","Београд", "Ljubljana","Љубљана","Dragon is the most recognizable symbol.","Најпрепознатљивији сибол града је змај.","NO_IMAGE");
@@ -20,9 +22,6 @@ public class PopulateDatabaseService extends Service {
         Pitanje pitanje4 = new Pitanje(1,"United Kingdom","London","Berlin","Edinburg","Paris","Уједињено Краљевств","Лондон","Берлин","Единбург","Париз","London","Лондон","Big eye.","Велико око.","NO_IMAGE");
         Pitanje pitanje5 = new Pitanje(1,"Germany", "Hamburg","Berlin","Hanover","Munch","Њемачка","Хамбург","Берлин","Минхен","Хановер","Berlin","Берлин","Used to be divided by a wall.","Био је подијељен зидом.","NO_IMAGE");
         Pitanje pitanje6 = new Pitanje(1,"Greece","Heraklion","Athens","Thessaloniki","Berlin","Грчка","Херклион","Атина","Тесалоники","Берлин","Athens","Атина","Partenon","Партенон","NO_IMAGE");
-
-
-
 
         //PITANJA - ZASTAVE
         Pitanje pitanje21 = new Pitanje(2,"","GREECE","","","","ГРЧКА","","","","","","","Birthplace of philosopy...","Родно мјесто философије...","ic_greece");
@@ -90,6 +89,9 @@ public class PopulateDatabaseService extends Service {
         Pitanje pitanje79 = new Pitanje(4,"Yellowstone","Australia","USA","New Zeland","Brazil","Јелоустон","Аустралија","САД","Нови Зеланд","Бразил","USA","САД","Country which bought Alaska.","Земља која је купила Аљаску.","yellowstone");
         Pitanje pitanje80 = new Pitanje(4,"Church of Christ The Saviour","Bosnia and Herzegovina","Serbia","Montenegro","North Macedonia","Храм Христа Спаситеља","Босна и Херцеговина","Србија","Црна Гора","Сјеверна Македонија","Bosnia and Herzegovina","Босна и Херцеговина","Sarajevo is a capital city.","Сарајево је главни град.","christ_the_saviour");
 
+        //INSERT GRAD data
+        Grad grad1 = new Grad("Београд","Belgrade",44.79642985642653,20.471462575664354,"SLIKA_GRBA");
+        Grad grad2 = new Grad("Mосква","Moscow",55.755125454817836, 37.61708451367523,"SLIKA_GRBA");
         //CORRECT THIS RETURN STATEMENT!
         return null;
     }

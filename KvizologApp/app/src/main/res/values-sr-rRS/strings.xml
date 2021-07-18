@@ -45,4 +45,6 @@
     <string name="result_message">Резултат</string>
     <string name="social_media_share_message">Подијели резултат!</string>
     <string name="space_button_text">размак</string>
+    <string name="login_card_button_message">Пријави се</string>
+    <string name="guest_login_button_message">Офлајн пријава</string>
 </resources>

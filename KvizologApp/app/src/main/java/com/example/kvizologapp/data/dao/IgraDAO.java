@@ -27,6 +27,4 @@ public interface IgraDAO {
 
     @Delete
     void delete(Igra igra);
-
-
 }

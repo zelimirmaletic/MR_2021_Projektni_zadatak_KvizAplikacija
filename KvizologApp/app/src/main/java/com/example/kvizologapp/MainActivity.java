@@ -6,11 +6,9 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     public static String lang;
 
 
-    private Button btnLogin, btnRegister;
+    private Button btnLogin, btnRegister, btnGuestLogin;
     private EditText tbEmail,tbPassword;
     FirebaseAuth mAuth;
 
@@ -40,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         btnRegister = findViewById(R.id.btnRegister);
         tbEmail = findViewById(R.id.editTextEmail);
         tbPassword = findViewById(R.id.editTextPass);
+        btnGuestLogin = findViewById(R.id.btnGuestLogin);
         mAuth = FirebaseAuth.getInstance();
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
 
@@ -48,36 +47,14 @@ public class MainActivity extends AppCompatActivity {
             Intent intet = new Intent(this, RegisterActivity.class);
             startActivity(intet);
         });
-
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loginUser();
-            }
+        btnLogin.setOnClickListener(v -> {
+            Intent intet = new Intent(this, LoginActivity.class);
+            startActivity(intet);
         });
-    }
-
-    private void loginUser() {
-        String email = tbEmail.getText().toString();
-        String password = tbPassword.getText().toString();
-
-        if (!email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            if (!password.isEmpty()) {
-                mAuth.signInWithEmailAndPassword(email, password).addOnSuccessListener(authResult -> {
-                    startActivity(new Intent(MainActivity.this, MainScreenAcitivty.class));
-                    finish();
-                }).addOnFailureListener(e -> {
-                    Toast.makeText(this, getString(R.string.login_invalid_credentials_error_message), Toast.LENGTH_SHORT).show();
-                });
-
-            } else {
-                tbPassword.setError(getString(R.string.login_empty_field_error_message));
-            }
-        } else if (email.isEmpty()) {
-            tbPassword.setError(getString(R.string.login_empty_field_error_message));
-        } else {
-            tbPassword.setError(getString(R.string.login_invalid_email_error_message));
-        }
+        btnGuestLogin.setOnClickListener(v -> {
+            Intent intet = new Intent(this, MainScreenAcitivty.class);
+            startActivity(intet);
+        });
     }
 
     public Context setLocale(Context context, String language) {

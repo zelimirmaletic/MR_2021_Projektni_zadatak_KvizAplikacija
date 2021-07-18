@@ -111,6 +111,13 @@
         <item name="android:textColor">@color/yellow</item>
     </style>
 
+    <style name="UsernameTextBox">
+        <item name="android:textSize">@dimen/points_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/accent</item>
+        <item name="android:textAlignment" tools:targetApi="jelly_bean_mr1">center</item>
+    </style>
+
     <style name="AnswerMessageText">
         <item name="android:textColor">@color/primary</item>
         <item name="android:textSize">@dimen/answer_message_text_size</item>

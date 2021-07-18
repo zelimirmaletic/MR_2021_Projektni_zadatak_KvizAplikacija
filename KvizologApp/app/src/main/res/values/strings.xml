@@ -6,9 +6,11 @@
     <string name="username_hint">Enter your Email adress...</string>
     <string name="login_card_password_message">Password</string>
     <string name="password_hint">Enter your password</string>
-    <string name="login_card_login_message">Log in</string>
+    <string name="login_card_login_message">Login</string>
+    <string name="guest_login_button_message">Offline Guest Login</string>
     <string name="login_card_register_message">Registration</string>
     <string name="register_card_button_message">Register</string>
+    <string name="login_card_button_message">Login</string>
     <string name="login_card_forgot_message">Forgot your password?</string>
     <string name="bottom_menu_home">Home</string>
     <string name="bottom_menu_settings">Settings</string>
