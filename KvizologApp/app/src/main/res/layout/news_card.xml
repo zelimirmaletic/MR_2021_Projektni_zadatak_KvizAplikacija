@@ -14,19 +14,27 @@
         android:id="@+id/rl_wrapper"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="20dp">
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/browser_actions_bg_grey"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/iv_image"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:src="@mipmap/ic_launcher_round" />
+                android:layout_height="150dp"
+                app:cardCornerRadius="10dp"
+                android:elevation="10dp">
+
+                <ImageView
+                    android:id="@+id/iv_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/ic_launcher_round" />
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/tv_title"
@@ -34,8 +42,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:text="Title"
-                android:textColor="@android:color/black"
-                android:textSize="14sp"
+                android:textColor="@color/primary_dark"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
                 android:layout_marginLeft="10dp" />
 
             <TextView
@@ -43,10 +53,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="This is a description"
-                android:textColor="@android:color/darker_gray"
+                android:text="Ovo je opis novosti."
+                android:textColor="@color/primary"
                 android:textSize="12sp"
                 android:layout_marginLeft="10dp" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textStyle="italic"
+                android:layout_gravity="right"
+                android:text="12.2.2021."
+                android:textColor="@color/accent"
+                android:textSize="12sp"
+                android:layout_marginLeft="10dp" />
+
         </LinearLayout>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

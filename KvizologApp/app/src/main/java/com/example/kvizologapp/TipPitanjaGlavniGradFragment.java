@@ -113,9 +113,10 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
         btnMap1.setOnClickListener(v -> {
             startActivity(new Intent(((QuizGameActivity)getActivity()),MapsActivity.class));
         });
-        btnInfo1.setOnClickListener(v -> {
-            startActivity(new Intent(((QuizGameActivity)getActivity()),NewsActivity.class));
-        });
+        btnInfo1.setOnClickListener(v -> processInfoButtonClick(btnAnswer1.getText().toString()));
+        btnInfo2.setOnClickListener(v -> processInfoButtonClick(btnAnswer2.getText().toString()));
+        btnInfo3.setOnClickListener(v -> processInfoButtonClick(btnAnswer3.getText().toString()));
+        btnInfo4.setOnClickListener(v -> processInfoButtonClick(btnAnswer4.getText().toString()));
 
         btnHint.setOnClickListener(v -> {
             if(QuizGameActivity.HINT_COUNTER != 0){
@@ -177,5 +178,11 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
         btnMap2.setVisibility(View.VISIBLE);
         btnMap3.setVisibility(View.VISIBLE);
         btnMap4.setVisibility(View.VISIBLE);
+    }
+
+    private void processInfoButtonClick(String cityName){
+        Intent intent = new Intent(((QuizGameActivity)getActivity()),NewsActivity.class);
+        intent.putExtra("keyword",cityName);
+        startActivity(intent);
     }
 }
