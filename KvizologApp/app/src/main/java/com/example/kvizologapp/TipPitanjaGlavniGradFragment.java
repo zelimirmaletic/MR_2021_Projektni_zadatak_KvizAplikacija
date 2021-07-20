@@ -17,14 +17,9 @@ import androidx.fragment.app.Fragment;
 
 public class TipPitanjaGlavniGradFragment extends Fragment {
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-    private String mParam1;
-    private String mParam2;
 
     //Sound efects
     MediaPlayer mpCorrect, mpWrong, mpHint;
-
     Button btnNextQuestion, btnHint;
     TextView txbCountryName, txvCornectnessMessage;
     Button btnAnswer1, btnAnswer2, btnAnswer3, btnAnswer4;
@@ -35,48 +30,36 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
     public TipPitanjaGlavniGradFragment() {
         // Required empty public constructor
     }
-    public static TipPitanjaGlavniGradFragment newInstance(String param1, String param2) {
-        TipPitanjaGlavniGradFragment fragment = new TipPitanjaGlavniGradFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tip_pitanja_glavni_grad, container, false);
-        btnNextQuestion = (Button) view.findViewById(R.id.btnNextQuestion);
-        txbCountryName = (TextView) view.findViewById(R.id.txbCountryName);
-        btnAnswer1 = (Button) view.findViewById(R.id.btnAnswer1);
-        btnAnswer2 = (Button) view.findViewById(R.id.btnAnswer2);
-        btnAnswer3 = (Button) view.findViewById(R.id.btnAnswer3);
-        btnAnswer4 = (Button) view.findViewById(R.id.btnAnswer4);
-        btnHint = (Button) view.findViewById(R.id.btnHint);
-        btnInfo1 = (ImageButton) view.findViewById(R.id.btnInfo1);
-        btnInfo2 = (ImageButton) view.findViewById(R.id.btnInfo2);
-        btnInfo3 = (ImageButton) view.findViewById(R.id.btnInfo3);
-        btnInfo4 = (ImageButton) view.findViewById(R.id.btnInfo4);
-        btnMap1 = (ImageButton) view.findViewById(R.id.btnLocation1);
-        btnMap2 = (ImageButton) view.findViewById(R.id.btnLocation2);
-        btnMap3 = (ImageButton) view.findViewById(R.id.btnLocation3);
-        btnMap4 = (ImageButton) view.findViewById(R.id.btnLocation4);
-        imgView = (ImageView) view.findViewById(R.id.imageView);
-        txvCornectnessMessage = (TextView) view.findViewById(R.id.txbCorrectnessMessage);
-        mpCorrect = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.correct);
-        mpWrong = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.wrong);
-        mpHint = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.hint);
+        btnNextQuestion = view.findViewById(R.id.btnNextQuestion);
+        txbCountryName = view.findViewById(R.id.txbCountryName);
+        btnAnswer1 = view.findViewById(R.id.btnAnswer1);
+        btnAnswer2 = view.findViewById(R.id.btnAnswer2);
+        btnAnswer3 = view.findViewById(R.id.btnAnswer3);
+        btnAnswer4 = view.findViewById(R.id.btnAnswer4);
+        btnHint = view.findViewById(R.id.btnHint);
+        btnInfo1 = view.findViewById(R.id.btnInfo1);
+        btnInfo2 = view.findViewById(R.id.btnInfo2);
+        btnInfo3 = view.findViewById(R.id.btnInfo3);
+        btnInfo4 = view.findViewById(R.id.btnInfo4);
+        btnMap1 = view.findViewById(R.id.btnLocation1);
+        btnMap2 = view.findViewById(R.id.btnLocation2);
+        btnMap3 = view.findViewById(R.id.btnLocation3);
+        btnMap4 = view.findViewById(R.id.btnLocation4);
+        imgView = view.findViewById(R.id.imageView);
+        txvCornectnessMessage = view.findViewById(R.id.txbCorrectnessMessage);
+        mpCorrect = MediaPlayer.create(getActivity(),R.raw.correct);
+        mpWrong = MediaPlayer.create(getActivity(),R.raw.wrong);
+        mpHint = MediaPlayer.create(getActivity(),R.raw.hint);
 
         //Show previous points
         ((QuizGameActivity)getActivity()).incrementPointsView();
@@ -98,11 +81,8 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
             btnAnswer3.setText(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr3Srpski());
             btnAnswer4.setText(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr4Srpski());
         }
-        btnNextQuestion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((QuizGameActivity)getActivity()).setViewPager(1);//go to the next question type
-            }
+        btnNextQuestion.setOnClickListener(v -> {
+            ((QuizGameActivity)getActivity()).setViewPager(1);//go to the next question type
         });
 
         //Set onClick listeners
@@ -110,14 +90,11 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
         btnAnswer2.setOnClickListener(v -> processButtonClick(btnAnswer2));
         btnAnswer3.setOnClickListener(v -> processButtonClick(btnAnswer3));
         btnAnswer4.setOnClickListener(v -> processButtonClick(btnAnswer4));
-        btnMap1.setOnClickListener(v -> {
-            startActivity(new Intent(((QuizGameActivity)getActivity()),MapsActivity.class));
-        });
+        btnMap1.setOnClickListener(v -> startActivity(new Intent(getActivity(),MapsActivity.class)));
         btnInfo1.setOnClickListener(v -> processInfoButtonClick(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr1Engleski()));
         btnInfo2.setOnClickListener(v -> processInfoButtonClick(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr2Engleski()));
         btnInfo3.setOnClickListener(v -> processInfoButtonClick(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr3Engleski()));
         btnInfo4.setOnClickListener(v -> processInfoButtonClick(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr4Engleski()));
-
         btnHint.setOnClickListener(v -> {
             if(QuizGameActivity.HINT_COUNTER != 0){
                 mpHint.start();
@@ -156,7 +133,10 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
             mpCorrect.start();
         }else{
             String correctAnswer = "en".equals(MainActivity.lang)?QuizGameActivity.TRENUTNO_PITANJE.getTacniOdgovoriEngleski():QuizGameActivity.TRENUTNO_PITANJE.getTacniOdgovoriSrpski();
-            txvCornectnessMessage.setText(getString(R.string.wrong_answer_message) + " " + correctAnswer);
+            StringBuilder strBuilder = new StringBuilder();
+            strBuilder.append(getString(R.string.wrong_answer_message));
+            strBuilder.append(" ");strBuilder.append(correctAnswer);
+            txvCornectnessMessage.setText(strBuilder.toString());
             txvCornectnessMessage.setTextColor(getResources().getColor(R.color.accent));
             txvCornectnessMessage.setVisibility(View.VISIBLE);
             imgView.setImageResource(R.drawable.ic_baseline_cancel_24);
@@ -181,7 +161,7 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
     }
 
     private void processInfoButtonClick(String cityName){
-        Intent intent = new Intent(((QuizGameActivity)getActivity()),NewsActivity.class);
+        Intent intent = new Intent(getActivity(),NewsActivity.class);
         intent.putExtra("keyword",cityName);
         startActivity(intent);
     }
