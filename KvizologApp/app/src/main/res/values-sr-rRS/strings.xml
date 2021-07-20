@@ -43,11 +43,14 @@
     <string name="finish_quiz_button_text">Заврши квиз</string>
     <string name="share_on_facebook_button_text">Подијли резултат на Фејсбук!</string>
     <string name="result_message">Резултат</string>
-    <string name="social_media_share_message">Подијели резултат!</string>
+    <string name="social_media_share_message">Подијели свој резултат!</string>
     <string name="space_button_text">размак</string>
     <string name="login_card_button_message">Пријави се</string>
     <string name="guest_login_button_message">Офлајн пријава</string>
     <string name="username_title">Корисничко име</string>
     <string name="username_placeholder">Унесите Ваше корисничко име...</string>
     <string name="news_main_title">Вијести</string>
+    <string name="hashtag_quizolog">#Квизолог</string>
+    <string name="chek_out_message">" Погледајте ову апликацију на Гугл Продавници кликом на линк испод!"</string>
+    <string name="results_message">"Хеј! Управо завршен квиз на овој игрици са резултатом "</string>
 </resources>

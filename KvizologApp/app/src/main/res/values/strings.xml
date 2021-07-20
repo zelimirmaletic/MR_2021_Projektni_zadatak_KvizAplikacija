@@ -72,6 +72,13 @@
 
     <string name="clear_entry">clear</string>
     <string name="space_button_text">space</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps" translatable="false">Map</string>
+
+    <!-- FACEBOOK API STRINGS -->
+    <string name="facebook_app_id" translatable="false">1117782528746399</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb1117782528746399</string>
+    <string name="hashtag_quizolog">#Quizolog</string>
+    <string name="results_message">Hey! I just finished this quiz game and scored </string>
+    <string name="chek_out_message"> Check out this app on Google Play by clicking link below!</string>
 
 </resources>
