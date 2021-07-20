@@ -113,10 +113,10 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
         btnMap1.setOnClickListener(v -> {
             startActivity(new Intent(((QuizGameActivity)getActivity()),MapsActivity.class));
         });
-        btnInfo1.setOnClickListener(v -> processInfoButtonClick(btnAnswer1.getText().toString()));
-        btnInfo2.setOnClickListener(v -> processInfoButtonClick(btnAnswer2.getText().toString()));
-        btnInfo3.setOnClickListener(v -> processInfoButtonClick(btnAnswer3.getText().toString()));
-        btnInfo4.setOnClickListener(v -> processInfoButtonClick(btnAnswer4.getText().toString()));
+        btnInfo1.setOnClickListener(v -> processInfoButtonClick(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr1Engleski()));
+        btnInfo2.setOnClickListener(v -> processInfoButtonClick(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr2Engleski()));
+        btnInfo3.setOnClickListener(v -> processInfoButtonClick(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr3Engleski()));
+        btnInfo4.setOnClickListener(v -> processInfoButtonClick(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr4Engleski()));
 
         btnHint.setOnClickListener(v -> {
             if(QuizGameActivity.HINT_COUNTER != 0){
