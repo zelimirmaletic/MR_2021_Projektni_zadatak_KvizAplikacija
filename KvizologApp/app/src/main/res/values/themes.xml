@@ -149,6 +149,29 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="news_card_title">
+        <item name="android:textSize">@dimen/news_card_title_text_size</item>
+        <item name="android:textColor">@color/primary_dark</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textAlignment" tools:targetApi="jelly_bean_mr1">center</item>
+        <item name="android:layout_margin">@dimen/news_card_layout_margin</item>
+    </style>
+
+    <style name="news_card_description">
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:textSize">@dimen/news_card_description_text_size</item>
+        <item name="android:layout_margin">@dimen/news_card_layout_margin</item>
+    </style>
+
+    <style name="news_card_date">
+        <item name="android:textColor">@color/accent</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textSize">@dimen/news_card_description_text_size</item>
+        <item name="android:layout_margin">@dimen/news_card_layout_margin</item>
+    </style>
+
     <style name="Theme.KvizologApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.KvizologApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

@@ -47,4 +47,12 @@
 
     <dimen name="space_button_width">150dp</dimen>
     <dimen name="space_button_text_size">12sp</dimen>
+
+    <dimen name="recycler_view_padding">5dp</dimen>
+    <dimen name="news_card_image_height">150dp</dimen>
+    <dimen name="news_card_border_radius">10dp</dimen>
+    <dimen name="news_card_elevation">10dp</dimen>
+    <dimen name="news_card_title_text_size">18sp</dimen>
+    <dimen name="news_card_layout_margin">5dp</dimen>
+    <dimen name="news_card_description_text_size">12sp</dimen>
 </resources>

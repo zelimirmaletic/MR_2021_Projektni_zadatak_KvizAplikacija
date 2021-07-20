@@ -13,14 +13,17 @@
 
     <application
         android:allowBackup="true"
-        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.KvizologApp">
-        <activity android:name=".NewsActivity"
+        android:theme="@style/Theme.KvizologApp"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".WebViewActivity"
             android:theme="@style/NoActionBarTheme"></activity>
+        <activity
+            android:name=".NewsActivity"
+            android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".GuestLoginActivity"
             android:theme="@style/NoActionBarTheme"

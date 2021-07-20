@@ -1,5 +1,6 @@
 package com.example.kvizologapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -25,13 +26,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NewsActivity extends AppCompatActivity {
-    private final int NUMBER_OF_ARTICLES = 10;
+    private final int NUMBER_OF_ARTICLES = 20;
     private final String API_ACCESS_KEY = "?access_key=c0655750efff8ed6b53254f575f0549d";
     private final String BASE_URL = "http://api.mediastack.com/v1/news";
     //Attributes
     private final String LANGUAGE = "&sources=en";
     private final String NUM_OF_ARTICLES_ATTR = "&limit=";
-    private final String SORT_TYPE = "&sort=popularity";
+    //Sort by latest date
+    private final String SORT_TYPE = "&sort=published_desc";
 
     private String KEYWORD;
     private String KEYWORD_ATTR = "&keywords=";
@@ -50,19 +52,20 @@ public class NewsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
 
-        // uzmemo referencu na RecyclerView
+        // take a reference to RecyclerView
         recyclerView = findViewById(R.id.rv_recyclerView);
-        // optimizacija
+        // optimization
         recyclerView.setHasFixedSize(true);
-        // postavimo vrstu LayoutManager-a
+        // set layout type LayoutManager-a
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        // proslijedimo Adapter-u podatke iz liste
-        // mAdapter = new Adapter(array);
+        // send Adapter items from the list
         mAdapter = new Adapter(array, new Adapter.OnItemClickListener() {
             @Override
             public void onItemClick(ItemArticle item) {
-                Toast.makeText(getApplicationContext(), "Kliknuli ste na: " + item.getTitle(), Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(NewsActivity.this, WebViewActivity.class);
+                intent.putExtra("url",item.getUrl());
+                startActivity(intent);
             }
         });
 
@@ -93,8 +96,7 @@ public class NewsActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Toast.makeText(NewsActivity.this, "Finished getting items!", Toast.LENGTH_SHORT).show();
-                // povezemo RecyclerView sa adapterom
+                // connect RecyclerView with adapter
                 recyclerView.setAdapter(mAdapter);
             }
         }, new Response.ErrorListener() {

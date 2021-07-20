@@ -47,7 +47,7 @@ public class Adapter extends RecyclerView.Adapter<com.example.kvizologapp.news_r
     // Create new views (invoked by the layout manager)
     @Override
     public com.example.kvizologapp.news_recyclerview.Adapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // kreiranje novog view-a
+        // creating a new view-a
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View v = inflater.inflate(R.layout.news_card, parent, false);
         com.example.kvizologapp.news_recyclerview.Adapter.ViewHolder vh = new com.example.kvizologapp.news_recyclerview.Adapter.ViewHolder(v);
@@ -55,15 +55,15 @@ public class Adapter extends RecyclerView.Adapter<com.example.kvizologapp.news_r
     }
 
 
-    // postavlja sadrzaj unutar view-a (invoked by the layout manager)
+    // setting content inside view-a (invoked by the layout manager)
     @Override
     public void onBindViewHolder(com.example.kvizologapp.news_recyclerview.Adapter.ViewHolder holder, final int position) {
         final ItemArticle item = items.get(position);
-        //SETOVANJE POLJA
+        //Set views
         holder.tvTitle.setText(item.getTitle());
         holder.tvDescription.setText(item.getDescription());
         holder.tvDate.setText(item.getDate());
-        //Setovati i sliku...
+        //Set image using Glide
         Glide.with(holder.ivImage.getContext()).load(item.getImage_url()).into(holder.ivImage);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

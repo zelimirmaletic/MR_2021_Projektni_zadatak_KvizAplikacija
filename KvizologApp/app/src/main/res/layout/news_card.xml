@@ -24,10 +24,9 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                app:cardCornerRadius="10dp"
-                android:elevation="10dp">
-
+                android:layout_height="@dimen/news_card_image_height"
+                app:cardCornerRadius="@dimen/news_card_border_radius"
+                android:elevation="@dimen/news_card_elevation">
                 <ImageView
                     android:id="@+id/iv_image"
                     android:layout_width="match_parent"
@@ -40,35 +39,20 @@
                 android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="Title"
-                android:textColor="@color/primary_dark"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp" />
+                style="@style/news_card_title" />
 
             <TextView
                 android:id="@+id/tv_description"
+                style="@style/news_card_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="Ovo je opis novosti."
-                android:textColor="@color/primary"
-                android:textSize="12sp"
-                android:layout_marginLeft="10dp" />
+                />
 
             <TextView
                 android:id="@+id/tv_date"
+                style="@style/news_card_date"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:textStyle="italic"
-                android:layout_gravity="right"
-                android:text="12.2.2021."
-                android:textColor="@color/accent"
-                android:textSize="12sp"
-                android:layout_marginLeft="10dp" />
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
     </RelativeLayout>
