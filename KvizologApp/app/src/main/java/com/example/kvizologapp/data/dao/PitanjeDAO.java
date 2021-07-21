@@ -31,5 +31,7 @@ public interface PitanjeDAO {
     @Delete
     void delete(Pitanje pitanje);
 
+    @Insert
+    void insertAll(Pitanje... listaPitanja);
 
 }
