@@ -13,6 +13,9 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.kvizologapp.data.database.KvizologDatabase;
+import com.example.kvizologapp.data.model.Pitanje;
+
 public class TipPitanjaSusjednaDrzavaFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
@@ -23,6 +26,8 @@ public class TipPitanjaSusjednaDrzavaFragment extends Fragment {
     ImageView imgView;
     TextView tvCountryName, txvCornectnessMessage;
     CheckBox cbAnswer1, cbAnswer2, cbAnswer3, cbAnswer4;
+    Pitanje TRENUTNO_PITANJE;
+
 
     private String mParam1;
     private String mParam2;
@@ -67,34 +72,47 @@ public class TipPitanjaSusjednaDrzavaFragment extends Fragment {
         mpWrong = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.wrong);
         mpHint = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.hint);
 
+        //Instatiate database
+        KvizologDatabase databaseInstance = KvizologDatabase.getInstance(getContext());
+        TRENUTNO_PITANJE = databaseInstance.pitanjeDAO().getById(QuizGameActivity.INT_TRENUTNO_PITANJE);
+
 
         //Initialize question data
         if("en".equals(MainActivity.lang)){
-            tvCountryName.setText(QuizGameActivity.TRENUTNO_PITANJE.getTekstPitanjaEngleski());
-            cbAnswer1.setText(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr1Engleski());
-            cbAnswer2.setText(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr2Engleski());
-            cbAnswer3.setText(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr3Engleski());
-            cbAnswer4.setText(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr4Engleski());
+            tvCountryName.setText(TRENUTNO_PITANJE.getTekstPitanjaEngleski());
+            cbAnswer1.setText(TRENUTNO_PITANJE.getOdgovorBr1Engleski());
+            cbAnswer2.setText(TRENUTNO_PITANJE.getOdgovorBr2Engleski());
+            cbAnswer3.setText(TRENUTNO_PITANJE.getOdgovorBr3Engleski());
+            cbAnswer4.setText(TRENUTNO_PITANJE.getOdgovorBr4Engleski());
         }else {
-            tvCountryName.setText(QuizGameActivity.TRENUTNO_PITANJE.getTekstPitanjaSrpski());
-            cbAnswer1.setText(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr1Srpski());
-            cbAnswer2.setText(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr2Srpski());
-            cbAnswer3.setText(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr3Srpski());
-            cbAnswer4.setText(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr4Srpski());
+            tvCountryName.setText(TRENUTNO_PITANJE.getTekstPitanjaSrpski());
+            cbAnswer1.setText(TRENUTNO_PITANJE.getOdgovorBr1Srpski());
+            cbAnswer2.setText(TRENUTNO_PITANJE.getOdgovorBr2Srpski());
+            cbAnswer3.setText(TRENUTNO_PITANJE.getOdgovorBr3Srpski());
+            cbAnswer4.setText(TRENUTNO_PITANJE.getOdgovorBr4Srpski());
         }
 
 
         btnNextQuestion.setOnClickListener(v -> {
-            ((QuizGameActivity)getActivity()).setViewPager(3);//go to the next question type
+            //Go to the Results fragment if we walked through all questions
+            if(QuizGameActivity.QUESTION_COUNTER == QuizGameActivity.SHOWED_NUMBER_OF_QUESTIONS_PER_CHATEGORY*4)
+                ((QuizGameActivity)getActivity()).setViewPager(4);
+            else {
+                //Move to the next question
+                QuizGameActivity.nextQuestion();
+                ((QuizGameActivity) getActivity()).setViewPager(databaseInstance.pitanjeDAO().getById(QuizGameActivity.INT_TRENUTNO_PITANJE).getTipPitanja());//go to the next question type
+            }
         });
+
+
         btnHint.setOnClickListener(v -> {
             if(QuizGameActivity.HINT_COUNTER != 0){
                 mpHint.start();
                 QuizGameActivity.HINT_COUNTER--;
                 if("en".equals(MainActivity.lang))
-                    Toast.makeText(getContext(), QuizGameActivity.TRENUTNO_PITANJE.getHintEngleski(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), TRENUTNO_PITANJE.getHintEngleski(), Toast.LENGTH_LONG).show();
                 else
-                    Toast.makeText(getContext(), QuizGameActivity.TRENUTNO_PITANJE.getHintSrpski(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), TRENUTNO_PITANJE.getHintSrpski(), Toast.LENGTH_LONG).show();
             }
             btnHint.setVisibility(View.INVISIBLE);
         });
@@ -104,22 +122,22 @@ public class TipPitanjaSusjednaDrzavaFragment extends Fragment {
             boolean corectlyAnswered = true;
             //Check the corectness of the answer
             if("en".equals(MainActivity.lang)){
-                if(cbAnswer1.isChecked() && !QuizGameActivity.TRENUTNO_PITANJE.getTacniOdgovoriEngleski().contains(cbAnswer1.getText().toString()))
+                if(cbAnswer1.isChecked() && ! TRENUTNO_PITANJE.getTacniOdgovoriEngleski().contains(cbAnswer1.getText().toString()))
                     corectlyAnswered=false;
-                else if(cbAnswer2.isChecked() && !QuizGameActivity.TRENUTNO_PITANJE.getTacniOdgovoriEngleski().contains(cbAnswer2.getText().toString()))
+                else if(cbAnswer2.isChecked() && ! TRENUTNO_PITANJE.getTacniOdgovoriEngleski().contains(cbAnswer2.getText().toString()))
                     corectlyAnswered=false;
-                else if(cbAnswer3.isChecked() && !QuizGameActivity.TRENUTNO_PITANJE.getTacniOdgovoriEngleski().contains(cbAnswer3.getText().toString()))
+                else if(cbAnswer3.isChecked() && ! TRENUTNO_PITANJE.getTacniOdgovoriEngleski().contains(cbAnswer3.getText().toString()))
                     corectlyAnswered=false;
-                else if(cbAnswer4.isChecked() && !QuizGameActivity.TRENUTNO_PITANJE.getTacniOdgovoriEngleski().contains(cbAnswer4.getText().toString()))
+                else if(cbAnswer4.isChecked() && ! TRENUTNO_PITANJE.getTacniOdgovoriEngleski().contains(cbAnswer4.getText().toString()))
                     corectlyAnswered=false;
             }else{
-                if(cbAnswer1.isChecked() && !QuizGameActivity.TRENUTNO_PITANJE.getTacniOdgovoriSrpski().contains(cbAnswer1.getText().toString()))
+                if(cbAnswer1.isChecked() && ! TRENUTNO_PITANJE.getTacniOdgovoriSrpski().contains(cbAnswer1.getText().toString()))
                     corectlyAnswered=false;
-                else if(cbAnswer2.isChecked() && !QuizGameActivity.TRENUTNO_PITANJE.getTacniOdgovoriSrpski().contains(cbAnswer2.getText().toString()))
+                else if(cbAnswer2.isChecked() && ! TRENUTNO_PITANJE.getTacniOdgovoriSrpski().contains(cbAnswer2.getText().toString()))
                     corectlyAnswered=false;
-                else if(cbAnswer3.isChecked() && !QuizGameActivity.TRENUTNO_PITANJE.getTacniOdgovoriSrpski().contains(cbAnswer3.getText().toString()))
+                else if(cbAnswer3.isChecked() && ! TRENUTNO_PITANJE.getTacniOdgovoriSrpski().contains(cbAnswer3.getText().toString()))
                     corectlyAnswered=false;
-                else if(cbAnswer4.isChecked() && !QuizGameActivity.TRENUTNO_PITANJE.getTacniOdgovoriSrpski().contains(cbAnswer4.getText().toString()))
+                else if(cbAnswer4.isChecked() && ! TRENUTNO_PITANJE.getTacniOdgovoriSrpski().contains(cbAnswer4.getText().toString()))
                     corectlyAnswered=false;
             }
             //Show message about corectness
@@ -136,7 +154,7 @@ public class TipPitanjaSusjednaDrzavaFragment extends Fragment {
                 //SOUND EFFECT
                 mpCorrect.start();
             }else{
-                String correctAnswer = "en".equals(MainActivity.lang)?QuizGameActivity.TRENUTNO_PITANJE.getTacniOdgovoriEngleski():QuizGameActivity.TRENUTNO_PITANJE.getTacniOdgovoriSrpski();
+                String correctAnswer = "en".equals(MainActivity.lang)?TRENUTNO_PITANJE.getTacniOdgovoriEngleski():TRENUTNO_PITANJE.getTacniOdgovoriSrpski();
                 txvCornectnessMessage.setText(getString(R.string.wrong_answer_message) + " " + correctAnswer);
                 txvCornectnessMessage.setTextColor(getResources().getColor(R.color.accent));
                 txvCornectnessMessage.setVisibility(View.VISIBLE);

@@ -12,6 +12,9 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.kvizologapp.data.database.KvizologDatabase;
+import com.example.kvizologapp.data.model.Pitanje;
+
 public class TipPitanjaZnamenitostFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
@@ -25,6 +28,7 @@ public class TipPitanjaZnamenitostFragment extends Fragment {
     MediaPlayer mpCorrect, mpWrong, mpHint;
     ImageView imgHeritage, imgView;
     TextView txvHeritageName,txvCornectnessMessage;
+    Pitanje TRENUTNO_PITANJE;
 
 
 
@@ -69,27 +73,36 @@ public class TipPitanjaZnamenitostFragment extends Fragment {
         mpWrong = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.wrong);
         mpHint = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.hint);
 
+        //Instatiate database
+        KvizologDatabase databaseInstance = KvizologDatabase.getInstance(getContext());
+        TRENUTNO_PITANJE = databaseInstance.pitanjeDAO().getById(QuizGameActivity.INT_TRENUTNO_PITANJE);
+
+
         //Show question data
-        imgHeritage.setImageResource(getResources().getIdentifier(QuizGameActivity.TRENUTNO_PITANJE.getSlika(),"drawable",((QuizGameActivity)getActivity()).getPackageName()));
+        imgHeritage.setImageResource(getResources().getIdentifier(TRENUTNO_PITANJE.getSlika(),"drawable",((QuizGameActivity)getActivity()).getPackageName()));
         if("en".equals(MainActivity.lang)){
-            txvHeritageName.setText(QuizGameActivity.TRENUTNO_PITANJE.getTekstPitanjaEngleski());
-            btnAnswer1.setText(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr1Engleski());
-            btnAnswer2.setText(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr2Engleski());
-            btnAnswer3.setText(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr3Engleski());
-            btnAnswer4.setText(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr4Engleski());
+            txvHeritageName.setText(TRENUTNO_PITANJE.getTekstPitanjaEngleski());
+            btnAnswer1.setText(TRENUTNO_PITANJE.getOdgovorBr1Engleski());
+            btnAnswer2.setText(TRENUTNO_PITANJE.getOdgovorBr2Engleski());
+            btnAnswer3.setText(TRENUTNO_PITANJE.getOdgovorBr3Engleski());
+            btnAnswer4.setText(TRENUTNO_PITANJE.getOdgovorBr4Engleski());
         }else {
-            txvHeritageName.setText(QuizGameActivity.TRENUTNO_PITANJE.getTekstPitanjaSrpski());
-            btnAnswer1.setText(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr1Srpski());
-            btnAnswer2.setText(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr2Srpski());
-            btnAnswer3.setText(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr3Srpski());
-            btnAnswer4.setText(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr4Srpski());
+            txvHeritageName.setText(TRENUTNO_PITANJE.getTekstPitanjaSrpski());
+            btnAnswer1.setText(TRENUTNO_PITANJE.getOdgovorBr1Srpski());
+            btnAnswer2.setText(TRENUTNO_PITANJE.getOdgovorBr2Srpski());
+            btnAnswer3.setText(TRENUTNO_PITANJE.getOdgovorBr3Srpski());
+            btnAnswer4.setText(TRENUTNO_PITANJE.getOdgovorBr4Srpski());
         }
 
 
-        btnNextQuestion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((QuizGameActivity)getActivity()).setViewPager(4);//go to the next question type
+        btnNextQuestion.setOnClickListener(v -> {
+            //Go to the Results fragment if we walked through all questions
+            if(QuizGameActivity.QUESTION_COUNTER == QuizGameActivity.SHOWED_NUMBER_OF_QUESTIONS_PER_CHATEGORY*4)
+                ((QuizGameActivity)getActivity()).setViewPager(4);
+            else {
+                //Move to the next question
+                QuizGameActivity.nextQuestion();
+                ((QuizGameActivity) getActivity()).setViewPager(databaseInstance.pitanjeDAO().getById(QuizGameActivity.INT_TRENUTNO_PITANJE).getTipPitanja());//go to the next question type
             }
         });
         btnHint.setOnClickListener(v -> {
@@ -97,9 +110,9 @@ public class TipPitanjaZnamenitostFragment extends Fragment {
                     mpHint.start();
                     QuizGameActivity.HINT_COUNTER--;
                     if("en".equals(MainActivity.lang))
-                        Toast.makeText(getContext(), QuizGameActivity.TRENUTNO_PITANJE.getHintEngleski(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), TRENUTNO_PITANJE.getHintEngleski(), Toast.LENGTH_LONG).show();
                     else
-                        Toast.makeText(getContext(), QuizGameActivity.TRENUTNO_PITANJE.getHintSrpski(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), TRENUTNO_PITANJE.getHintSrpski(), Toast.LENGTH_LONG).show();
                 }
                 btnHint.setVisibility(View.INVISIBLE);
             });
@@ -116,9 +129,9 @@ public class TipPitanjaZnamenitostFragment extends Fragment {
         btnHint.setVisibility(View.GONE);
         //Check the answer
         boolean corectlyAnswered = false;
-        if((btnAnswer.getText()).equals(QuizGameActivity.TRENUTNO_PITANJE.getTacniOdgovoriEngleski()))
+        if((btnAnswer.getText()).equals(TRENUTNO_PITANJE.getTacniOdgovoriEngleski()))
             corectlyAnswered = true;
-        if((btnAnswer.getText()).equals(QuizGameActivity.TRENUTNO_PITANJE.getTacniOdgovoriSrpski()))
+        if((btnAnswer.getText()).equals(TRENUTNO_PITANJE.getTacniOdgovoriSrpski()))
             corectlyAnswered = true;
         //Show message about corectness
         if(corectlyAnswered){
@@ -134,7 +147,7 @@ public class TipPitanjaZnamenitostFragment extends Fragment {
             //SOUND EFFECT
             mpCorrect.start();
         }else{
-            String correctAnswer = "en".equals(MainActivity.lang)?QuizGameActivity.TRENUTNO_PITANJE.getTacniOdgovoriEngleski():QuizGameActivity.TRENUTNO_PITANJE.getTacniOdgovoriSrpski();
+            String correctAnswer = "en".equals(MainActivity.lang)?TRENUTNO_PITANJE.getTacniOdgovoriEngleski():TRENUTNO_PITANJE.getTacniOdgovoriSrpski();
             txvCornectnessMessage.setText(getString(R.string.wrong_answer_message) + " " + correctAnswer);
             txvCornectnessMessage.setTextColor(getResources().getColor(R.color.accent));
             txvCornectnessMessage.setVisibility(View.VISIBLE);

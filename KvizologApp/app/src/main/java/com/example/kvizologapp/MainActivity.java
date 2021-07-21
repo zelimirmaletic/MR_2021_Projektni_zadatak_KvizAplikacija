@@ -9,12 +9,9 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.kvizologapp.data.database.KvizologDatabase;
-import com.example.kvizologapp.data.model.Pitanje;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Locale;
@@ -38,10 +35,6 @@ public class MainActivity extends AppCompatActivity {
         setLocale(MainActivity.this,lang);
         setContentView(R.layout.activity_main);
 
-        //Instatiate database
-        KvizologDatabase databaseInstance = KvizologDatabase.getInstance(this);
-        Pitanje pitanje = databaseInstance.pitanjeDAO().getById(27);
-        Toast.makeText(this,pitanje.getTekstPitanjaEngleski() , Toast.LENGTH_SHORT).show();
 
         btnLogin = findViewById(R.id.btnLogin);
         btnRegister = findViewById(R.id.btnRegister);

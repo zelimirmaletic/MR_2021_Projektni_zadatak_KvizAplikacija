@@ -14,6 +14,9 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.kvizologapp.data.database.KvizologDatabase;
+import com.example.kvizologapp.data.model.Pitanje;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -34,6 +37,9 @@ public class TipPitanjaZastavaFragment extends Fragment {
     Vibrator vibe;
     private static final int MAX_NUM_OF_LETTERS = 20;
     private static final int NUM_OF_LETTER_BUTTONS = 20;
+    Pitanje TRENUTNO_PITANJE;
+    KvizologDatabase databaseInstance;
+
 
 
     private String mParam1;
@@ -80,14 +86,19 @@ public class TipPitanjaZastavaFragment extends Fragment {
         mpHint = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.hint);
         disabledButtons = new ArrayList<>();
 
+        //Instatiate database
+        databaseInstance = KvizologDatabase.getInstance(getContext());
+        TRENUTNO_PITANJE = databaseInstance.pitanjeDAO().getById(QuizGameActivity.INT_TRENUTNO_PITANJE);
+
+
         //Initialize views from Pitanje object
-        imgFlag.setImageResource(getResources().getIdentifier(QuizGameActivity.TRENUTNO_PITANJE.getSlika(),"drawable",((QuizGameActivity)getActivity()).getPackageName()));
+        imgFlag.setImageResource(getResources().getIdentifier(TRENUTNO_PITANJE.getSlika(),"drawable",((QuizGameActivity)getActivity()).getPackageName()));
         initializeLetterButtons(view);
         setListeners();
         if("en".equals(MainActivity.lang))
-            setAndRandomizeLetterButtons(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr1Engleski());
+            setAndRandomizeLetterButtons(TRENUTNO_PITANJE.getOdgovorBr1Engleski());
         else
-            setAndRandomizeLetterButtons(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr1Srpski());
+            setAndRandomizeLetterButtons(TRENUTNO_PITANJE.getOdgovorBr1Srpski());
         return view;
     }
 
@@ -136,7 +147,14 @@ public class TipPitanjaZastavaFragment extends Fragment {
         btn19.setOnClickListener(v -> { writeLetter(btn19); });
         btn20.setOnClickListener(v -> { writeLetter(btn20); });
         btnNextQuestion.setOnClickListener(v -> {
-            ((QuizGameActivity)getActivity()).setViewPager(2);//go to the next question type
+            //Go to the Results fragment if we walked through all questions
+            if(QuizGameActivity.QUESTION_COUNTER == QuizGameActivity.SHOWED_NUMBER_OF_QUESTIONS_PER_CHATEGORY*4)
+                ((QuizGameActivity)getActivity()).setViewPager(4);
+            else {
+                //Move to the next question
+                QuizGameActivity.nextQuestion();
+                ((QuizGameActivity) getActivity()).setViewPager(databaseInstance.pitanjeDAO().getById(QuizGameActivity.INT_TRENUTNO_PITANJE).getTipPitanja());//go to the next question type
+            }
         });
         clearEntry.setOnClickListener(v -> {
             txbCountryName.setText("");
@@ -156,9 +174,9 @@ public class TipPitanjaZastavaFragment extends Fragment {
                 mpHint.start();
                 QuizGameActivity.HINT_COUNTER--;
                 if("en".equals(MainActivity.lang))
-                    Toast.makeText(getContext(), QuizGameActivity.TRENUTNO_PITANJE.getHintEngleski(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), TRENUTNO_PITANJE.getHintEngleski(), Toast.LENGTH_LONG).show();
                 else
-                    Toast.makeText(getContext(), QuizGameActivity.TRENUTNO_PITANJE.getHintSrpski(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), TRENUTNO_PITANJE.getHintSrpski(), Toast.LENGTH_LONG).show();
             }
             btnHint.setVisibility(View.INVISIBLE);
         });
@@ -166,9 +184,9 @@ public class TipPitanjaZastavaFragment extends Fragment {
             btnHint.setVisibility(View.GONE);
             //Check the answer
             boolean corectlyAnswered = false;
-            if((txbCountryName.getText()).equals(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr1Engleski()))
+            if((txbCountryName.getText()).equals(TRENUTNO_PITANJE.getOdgovorBr1Engleski()))
                 corectlyAnswered = true;
-            if((txbCountryName.getText()).equals(QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr1Srpski()))
+            if((txbCountryName.getText()).equals(TRENUTNO_PITANJE.getOdgovorBr1Srpski()))
                 corectlyAnswered = true;
             //Show message about corectness
             if(corectlyAnswered){
@@ -184,7 +202,7 @@ public class TipPitanjaZastavaFragment extends Fragment {
                 //SOUND EFFECT
                 mpCorrect.start();
             }else{
-                String correctAnswer = "en".equals(MainActivity.lang)?QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr1Engleski():QuizGameActivity.TRENUTNO_PITANJE.getOdgovorBr1Srpski();
+                String correctAnswer = "en".equals(MainActivity.lang)?TRENUTNO_PITANJE.getOdgovorBr1Engleski():TRENUTNO_PITANJE.getOdgovorBr1Srpski();
                 txvCornectnessMessage.setText(getString(R.string.wrong_answer_message) + " " + correctAnswer);
                 txvCornectnessMessage.setTextColor(getResources().getColor(R.color.accent));
                 txvCornectnessMessage.setVisibility(View.VISIBLE);
