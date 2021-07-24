@@ -39,7 +39,7 @@ public class QuizResultsFragment extends Fragment {
         txvPoints = view.findViewById(R.id.txbResultPoints);
         btnFacebook = view.findViewById(R.id.btnFacebook);
         //Set points number
-        txvPoints.setText((++QuizGameActivity.POINTS_COUNTER) + "/20");
+        txvPoints.setText((QuizGameActivity.POINTS_COUNTER) + " / "+QuizGameActivity.QUESTIONS_PER_CHATEGORY*4);
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(getResources().getString(R.string.results_message));
         stringBuilder.append(txvPoints.getText().toString());

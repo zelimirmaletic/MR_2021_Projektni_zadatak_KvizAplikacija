@@ -21,7 +21,6 @@ public abstract class KvizologDatabase extends RoomDatabase {
     //Get DAO
     public abstract PitanjeDAO pitanjeDAO();
 
-
     //reference
     private static KvizologDatabase kvizologDB;
     // synchronized is use to avoid concurrent access in multithred environment

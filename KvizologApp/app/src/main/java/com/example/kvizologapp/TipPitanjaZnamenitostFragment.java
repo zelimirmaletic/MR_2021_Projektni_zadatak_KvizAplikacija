@@ -77,6 +77,9 @@ public class TipPitanjaZnamenitostFragment extends Fragment {
         KvizologDatabase databaseInstance = KvizologDatabase.getInstance(getContext());
         TRENUTNO_PITANJE = databaseInstance.pitanjeDAO().getById(QuizGameActivity.INT_TRENUTNO_PITANJE);
 
+        //Hide hint if it is already used 3 times
+        if(QuizGameActivity.HINT_COUNTER == 0)
+            btnHint.setVisibility(View.GONE);
 
         //Show question data
         imgHeritage.setImageResource(getResources().getIdentifier(TRENUTNO_PITANJE.getSlika(),"drawable",((QuizGameActivity)getActivity()).getPackageName()));
@@ -97,12 +100,12 @@ public class TipPitanjaZnamenitostFragment extends Fragment {
 
         btnNextQuestion.setOnClickListener(v -> {
             //Go to the Results fragment if we walked through all questions
-            if(QuizGameActivity.QUESTION_COUNTER == QuizGameActivity.SHOWED_NUMBER_OF_QUESTIONS_PER_CHATEGORY*4)
+            if(QuizGameActivity.QUESTION_COUNTER + 1 == QuizGameActivity.QUESTIONS_PER_CHATEGORY*4)
                 ((QuizGameActivity)getActivity()).setViewPager(4);
             else {
                 //Move to the next question
                 QuizGameActivity.nextQuestion();
-                ((QuizGameActivity) getActivity()).setViewPager(databaseInstance.pitanjeDAO().getById(QuizGameActivity.INT_TRENUTNO_PITANJE).getTipPitanja());//go to the next question type
+                ((QuizGameActivity)getActivity()).setViewPager(databaseInstance.pitanjeDAO().getById(QuizGameActivity.INT_TRENUTNO_PITANJE).getTipPitanja());//go to the next question type
             }
         });
         btnHint.setOnClickListener(v -> {

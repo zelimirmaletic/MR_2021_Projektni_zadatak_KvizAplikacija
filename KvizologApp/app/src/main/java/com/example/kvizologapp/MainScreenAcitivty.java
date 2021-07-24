@@ -23,6 +23,7 @@ public class MainScreenAcitivty extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         SharedPreferences shPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String lang = shPreferences.getString(MainActivity.SELECTED_LANGUAGE, Locale.getDefault().getLanguage());
         setLocale(MainScreenAcitivty.this,lang);

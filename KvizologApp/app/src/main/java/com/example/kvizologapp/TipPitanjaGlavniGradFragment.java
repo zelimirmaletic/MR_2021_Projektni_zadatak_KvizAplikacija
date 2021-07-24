@@ -91,7 +91,7 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
         }
         btnNextQuestion.setOnClickListener(v -> {
             //Go to the Results fragment if we walked through all questions
-            if(QuizGameActivity.QUESTION_COUNTER == QuizGameActivity.SHOWED_NUMBER_OF_QUESTIONS_PER_CHATEGORY*4)
+            if(QuizGameActivity.QUESTION_COUNTER + 1 == QuizGameActivity.QUESTIONS_PER_CHATEGORY*4)
                 ((QuizGameActivity)getActivity()).setViewPager(4);
             else {
                 //Move to the next question
@@ -136,7 +136,7 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
         //Show message about corectness
         if(corectlyAnswered){
             //Increment points
-            QuizGameActivity.POINTS_COUNTER++;
+            ++QuizGameActivity.POINTS_COUNTER;
             ((QuizGameActivity)getActivity()).incrementPointsView();
             //Show message of correct answer
             txvCornectnessMessage.setText(getString(R.string.correct_answer_message));

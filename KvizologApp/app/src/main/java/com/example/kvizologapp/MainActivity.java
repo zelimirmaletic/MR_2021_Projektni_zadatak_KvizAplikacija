@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         setLocale(MainActivity.this,lang);
         setContentView(R.layout.activity_main);
 
-
         btnLogin = findViewById(R.id.btnLogin);
         btnRegister = findViewById(R.id.btnRegister);
         tbEmail = findViewById(R.id.editTextEmail);
@@ -43,6 +42,14 @@ public class MainActivity extends AppCompatActivity {
         btnGuestLogin = findViewById(R.id.btnGuestLogin);
         mAuth = FirebaseAuth.getInstance();
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+
+        /*
+        KvizologDatabase databaseInstance = KvizologDatabase.getInstance(this);
+        if(databaseInstance.pitanjeDAO().getById(1)==null)
+            Toast.makeText(this, "JEBENI NULL", Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(this, databaseInstance.pitanjeDAO().getById(1).getTekstPitanjaEngleski(), Toast.LENGTH_SHORT).show();
+        */
 
         //Using labmda
         btnRegister.setOnClickListener(v -> {

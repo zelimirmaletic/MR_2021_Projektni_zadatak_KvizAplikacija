@@ -35,6 +35,7 @@ public class TipPitanjaZastavaFragment extends Fragment {
     ImageView imgFlag, imgView;
     MediaPlayer mpCorrect, mpWrong, mpHint;
     Vibrator vibe;
+    private static short VIBRATION_DURATION = 50;
     private static final int MAX_NUM_OF_LETTERS = 20;
     private static final int NUM_OF_LETTER_BUTTONS = 20;
     Pitanje TRENUTNO_PITANJE;
@@ -90,6 +91,9 @@ public class TipPitanjaZastavaFragment extends Fragment {
         databaseInstance = KvizologDatabase.getInstance(getContext());
         TRENUTNO_PITANJE = databaseInstance.pitanjeDAO().getById(QuizGameActivity.INT_TRENUTNO_PITANJE);
 
+        //Hide hint if it is already used 3 times
+        if(QuizGameActivity.HINT_COUNTER == 0)
+            btnHint.setVisibility(View.GONE);
 
         //Initialize views from Pitanje object
         imgFlag.setImageResource(getResources().getIdentifier(TRENUTNO_PITANJE.getSlika(),"drawable",((QuizGameActivity)getActivity()).getPackageName()));
@@ -148,7 +152,7 @@ public class TipPitanjaZastavaFragment extends Fragment {
         btn20.setOnClickListener(v -> { writeLetter(btn20); });
         btnNextQuestion.setOnClickListener(v -> {
             //Go to the Results fragment if we walked through all questions
-            if(QuizGameActivity.QUESTION_COUNTER == QuizGameActivity.SHOWED_NUMBER_OF_QUESTIONS_PER_CHATEGORY*4)
+            if(QuizGameActivity.QUESTION_COUNTER + 1 == QuizGameActivity.QUESTIONS_PER_CHATEGORY*4)
                 ((QuizGameActivity)getActivity()).setViewPager(4);
             else {
                 //Move to the next question
@@ -191,7 +195,7 @@ public class TipPitanjaZastavaFragment extends Fragment {
             //Show message about corectness
             if(corectlyAnswered){
                 //Increment points
-                QuizGameActivity.POINTS_COUNTER++;
+                ++QuizGameActivity.POINTS_COUNTER;
                 ((QuizGameActivity)getActivity()).incrementPointsView();
                 //Show message of correct answer
                 txvCornectnessMessage.setText(getString(R.string.correct_answer_message));
@@ -219,7 +223,7 @@ public class TipPitanjaZastavaFragment extends Fragment {
 
     private void writeLetter(Button button){
         //VIBRATION EFFECT
-        vibe.vibrate(50);
+        vibe.vibrate(VIBRATION_DURATION);
         //FILL TEXT VIEW WITH A LETTER
         if(txbCountryName.getText().toString().length()<MAX_NUM_OF_LETTERS)
             txbCountryName.setText(txbCountryName.getText().toString().concat(button.getText().toString()));
