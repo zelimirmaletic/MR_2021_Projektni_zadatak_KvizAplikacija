@@ -89,12 +89,10 @@ public class QuizGameActivity extends AppCompatActivity {
         setViewPager(databaseInstance.pitanjeDAO().getById(QuizGameActivity.INT_TRENUTNO_PITANJE).getTipPitanja());//go to the next question type
     }
 
-
-
     @Override
-    protected void onResume() {
-        super.onResume();
-        Toast.makeText(this, "ON RESUME", Toast.LENGTH_SHORT).show();
+    protected void onDestroy() {
+        super.onDestroy();
+        Toast.makeText(this, "ON DESTROY", Toast.LENGTH_SHORT).show();
         HINT_COUNTER=3;
         POINTS_COUNTER=0;
         QUESTION_COUNTER = 0;
@@ -111,7 +109,7 @@ public class QuizGameActivity extends AppCompatActivity {
     }
 
     public void setViewPager(int fragmentNumber){
-        //Toast.makeText(this, "Question number"+ INT_TRENUTNO_PITANJE+" \nQuestion type " + fragmentNumber +"\n Question counter "+QUESTION_COUNTER, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Question number"+ INT_TRENUTNO_PITANJE+" \nQuestion type " + fragmentNumber +"\n Question counter "+QUESTION_COUNTER, Toast.LENGTH_LONG).show();
         viewPager.setCurrentItem(fragmentNumber,false);
         viewPager.getAdapter().notifyDataSetChanged();
         if(fragmentNumber==4){
@@ -134,5 +132,9 @@ public class QuizGameActivity extends AppCompatActivity {
     public static void nextQuestion(){
         ++QUESTION_COUNTER;
         INT_TRENUTNO_PITANJE = listaPitanja.get(QUESTION_COUNTER);
+    }
+
+    public KvizologDatabase getDatabaseInstance() {
+        return databaseInstance;
     }
 }

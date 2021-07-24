@@ -58,6 +58,11 @@ public class TipPitanjaSusjednaDrzavaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view  = inflater.inflate(R.layout.fragment_tip_pitanja_susjedna_drzava, container, false);
+
+        //Instatiate database
+        KvizologDatabase databaseInstance = ((QuizGameActivity)getActivity()).getDatabaseInstance();
+        TRENUTNO_PITANJE = databaseInstance.pitanjeDAO().getById(QuizGameActivity.INT_TRENUTNO_PITANJE);
+
         btnNextQuestion = (Button) view.findViewById(R.id.btnNextQuestion);
         tvCountryName = (TextView) view.findViewById(R.id.txbCountryName);
         txvCornectnessMessage = (TextView) view.findViewById(R.id.tvCorectnessMessage);
@@ -71,15 +76,6 @@ public class TipPitanjaSusjednaDrzavaFragment extends Fragment {
         mpCorrect = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.correct);
         mpWrong = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.wrong);
         mpHint = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.hint);
-
-        //Instatiate database
-        KvizologDatabase databaseInstance = KvizologDatabase.getInstance(getContext());
-        TRENUTNO_PITANJE = databaseInstance.pitanjeDAO().getById(QuizGameActivity.INT_TRENUTNO_PITANJE);
-
-        //Hide hint if it is already used 3 times
-        if(QuizGameActivity.HINT_COUNTER == 0)
-            btnHint.setVisibility(View.GONE);
-
 
         //Initialize question data
         if("en".equals(MainActivity.lang)){

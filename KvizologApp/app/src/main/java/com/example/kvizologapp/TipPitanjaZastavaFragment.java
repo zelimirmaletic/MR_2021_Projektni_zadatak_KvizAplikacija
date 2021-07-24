@@ -72,6 +72,10 @@ public class TipPitanjaZastavaFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tip_pitanja_zastava, container, false);
+        //Instatiate database
+        databaseInstance = ((QuizGameActivity)getActivity()).getDatabaseInstance();
+        TRENUTNO_PITANJE = databaseInstance.pitanjeDAO().getById(QuizGameActivity.INT_TRENUTNO_PITANJE);
+
         txbCountryName = view.findViewById(R.id.txbCountryName);
         clearEntry=(Button)view.findViewById(R.id.btnClear);
         btnSpace = (Button)view.findViewById(R.id.btnSpace);
@@ -87,9 +91,6 @@ public class TipPitanjaZastavaFragment extends Fragment {
         mpHint = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.hint);
         disabledButtons = new ArrayList<>();
 
-        //Instatiate database
-        databaseInstance = KvizologDatabase.getInstance(getContext());
-        TRENUTNO_PITANJE = databaseInstance.pitanjeDAO().getById(QuizGameActivity.INT_TRENUTNO_PITANJE);
 
         //Hide hint if it is already used 3 times
         if(QuizGameActivity.HINT_COUNTER == 0)

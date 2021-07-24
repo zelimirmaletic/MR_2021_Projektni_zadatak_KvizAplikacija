@@ -44,6 +44,10 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tip_pitanja_glavni_grad, container, false);
+        //Instatiate database
+        KvizologDatabase databaseInstance = ((QuizGameActivity)getActivity()).getDatabaseInstance();
+        TRENUTNO_PITANJE = databaseInstance.pitanjeDAO().getById(QuizGameActivity.INT_TRENUTNO_PITANJE);
+
         btnNextQuestion = view.findViewById(R.id.btnNextQuestion);
         txbCountryName = view.findViewById(R.id.txbCountryName);
         btnAnswer1 = view.findViewById(R.id.btnAnswer1);
@@ -65,9 +69,6 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
         mpWrong = MediaPlayer.create(getActivity(),R.raw.wrong);
         mpHint = MediaPlayer.create(getActivity(),R.raw.hint);
 
-        //Instatiate database
-        KvizologDatabase databaseInstance = KvizologDatabase.getInstance(getContext());
-        TRENUTNO_PITANJE = databaseInstance.pitanjeDAO().getById(QuizGameActivity.INT_TRENUTNO_PITANJE);
 
         //Show previous points
         ((QuizGameActivity)getActivity()).incrementPointsView();
