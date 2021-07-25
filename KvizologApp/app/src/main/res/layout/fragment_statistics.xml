@@ -4,18 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StatisticsFragment">
-
-    <!-- TODO: Update blank fragment layout -->
+    tools:context=".NewsActivity">
 
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
+        android:id="@+id/txvNewsTitle"
+        style="@style/QuestionTitleText"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="STATISTIKA"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center"
+        android:text="@string/statistics_main_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="734dp"
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/recycler_view_padding"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvNewsTitle"
+        tools:listitem="@layout/igra_card" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

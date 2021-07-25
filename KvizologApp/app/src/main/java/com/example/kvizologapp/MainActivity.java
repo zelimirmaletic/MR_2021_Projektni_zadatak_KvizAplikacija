@@ -12,6 +12,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.kvizologapp.data.database.KvizologDatabase;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Locale;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        KvizologDatabase databaseInstance = KvizologDatabase.getInstance(this);
         loadLanguage();
         SharedPreferences shPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         lang = shPreferences.getString(SELECTED_LANGUAGE, Locale.getDefault().getLanguage());

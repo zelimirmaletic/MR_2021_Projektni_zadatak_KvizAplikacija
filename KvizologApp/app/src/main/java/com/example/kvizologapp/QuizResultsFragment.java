@@ -80,7 +80,7 @@ public class QuizResultsFragment extends Fragment {
             KvizologDatabase databaseInstance = ((QuizGameActivity)getActivity()).getDatabaseInstance();
             //SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             //System.out.println(formatter.format(date));
-            long idIgra = databaseInstance.igraDAO().insert(new Igra(new Date().getTime(),MainScreenAcitivty.USERNAME));
+            long idIgra = databaseInstance.igraDAO().insert(new Igra(new Date().getTime(),MainScreenAcitivty.USERNAME,QuizGameActivity.POINTS_COUNTER));
             //Write all questions data
             for(int i=0; i<QuizGameActivity.listaPitanja.toArray().length;i++)
                 databaseInstance.igra_ima_pitanjeDAO().insert(new Igra_ima_Pitanje(QuizGameActivity.listaPitanja.get(i), (int) idIgra,QuizGameActivity.listaOdgovora.get(i)));

@@ -69,6 +69,8 @@
     <string name="social_media_share_message">Share your result!</string>
 
     <string name="news_main_title">News</string>
+    <string name="statistics_main_title">Statistics</string>
+
 
     <string name="clear_entry">clear</string>
     <string name="space_button_text">space</string>

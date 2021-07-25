@@ -53,4 +53,5 @@
     <string name="hashtag_quizolog">#Квизолог</string>
     <string name="chek_out_message">" Погледајте ову апликацију на Гугл Продавници кликом на линк испод!"</string>
     <string name="results_message">"Хеј! Управо завршен квиз на овој игрици са резултатом "</string>
+    <string name="statistics_main_title">Статистика</string>
 </resources>

@@ -17,9 +17,11 @@ public class Igra implements Serializable {
     private int Id;
     private Long date;
     private String email;
+    private int points;
 
-    public Igra(Long date, String email) {
+    public Igra(Long date, String email,int points) {
         this.date = date;
+        this.points = points;
         this.email = email;
     }
 
@@ -45,6 +47,14 @@ public class Igra implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
