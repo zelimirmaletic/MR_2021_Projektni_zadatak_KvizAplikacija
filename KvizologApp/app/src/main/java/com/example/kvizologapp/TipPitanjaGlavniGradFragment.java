@@ -136,6 +136,7 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
             corectlyAnswered = true;
         //Show message about corectness
         if(corectlyAnswered){
+            QuizGameActivity.listaOdgovora.add(true);
             //Increment points
             ++QuizGameActivity.POINTS_COUNTER;
             ((QuizGameActivity)getActivity()).incrementPointsView();
@@ -148,6 +149,7 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
             //SOUND EFFECT
             mpCorrect.start();
         }else{
+            QuizGameActivity.listaOdgovora.add(false);
             String correctAnswer = "en".equals(MainActivity.lang)?TRENUTNO_PITANJE.getTacniOdgovoriEngleski():TRENUTNO_PITANJE.getTacniOdgovoriSrpski();
             StringBuilder strBuilder = new StringBuilder();
             strBuilder.append(getString(R.string.wrong_answer_message));

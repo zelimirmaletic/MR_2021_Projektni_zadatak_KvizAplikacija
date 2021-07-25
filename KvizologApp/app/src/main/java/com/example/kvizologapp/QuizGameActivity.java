@@ -23,7 +23,6 @@ public class QuizGameActivity extends AppCompatActivity {
 
     public static int QUESTIONS_PER_CHATEGORY;
     private final static int NUMBER_OF_QUESTIONS_PER_CHATEGORY = 20;
-    private SectionsStatePagerAdapter sectionsStatePagerAdapter;
     private ViewPager viewPager;
     public static int HINT_COUNTER = 3;
     public static int POINTS_COUNTER = 0;
@@ -31,12 +30,10 @@ public class QuizGameActivity extends AppCompatActivity {
     public static int QUESTION_COUNTER = 0;
     LinearLayout pointsBannerLayout;
     KvizologDatabase databaseInstance;
-
-
     static List<Integer> listaPitanja = new ArrayList();
+    public static List<Boolean> listaOdgovora = new ArrayList();
 
     //Treba pomjeriti poziciju naziva na srpskom sa [7] na [8], dakle za jedno mjesto!
-
 
     TextView txvPoints;
     MediaPlayer mpResults;
@@ -46,7 +43,7 @@ public class QuizGameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_game);
         //Instatiate database
-        sectionsStatePagerAdapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
+        SectionsStatePagerAdapter sectionsStatePagerAdapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
         viewPager = findViewById(R.id.quizViewPager);
         txvPoints = findViewById(R.id.txbPoints);
         mpResults = MediaPlayer.create(this,R.raw.results);
@@ -92,6 +89,8 @@ public class QuizGameActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        listaOdgovora.clear();
+        listaPitanja.clear();
         Toast.makeText(this, "ON DESTROY", Toast.LENGTH_SHORT).show();
         HINT_COUNTER=3;
         POINTS_COUNTER=0;
@@ -109,7 +108,7 @@ public class QuizGameActivity extends AppCompatActivity {
     }
 
     public void setViewPager(int fragmentNumber){
-        Toast.makeText(this, "Question number"+ INT_TRENUTNO_PITANJE+" \nQuestion type " + fragmentNumber +"\n Question counter "+QUESTION_COUNTER, Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "Question number"+ INT_TRENUTNO_PITANJE+" \nQuestion type " + fragmentNumber +"\n Question counter "+QUESTION_COUNTER, Toast.LENGTH_LONG).show();
         viewPager.setCurrentItem(fragmentNumber,false);
         viewPager.getAdapter().notifyDataSetChanged();
         if(fragmentNumber==4){
@@ -119,7 +118,7 @@ public class QuizGameActivity extends AppCompatActivity {
     }
 
     public void incrementPointsView(){
-        txvPoints.setText("POINTS: " + POINTS_COUNTER);
+        txvPoints.setText(getResources().getString(R.string.points_text)+ " " + POINTS_COUNTER);
     }
 
     public void setPointsBannerVisible(boolean visible){
@@ -136,5 +135,9 @@ public class QuizGameActivity extends AppCompatActivity {
 
     public KvizologDatabase getDatabaseInstance() {
         return databaseInstance;
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }

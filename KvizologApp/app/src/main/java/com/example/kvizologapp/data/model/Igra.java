@@ -9,17 +9,16 @@ import androidx.room.PrimaryKey;
 import com.example.kvizologapp.util.Constants;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.Objects;
 
 @Entity(tableName = Constants.TABLE_NAME_IGRA)
 public class Igra implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int Id;
-    private Date date;
+    private Long date;
     private String email;
 
-    public Igra(Date date, String email) {
+    public Igra(Long date, String email) {
         this.date = date;
         this.email = email;
     }
@@ -32,11 +31,11 @@ public class Igra implements Serializable {
         Id = id;
     }
 
-    public Date getDate() {
+    public Long getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Long date) {
         this.date = date;
     }
 

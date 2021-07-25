@@ -15,9 +15,18 @@ public class Igra_ima_Pitanje implements Serializable {
     private int IdIgra;
     private boolean jeTacnoOdgovoreno;
 
-    public Igra_ima_Pitanje(int idPitanje, int idIgra, boolean jeTacnoOdgovoreno) {
+    public Igra_ima_Pitanje(){}
+
+    public Igra_ima_Pitanje(int id, int idPitanje, int idIgra, boolean jeTacnoOdgovoreno) {
+        Id = id;
         IdPitanje = idPitanje;
         IdIgra = idIgra;
+        this.jeTacnoOdgovoreno = jeTacnoOdgovoreno;
+    }
+
+    public Igra_ima_Pitanje(int idPitanje, int idIgra, boolean jeTacnoOdgovoreno) {
+        this.IdPitanje = idPitanje;
+        this.IdIgra = idIgra;
         this.jeTacnoOdgovoreno = jeTacnoOdgovoreno;
     }
 

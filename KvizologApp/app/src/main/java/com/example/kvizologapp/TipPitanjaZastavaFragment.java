@@ -78,7 +78,7 @@ public class TipPitanjaZastavaFragment extends Fragment {
 
         txbCountryName = view.findViewById(R.id.txbCountryName);
         clearEntry=(Button)view.findViewById(R.id.btnClear);
-        btnSpace = (Button)view.findViewById(R.id.btnSpace);
+        //btnSpace = (Button)view.findViewById(R.id.btnSpace);
         imgFlag = (ImageView) view.findViewById(R.id.imgFlag);
         txvCornectnessMessage = (TextView) view.findViewById(R.id.txbCorectnessMessage);
         btnNextQuestion = (Button) view.findViewById(R.id.btnNextQuestion);
@@ -170,10 +170,11 @@ public class TipPitanjaZastavaFragment extends Fragment {
             }
             disabledButtons.clear();
         });
-        btnSpace.setOnClickListener(v -> {
+        /*btnSpace.setOnClickListener(v -> {
             if(txbCountryName.getText().toString().length()<MAX_NUM_OF_LETTERS)
                 txbCountryName.setText(txbCountryName.getText().toString().concat(" "));
         });
+         */
         btnHint.setOnClickListener(v -> {
             if(QuizGameActivity.HINT_COUNTER != 0){
                 mpHint.start();
@@ -196,6 +197,7 @@ public class TipPitanjaZastavaFragment extends Fragment {
             //Show message about corectness
             if(corectlyAnswered){
                 //Increment points
+                QuizGameActivity.listaOdgovora.add(true);
                 ++QuizGameActivity.POINTS_COUNTER;
                 ((QuizGameActivity)getActivity()).incrementPointsView();
                 //Show message of correct answer
@@ -207,6 +209,7 @@ public class TipPitanjaZastavaFragment extends Fragment {
                 //SOUND EFFECT
                 mpCorrect.start();
             }else{
+                QuizGameActivity.listaOdgovora.add(false);
                 String correctAnswer = "en".equals(MainActivity.lang)?TRENUTNO_PITANJE.getOdgovorBr1Engleski():TRENUTNO_PITANJE.getOdgovorBr1Srpski();
                 txvCornectnessMessage.setText(getString(R.string.wrong_answer_message) + " " + correctAnswer);
                 txvCornectnessMessage.setTextColor(getResources().getColor(R.color.accent));
