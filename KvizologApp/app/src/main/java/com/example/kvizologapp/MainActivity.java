@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private Button btnLogin, btnRegister, btnGuestLogin;
     private EditText tbEmail,tbPassword;
     FirebaseAuth mAuth;
+    KvizologDatabase databaseInstance;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,4 +108,9 @@ public class MainActivity extends AppCompatActivity {
         String value = shPreferences.getString(key, "");
         return value;
     }
+
+    public KvizologDatabase getDatabaseInstance() {
+        return databaseInstance;
+    }
+
 }

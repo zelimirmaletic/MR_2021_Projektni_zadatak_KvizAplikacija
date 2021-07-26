@@ -12,6 +12,7 @@
 
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/browser_actions_bg_grey"
@@ -19,8 +20,19 @@
             android:gravity="center"
             >
 
-            <ImageView
+            <TextView
+                android:id="@+id/tv_counter"
                 android:layout_width="wrap_content"
+                android:text="20"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
+                style="@style/news_card_title" />
+
+
+            <ImageView
+                android:id="@+id/iv_image"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@drawable/ic_baseline_videogame_asset_24"/>

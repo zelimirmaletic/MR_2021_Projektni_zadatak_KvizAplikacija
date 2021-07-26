@@ -38,6 +38,10 @@ public class StatisticsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_statistics, container, false);
+        //Get data from the database
+        KvizologDatabase database = KvizologDatabase.getInstance(getActivity());
+        //Get data from the database
+        array = database.igraDAO().readAll();
 
         // take a reference to RecyclerView
         recyclerView = view.findViewById(R.id.rv_recyclerView);
@@ -53,10 +57,6 @@ public class StatisticsFragment extends Fragment {
                 Toast.makeText(getActivity(), "OPEN DETAILED GAME HISTORY!", Toast.LENGTH_SHORT).show();
             }
         });
-
-        //Get data from the database
-        KvizologDatabase database = KvizologDatabase.getInstance(getActivity());
-        array = database.igraDAO().readAll();
 
         // connect RecyclerView with adapter
         recyclerView.setAdapter(mAdapter);

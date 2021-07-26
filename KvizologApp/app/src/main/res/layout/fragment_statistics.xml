@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".NewsActivity">
 
+    <ImageView
+        android:id="@+id/imgBanner"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/statistics_banner"/>
 
     <TextView
         android:id="@+id/txvNewsTitle"
@@ -16,12 +24,12 @@
         android:text="@string/statistics_main_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imgBanner" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="734dp"
+        android:layout_height="569dp"
         android:layout_alignParentBottom="true"
         android:padding="@dimen/recycler_view_padding"
         app:layout_constraintEnd_toEndOf="parent"

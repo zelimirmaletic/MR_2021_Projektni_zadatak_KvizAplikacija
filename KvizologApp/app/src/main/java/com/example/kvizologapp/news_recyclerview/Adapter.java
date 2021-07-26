@@ -35,7 +35,7 @@ public class Adapter extends RecyclerView.Adapter<com.example.kvizologapp.news_r
             tvTitle = v.findViewById(R.id.tv_title);
             tvDescription = v.findViewById(R.id.tv_description);
             tvDate = v.findViewById(R.id.tv_date);
-            ivImage = (ImageView)v.findViewById(R.id.iv_image);
+            ivImage = v.findViewById(R.id.iv_image);
         }
     }
 

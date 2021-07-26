@@ -16,7 +16,7 @@ public interface IgraDAO {
     @Insert
     long insert(Igra igra);
 
-    @Query("SELECT * FROM " + Constants.TABLE_NAME_IGRA)
+    @Query("SELECT * FROM " + Constants.TABLE_NAME_IGRA + " ORDER BY points DESC")
     List<Igra> readAll();
 
     @Query("SELECT * FROM " + Constants.TABLE_NAME_IGRA + " WHERE email= :Email ")
