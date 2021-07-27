@@ -83,4 +83,8 @@
     <string name="results_message">Hey! I just finished this quiz game and scored </string>
     <string name="chek_out_message"> Check out this app on Google Play by clicking link below!</string>
 
+    <!-- pitanje_card -->
+    <string name="pitanje_card_correct_answer">Corect answer: </string>
+    <string name="pitanje_card_your_answer">Your answer: </string>
+
 </resources>

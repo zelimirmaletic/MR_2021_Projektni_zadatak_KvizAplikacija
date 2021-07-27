@@ -54,4 +54,6 @@
     <string name="chek_out_message">" Погледајте ову апликацију на Гугл Продавници кликом на линк испод!"</string>
     <string name="results_message">"Хеј! Управо завршен квиз на овој игрици са резултатом "</string>
     <string name="statistics_main_title">Статистика</string>
+    <string name="pitanje_card_correct_answer">"Тачан одговор: "</string>
+    <string name="pitanje_card_your_answer">"Ваш одговор: "</string>
 </resources>

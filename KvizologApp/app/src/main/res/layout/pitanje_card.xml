@@ -50,10 +50,10 @@
             >
             <ImageView
                 android:id="@+id/iv_question_image"
-                android:layout_width="120dp"
+                android:layout_width="@dimen/pitanje_card_image_width"
                 android:layout_weight="0.1"
                 android:src="@drawable/great_wall"
-                android:layout_height="70dp"
+                android:layout_height="@dimen/pitanje_card_image_height"
                 />
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -71,26 +71,24 @@
                 <TextView
                     android:id="@+id/tv_tacan_odgovor"
                     android:layout_width="wrap_content"
-                    android:text="Tacan odgovor:"
+                    android:text="@string/pitanje_card_correct_answer"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     style="@style/pitanje_card_odgovori_text_style" />
                 <TextView
                     android:id="@+id/tv_korisnikov_odgovor"
                     android:layout_width="wrap_content"
-                    android:text="Vas odgovor: "
+                    android:text="@string/pitanje_card_your_answer"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     style="@style/pitanje_card_odgovori_text_style" />
             </LinearLayout>
-
-
             <ImageView
                 android:id="@+id/iv_correctness_image"
-                android:layout_width="50dp"
+                android:layout_width="@dimen/pitanje_card_corectness_image_width"
+                android:layout_height="wrap_content"
                 android:layout_weight="0.1"
                 android:src="@drawable/ic_baseline_check_circle_outline_24"
-                android:layout_height="wrap_content"
                 />
         </LinearLayout>
     </LinearLayout>
