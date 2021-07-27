@@ -87,4 +87,17 @@
     <string name="pitanje_card_correct_answer">Corect answer: </string>
     <string name="pitanje_card_your_answer">Your answer: </string>
 
+    <string name="empty_statistics_message">There are no saved results. Play now to get golden medal!</string>
+
+
+    <string name="tip_pitanja_glavni_grad">Capital city</string>
+    <string name="tip_pitanja_zastava">Country falg</string>
+    <string name="tip_pitanja_susjedne_drzave">Neighbouring countries</string>
+    <string name="tip_pitanja_znamenitost">Heritage place</string>
+
+    <string name="tekst_pitanja_glavni_grad">What is the capital city of </string>
+    <string name="tekst_pitanja_zastava">To which country does this flag belong? </string>
+    <string name="tekst_pitanja_susjedne_drzave">What are the neigbouring countries of </string>
+    <string name="tekst_pitanja_znamenitost">Where is the heritage place from the image located?</string>
+
 </resources>

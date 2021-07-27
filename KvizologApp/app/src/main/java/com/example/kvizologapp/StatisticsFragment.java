@@ -1,5 +1,6 @@
 package com.example.kvizologapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +22,7 @@ public class StatisticsFragment extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private List<Igra> array;
-
+    KvizologDatabase database;
 
 
     public StatisticsFragment() {
@@ -39,30 +40,38 @@ public class StatisticsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_statistics, container, false);
         //Get data from the database
-        KvizologDatabase database = KvizologDatabase.getInstance(getActivity());
+        database = KvizologDatabase.getInstance(getActivity());
         //Get data from the database
         array = database.igraDAO().readAll();
-
-        // take a reference to RecyclerView
-        recyclerView = view.findViewById(R.id.rv_recyclerView);
-        // optimization
-        recyclerView.setHasFixedSize(true);
-        // set layout type LayoutManager-a
-        layoutManager = new LinearLayoutManager((MainScreenAcitivty)getActivity());
-        recyclerView.setLayoutManager(layoutManager);
-        // send Adapter items from the list
-        mAdapter = new Adapter(array, new Adapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Igra item) {
-                Toast.makeText(getActivity(), "OPEN DETAILED GAME HISTORY!", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        // connect RecyclerView with adapter
-        recyclerView.setAdapter(mAdapter);
+        //Check if the history is empty
+        if(array.isEmpty()){
+            Toast.makeText(getContext(), R.string.empty_statistics_message, Toast.LENGTH_SHORT).show();
+        }else {
+            // take a reference to RecyclerView
+            recyclerView = view.findViewById(R.id.rv_recyclerView);
+            // optimization
+            recyclerView.setHasFixedSize(true);
+            // set layout type LayoutManager-a
+            layoutManager = new LinearLayoutManager((MainScreenAcitivty) getActivity());
+            recyclerView.setLayoutManager(layoutManager);
+            // send Adapter items from the list
+            mAdapter = new Adapter(array, new Adapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(Igra item) {
+                    //Create a new intent and call new activity
+                    Intent intent = new Intent(getContext() ,AnsweredQuestionsListActivity.class);
+                    intent.putExtra("id_game",item.getId());
+                    startActivity(intent);
+                }
+            });
+            // connect RecyclerView with adapter
+            recyclerView.setAdapter(mAdapter);
+        }
 
         return view;
     }
 
-
+    public KvizologDatabase getDatabase() {
+        return database;
+    }
 }

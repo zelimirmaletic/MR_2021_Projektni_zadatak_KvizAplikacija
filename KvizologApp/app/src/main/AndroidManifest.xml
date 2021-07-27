@@ -19,8 +19,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KvizologApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".WebViewActivity"
+        <activity android:name=".AnsweredQuestionsListActivity"
             android:theme="@style/NoActionBarTheme"></activity>
+        <activity
+            android:name=".WebViewActivity"
+            android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".NewsActivity"
             android:theme="@style/NoActionBarTheme" />
@@ -48,28 +51,30 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
 
-        <meta-data android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
-
-        <!-- FACEBOOK API INTEGRATION -->
-        <activity android:name="com.facebook.FacebookActivity"
-            android:configChanges=
-                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" /> <!-- FACEBOOK API INTEGRATION -->
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
 
-        <provider android:authorities="com.facebook.app.FacebookContentProvider{1117782528746399}"
+        <provider
             android:name="com.facebook.FacebookContentProvider"
-            android:exported="true"/>
+            android:authorities="com.facebook.app.FacebookContentProvider{1117782528746399}"
+            android:exported="true" />
 
         <service
             android:name=".PopulateDatabaseService"

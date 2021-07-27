@@ -37,6 +37,10 @@ public abstract class KvizologDatabase extends RoomDatabase {
         return kvizologDB;
     }
 
+    public static KvizologDatabase getInstance(){
+        return kvizologDB;
+    }
+
     private static KvizologDatabase buildDatabaseInstance(Context context) {
         return Room.databaseBuilder(context,
                 KvizologDatabase.class,

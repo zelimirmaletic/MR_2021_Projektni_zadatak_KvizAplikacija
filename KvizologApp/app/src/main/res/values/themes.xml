@@ -199,7 +199,7 @@
     <style name="pitanje_card_odgovori_text_style">
         <item name="android:textColor">@color/primary</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">@dimen/news_card_description_text_size</item>
+        <item name="android:textSize">@dimen/pitanje_card_odgovori_text_size</item>
         <item name="android:layout_margin">@dimen/news_card_layout_margin</item>
     </style>
 

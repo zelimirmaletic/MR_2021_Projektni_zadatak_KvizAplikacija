@@ -109,8 +109,7 @@ public class MainActivity extends AppCompatActivity {
         return value;
     }
 
-    public KvizologDatabase getDatabaseInstance() {
-        return databaseInstance;
+    public static String getLang() {
+        return lang;
     }
-
 }

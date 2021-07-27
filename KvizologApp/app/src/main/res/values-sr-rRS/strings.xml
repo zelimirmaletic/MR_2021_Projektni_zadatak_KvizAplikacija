@@ -56,4 +56,13 @@
     <string name="statistics_main_title">Статистика</string>
     <string name="pitanje_card_correct_answer">"Тачан одговор: "</string>
     <string name="pitanje_card_your_answer">"Ваш одговор: "</string>
+    <string name="empty_statistics_message">Не постоје сачувани резултати у бази. Заиграј сада и освоји златну медаљу!</string>
+    <string name="tip_pitanja_glavni_grad">Главни град</string>
+    <string name="tip_pitanja_zastava">Застава државе</string>
+    <string name="tip_pitanja_susjedne_drzave">Сусједне државе</string>
+    <string name="tip_pitanja_znamenitost">Знаменитост</string>
+    <string name="tekst_pitanja_glavni_grad">"Који је главни град државе "</string>
+    <string name="tekst_pitanja_zastava">Којој држави припада приказана застава?</string>
+    <string name="tekst_pitanja_susjedne_drzave">"Сусједне државе "</string>
+    <string name="tekst_pitanja_znamenitost">Гдје се налази ова знаменитост?</string>
 </resources>

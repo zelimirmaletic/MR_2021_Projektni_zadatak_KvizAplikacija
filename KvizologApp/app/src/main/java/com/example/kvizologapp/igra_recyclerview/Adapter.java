@@ -21,6 +21,7 @@ public class Adapter extends RecyclerView.Adapter<com.example.kvizologapp.igra_r
     public interface OnItemClickListener {
         void onItemClick(Igra item);
     }
+
     private com.example.kvizologapp.igra_recyclerview.Adapter.OnItemClickListener listener;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
