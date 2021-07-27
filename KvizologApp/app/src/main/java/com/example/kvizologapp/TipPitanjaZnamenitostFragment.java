@@ -136,9 +136,11 @@ public class TipPitanjaZnamenitostFragment extends Fragment {
             corectlyAnswered = true;
         if((btnAnswer.getText()).equals(TRENUTNO_PITANJE.getTacniOdgovoriSrpski()))
             corectlyAnswered = true;
+        //Add answer to answer list
+        QuizGameActivity.listaStringOdgovora.add(btnAnswer.getText().toString());
         //Show message about corectness
         if(corectlyAnswered){
-            QuizGameActivity.listaOdgovora.add(true);
+            QuizGameActivity.listaTacnostiOdgovora.add(true);
             //Increment points
             ++QuizGameActivity.POINTS_COUNTER;
             ((QuizGameActivity)getActivity()).incrementPointsView();
@@ -151,7 +153,7 @@ public class TipPitanjaZnamenitostFragment extends Fragment {
             //SOUND EFFECT
             mpCorrect.start();
         }else{
-            QuizGameActivity.listaOdgovora.add(false);
+            QuizGameActivity.listaTacnostiOdgovora.add(false);
             String correctAnswer = "en".equals(MainActivity.lang)?TRENUTNO_PITANJE.getTacniOdgovoriEngleski():TRENUTNO_PITANJE.getTacniOdgovoriSrpski();
             txvCornectnessMessage.setText(getString(R.string.wrong_answer_message) + " " + correctAnswer);
             txvCornectnessMessage.setTextColor(getResources().getColor(R.color.accent));

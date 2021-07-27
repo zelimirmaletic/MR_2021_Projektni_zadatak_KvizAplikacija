@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cv_cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?selectableItemBackground"
+    app:cardCornerRadius="10dp">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/browser_actions_bg_grey"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+            <TextView
+                android:id="@+id/tv_redniBroj"
+                android:layout_width="wrap_content"
+                android:text="1."
+                android:layout_weight="0.1"
+                android:layout_height="wrap_content"
+                style="@style/news_card_title" />
+            <TextView
+                android:id="@+id/tv_tip_pitanja"
+                android:layout_width="wrap_content"
+                android:text="Znamenitost"
+                android:layout_weight="10"
+                android:layout_height="wrap_content"
+                style="@style/pitanje_card_tip_pitanja_text_style" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+            <ImageView
+                android:id="@+id/iv_question_image"
+                android:layout_width="120dp"
+                android:layout_weight="0.1"
+                android:src="@drawable/great_wall"
+                android:layout_height="70dp"
+                />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_tekst_pitanja"
+                    android:layout_width="wrap_content"
+                    android:text="Tekst pitanja"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    style="@style/pitanje_card_tekst_pitanja_style" />
+                <TextView
+                    android:id="@+id/tv_tacan_odgovor"
+                    android:layout_width="wrap_content"
+                    android:text="Tacan odgovor:"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    style="@style/pitanje_card_odgovori_text_style" />
+                <TextView
+                    android:id="@+id/tv_korisnikov_odgovor"
+                    android:layout_width="wrap_content"
+                    android:text="Vas odgovor: "
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    style="@style/pitanje_card_odgovori_text_style" />
+            </LinearLayout>
+
+
+            <ImageView
+                android:id="@+id/iv_correctness_image"
+                android:layout_width="50dp"
+                android:layout_weight="0.1"
+                android:src="@drawable/ic_baseline_check_circle_outline_24"
+                android:layout_height="wrap_content"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -31,7 +31,8 @@ public class QuizGameActivity extends AppCompatActivity {
     LinearLayout pointsBannerLayout;
     KvizologDatabase databaseInstance;
     static List<Integer> listaPitanja = new ArrayList();
-    public static List<Boolean> listaOdgovora = new ArrayList();
+    public static List<Boolean> listaTacnostiOdgovora = new ArrayList();
+    public static List<String> listaStringOdgovora = new ArrayList();
 
     //Treba pomjeriti poziciju naziva na srpskom sa [7] na [8], dakle za jedno mjesto!
 
@@ -43,6 +44,7 @@ public class QuizGameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_game);
         //Instatiate database
+        databaseInstance = KvizologDatabase.getInstance(this);
         SectionsStatePagerAdapter sectionsStatePagerAdapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
         viewPager = findViewById(R.id.quizViewPager);
         txvPoints = findViewById(R.id.txbPoints);
@@ -82,14 +84,14 @@ public class QuizGameActivity extends AppCompatActivity {
         //Set initial question
         INT_TRENUTNO_PITANJE = listaPitanja.get(0);
         setupViewPager(viewPager);
-        databaseInstance = KvizologDatabase.getInstance(this);
         setViewPager(databaseInstance.pitanjeDAO().getById(QuizGameActivity.INT_TRENUTNO_PITANJE).getTipPitanja());//go to the next question type
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        listaOdgovora.clear();
+        listaTacnostiOdgovora.clear();
+        listaStringOdgovora.clear();
         listaPitanja.clear();
         Toast.makeText(this, "ON DESTROY", Toast.LENGTH_SHORT).show();
         HINT_COUNTER=3;

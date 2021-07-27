@@ -14,20 +14,23 @@ public class Igra_ima_Pitanje implements Serializable {
     private int IdPitanje;
     private int IdIgra;
     private boolean jeTacnoOdgovoreno;
+    private String korisnikovOdgovor;
 
     public Igra_ima_Pitanje(){}
 
-    public Igra_ima_Pitanje(int id, int idPitanje, int idIgra, boolean jeTacnoOdgovoreno) {
+    public Igra_ima_Pitanje(int id, int idPitanje, int idIgra, boolean jeTacnoOdgovoreno,String korisnikovOdgovor) {
         Id = id;
         IdPitanje = idPitanje;
         IdIgra = idIgra;
         this.jeTacnoOdgovoreno = jeTacnoOdgovoreno;
+        this.korisnikovOdgovor = korisnikovOdgovor;
     }
 
-    public Igra_ima_Pitanje(int idPitanje, int idIgra, boolean jeTacnoOdgovoreno) {
+    public Igra_ima_Pitanje(int idPitanje, int idIgra, boolean jeTacnoOdgovoreno,String korisnikovOdgovor) {
         this.IdPitanje = idPitanje;
         this.IdIgra = idIgra;
         this.jeTacnoOdgovoreno = jeTacnoOdgovoreno;
+        this.korisnikovOdgovor = korisnikovOdgovor;
     }
 
     public int getId() {
@@ -52,6 +55,14 @@ public class Igra_ima_Pitanje implements Serializable {
 
     public void setIdIgra(int idIgra) {
         IdIgra = idIgra;
+    }
+
+    public String getKorisnikovOdgovor() {
+        return korisnikovOdgovor;
+    }
+
+    public void setKorisnikovOdgovor(String korisnikovOdgovor) {
+        this.korisnikovOdgovor = korisnikovOdgovor;
     }
 
     public boolean isJeTacnoOdgovoreno() {

@@ -83,7 +83,7 @@ public class QuizResultsFragment extends Fragment {
             long idIgra = databaseInstance.igraDAO().insert(new Igra(new Date().getTime(),MainScreenAcitivty.USERNAME,QuizGameActivity.POINTS_COUNTER));
             //Write all questions data
             for(int i=0; i<QuizGameActivity.listaPitanja.toArray().length;i++)
-                databaseInstance.igra_ima_pitanjeDAO().insert(new Igra_ima_Pitanje(QuizGameActivity.listaPitanja.get(i), (int) idIgra,QuizGameActivity.listaOdgovora.get(i)));
+                databaseInstance.igra_ima_pitanjeDAO().insert(new Igra_ima_Pitanje(QuizGameActivity.listaPitanja.get(i), (int) idIgra,QuizGameActivity.listaTacnostiOdgovora.get(i),QuizGameActivity.listaStringOdgovora.get(i)));
             return current;
         }
     }

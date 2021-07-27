@@ -10,6 +10,7 @@ import android.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.kvizologapp.data.database.KvizologDatabase;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -23,7 +24,8 @@ public class MainScreenAcitivty extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        KvizologDatabase database = KvizologDatabase.getInstance(this);
+        database.pitanjeDAO().readAll();//call just to instantiate a database
         SharedPreferences shPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String lang = shPreferences.getString(MainActivity.SELECTED_LANGUAGE, Locale.getDefault().getLanguage());
         setLocale(MainScreenAcitivty.this,lang);

@@ -172,6 +172,40 @@
         <item name="android:layout_margin">@dimen/news_card_layout_margin</item>
     </style>
 
+    <!-- pitanje_card styles -->
+    <style name="pitanje_card_redni_broj_text_style">
+        <item name="android:textSize">@dimen/redni_broj_text_size</item>
+        <item name="android:textColor">@color/primary_dark</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAlignment" tools:targetApi="jelly_bean_mr1">center</item>
+        <item name="android:layout_margin">@dimen/news_card_layout_margin</item>
+    </style>
+
+    <style name="pitanje_card_tip_pitanja_text_style">
+        <item name="android:textSize">@dimen/redni_broj_text_size</item>
+        <item name="android:textColor">@color/primary_dark</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_margin">@dimen/news_card_layout_margin</item>
+    </style>
+
+
+    <style name="pitanje_card_tekst_pitanja_style">
+        <item name="android:textSize">@dimen/redni_broj_text_size</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_margin">@dimen/news_card_layout_margin</item>
+    </style>
+
+    <style name="pitanje_card_odgovori_text_style">
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/news_card_description_text_size</item>
+        <item name="android:layout_margin">@dimen/news_card_layout_margin</item>
+    </style>
+
+
+
+
     <style name="Theme.KvizologApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.KvizologApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
