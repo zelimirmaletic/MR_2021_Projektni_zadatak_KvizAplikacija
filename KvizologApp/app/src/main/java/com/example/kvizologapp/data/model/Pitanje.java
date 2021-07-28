@@ -330,7 +330,6 @@ public class Pitanje implements Serializable {
                 new Pitanje(3,"Uluru Kata Tjuta","USA","New Zeland","Australia","Somalia","Улуру Ката Тјута","САД","Нови Зеланд","Аустралија","Сомалија","Australia","Аустралија","Kangaroo!","Кенгур!","uluru_kata_tjuta"),
                 new Pitanje(3,"Yellowstone","Australia","USA","New Zeland","Brazil","Јелоустон","Аустралија","САД","Нови Зеланд","Бразил","USA","САД","Country which bought Alaska.","Земља која је купила Аљаску.","yellowstone"),
                 new Pitanje(3,"Church of Christ The Saviour","Bosnia and Herzegovina","Serbia","Montenegro","North Macedonia","Храм Христа Спаситеља","Босна и Херцеговина","Србија","Црна Гора","Сјеверна Македонија","Bosnia and Herzegovina","Босна и Херцеговина","Sarajevo is a capital city.","Сарајево је главни град.","christ_the_saviour"),
-
                 //INSERT GRAD data
                 //new Grad("Београд","Belgrade",44.79642985642653,20.471462575664354,"SLIKA_GRBA"),
                 //new Grad("Mосква","Moscow",55.755125454817836, 37.61708451367523,"SLIKA_GRBA")

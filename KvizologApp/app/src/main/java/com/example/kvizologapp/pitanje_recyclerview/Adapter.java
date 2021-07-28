@@ -108,7 +108,11 @@ public class Adapter extends RecyclerView.Adapter<com.example.kvizologapp.pitanj
         else
             holder.tvTacanOdgovor.setText(holder.tvTacanOdgovor.getText().toString()+" "+pitanje.getTacniOdgovoriSrpski().replace(":"," "));
         //Set users answer text
-        holder.tvKorisnikovOdgovor.setText(holder.tvKorisnikovOdgovor.getText().toString() + " " +item.getKorisnikovOdgovor());
+        if(item.getKorisnikovOdgovor().isEmpty())
+            //If question is skipped write a message
+            holder.tvKorisnikovOdgovor.setText(holder.tvKorisnikovOdgovor.getText().toString() + " " + R.string.tekst_neodgovoreno_pitanje);
+        else
+            holder.tvKorisnikovOdgovor.setText(holder.tvKorisnikovOdgovor.getText().toString() + " " +item.getKorisnikovOdgovor());
         if(!item.isJeTacnoOdgovoreno())
             holder.ivSlikaTacnostiOdgovora.setImageResource(R.drawable.ic_baseline_cancel_24);
         //Set image of the question

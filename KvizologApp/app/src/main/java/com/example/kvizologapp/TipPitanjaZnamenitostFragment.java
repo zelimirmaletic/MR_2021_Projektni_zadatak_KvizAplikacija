@@ -17,11 +17,6 @@ import com.example.kvizologapp.data.model.Pitanje;
 
 public class TipPitanjaZnamenitostFragment extends Fragment {
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-    private String mParam1;
-    private String mParam2;
-
     Button btnNextQuestion, btnHint;
     Button btnAnswer1, btnAnswer2, btnAnswer3, btnAnswer4;
     //Sound efects
@@ -36,22 +31,9 @@ public class TipPitanjaZnamenitostFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static TipPitanjaZnamenitostFragment newInstance(String param1, String param2) {
-        TipPitanjaZnamenitostFragment fragment = new TipPitanjaZnamenitostFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -59,10 +41,10 @@ public class TipPitanjaZnamenitostFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_tip_pitanja_znamenitost, container, false);
-        //Instatiate database
+        //Get a reference to database
         KvizologDatabase databaseInstance = ((QuizGameActivity)getActivity()).getDatabaseInstance();
         TRENUTNO_PITANJE = databaseInstance.pitanjeDAO().getById(QuizGameActivity.INT_TRENUTNO_PITANJE);
-
+        //Initialize views
         btnNextQuestion = view.findViewById(R.id.btnNextQuestion);
         btnHint = (Button) view.findViewById(R.id.btnHint);
         btnAnswer1 = (Button) view.findViewById(R.id.btnAnswer1);
@@ -76,11 +58,9 @@ public class TipPitanjaZnamenitostFragment extends Fragment {
         mpCorrect = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.correct);
         mpWrong = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.wrong);
         mpHint = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.hint);
-
         //Hide hint if it is already used 3 times
         if(QuizGameActivity.HINT_COUNTER == 0)
             btnHint.setVisibility(View.GONE);
-
         //Show question data
         imgHeritage.setImageResource(getResources().getIdentifier(TRENUTNO_PITANJE.getSlika(),"drawable",((QuizGameActivity)getActivity()).getPackageName()));
         if("en".equals(MainActivity.lang)){
@@ -96,8 +76,7 @@ public class TipPitanjaZnamenitostFragment extends Fragment {
             btnAnswer3.setText(TRENUTNO_PITANJE.getOdgovorBr3Srpski());
             btnAnswer4.setText(TRENUTNO_PITANJE.getOdgovorBr4Srpski());
         }
-
-
+        //Set listeners
         btnNextQuestion.setOnClickListener(v -> {
             //Go to the Results fragment if we walked through all questions
             if(QuizGameActivity.QUESTION_COUNTER + 1 == QuizGameActivity.QUESTIONS_PER_CHATEGORY*4)
@@ -105,7 +84,7 @@ public class TipPitanjaZnamenitostFragment extends Fragment {
             else {
                 //Move to the next question
                 QuizGameActivity.nextQuestion();
-                ((QuizGameActivity)getActivity()).setViewPager(databaseInstance.pitanjeDAO().getById(QuizGameActivity.INT_TRENUTNO_PITANJE).getTipPitanja());//go to the next question type
+                ((QuizGameActivity)getActivity()).setViewPager(databaseInstance.pitanjeDAO().getById(QuizGameActivity.INT_TRENUTNO_PITANJE).getTipPitanja());
             }
         });
         btnHint.setOnClickListener(v -> {
@@ -119,15 +98,14 @@ public class TipPitanjaZnamenitostFragment extends Fragment {
                 }
                 btnHint.setVisibility(View.INVISIBLE);
             });
-        btnAnswer1.setOnClickListener(v -> {processButtonClick(btnAnswer1);});
-        btnAnswer2.setOnClickListener(v -> {processButtonClick(btnAnswer2);});
-        btnAnswer3.setOnClickListener(v -> {processButtonClick(btnAnswer3);});
-        btnAnswer4.setOnClickListener(v -> {processButtonClick(btnAnswer4);});
-
+        btnAnswer1.setOnClickListener(v -> processButtonClick(btnAnswer1));
+        btnAnswer2.setOnClickListener(v -> processButtonClick(btnAnswer2));
+        btnAnswer3.setOnClickListener(v -> processButtonClick(btnAnswer3));
+        btnAnswer4.setOnClickListener(v -> processButtonClick(btnAnswer4));
 
         return view;
     }
-
+    //Process answer button click
     private void processButtonClick(Button btnAnswer){
         btnHint.setVisibility(View.GONE);
         //Check the answer

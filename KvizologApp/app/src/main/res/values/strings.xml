@@ -100,4 +100,6 @@
     <string name="tekst_pitanja_susjedne_drzave">What are the neigbouring countries of </string>
     <string name="tekst_pitanja_znamenitost">Where is the heritage place from the image located?</string>
 
+    <string name="tekst_neodgovoreno_pitanje">Not answered</string>
+
 </resources>

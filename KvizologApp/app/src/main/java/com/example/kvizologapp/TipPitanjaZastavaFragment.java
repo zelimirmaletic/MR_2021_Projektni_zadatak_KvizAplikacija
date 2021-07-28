@@ -23,48 +23,26 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 public class TipPitanjaZastavaFragment extends Fragment {
-
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
     Button btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn10,btn11,btn12,btn13,btn14,btn15,btn16,btn17,btn18,btn19,btn20;
     ArrayList<Button> disabledButtons;
-    private static List<Character> CYRILIC_LETTERS = Arrays.asList('А','Б','В','Г','Д','Ђ','Е','Ж','З','И','Ј','К','Л','Љ','М','Н','Њ','О','П','Р','С','Т','Ћ','У','Ф','Х','Ц','Ч','Џ','Ш');
-    Button clearEntry, btnNextQuestion, btnSpace, btnHint, btnCheck;
+    private final static List<Character> CYRILIC_LETTERS = Arrays.asList('А','Б','В','Г','Д','Ђ','Е','Ж','З','И','Ј','К','Л','Љ','М','Н','Њ','О','П','Р','С','Т','Ћ','У','Ф','Х','Ц','Ч','Џ','Ш');
+    Button clearEntry, btnNextQuestion, btnHint, btnCheck;
     TextView txbCountryName, txvCornectnessMessage;
     ImageView imgFlag, imgView;
     MediaPlayer mpCorrect, mpWrong, mpHint;
     Vibrator vibe;
-    private static short VIBRATION_DURATION = 50;
+    private final static short VIBRATION_DURATION = 50;
     private static final int MAX_NUM_OF_LETTERS = 20;
     private static final int NUM_OF_LETTER_BUTTONS = 20;
     Pitanje TRENUTNO_PITANJE;
     KvizologDatabase databaseInstance;
 
-
-
-    private String mParam1;
-    private String mParam2;
-
     public TipPitanjaZastavaFragment() {
-    }
-
-    public static TipPitanjaZastavaFragment newInstance(String param1, String param2) {
-        TipPitanjaZastavaFragment fragment = new TipPitanjaZastavaFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -75,7 +53,7 @@ public class TipPitanjaZastavaFragment extends Fragment {
         //Instatiate database
         databaseInstance = ((QuizGameActivity)getActivity()).getDatabaseInstance();
         TRENUTNO_PITANJE = databaseInstance.pitanjeDAO().getById(QuizGameActivity.INT_TRENUTNO_PITANJE);
-
+        //Initialize views
         txbCountryName = view.findViewById(R.id.txbCountryName);
         clearEntry=(Button)view.findViewById(R.id.btnClear);
         //btnSpace = (Button)view.findViewById(R.id.btnSpace);
@@ -90,15 +68,13 @@ public class TipPitanjaZastavaFragment extends Fragment {
         mpWrong = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.wrong);
         mpHint = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.hint);
         disabledButtons = new ArrayList<>();
-
-
         //Hide hint if it is already used 3 times
         if(QuizGameActivity.HINT_COUNTER == 0)
             btnHint.setVisibility(View.GONE);
-
         //Initialize views from Pitanje object
         imgFlag.setImageResource(getResources().getIdentifier(TRENUTNO_PITANJE.getSlika(),"drawable",((QuizGameActivity)getActivity()).getPackageName()));
         initializeLetterButtons(view);
+        //Set listeners for buttons
         setListeners();
         if("en".equals(MainActivity.lang))
             setAndRandomizeLetterButtons(TRENUTNO_PITANJE.getOdgovorBr1Engleski());
@@ -131,26 +107,26 @@ public class TipPitanjaZastavaFragment extends Fragment {
     }
 
     private void setListeners(){
-        btn1.setOnClickListener(v -> { writeLetter(btn1); });
-        btn2.setOnClickListener(v -> { writeLetter(btn2); });
-        btn3.setOnClickListener(v -> { writeLetter(btn3); });
-        btn4.setOnClickListener(v -> { writeLetter(btn4); });
-        btn5.setOnClickListener(v -> { writeLetter(btn5); });
-        btn6.setOnClickListener(v -> { writeLetter(btn6); });
-        btn7.setOnClickListener(v -> { writeLetter(btn7); });
-        btn8.setOnClickListener(v -> { writeLetter(btn8); });
-        btn9.setOnClickListener(v -> { writeLetter(btn9); });
-        btn10.setOnClickListener(v -> { writeLetter(btn10); });
-        btn11.setOnClickListener(v -> { writeLetter(btn11); });
-        btn12.setOnClickListener(v -> { writeLetter(btn12); });
-        btn13.setOnClickListener(v -> { writeLetter(btn13); });
-        btn14.setOnClickListener(v -> { writeLetter(btn14); });
-        btn15.setOnClickListener(v -> { writeLetter(btn15); });
-        btn16.setOnClickListener(v -> { writeLetter(btn16); });
-        btn17.setOnClickListener(v -> { writeLetter(btn17); });
-        btn18.setOnClickListener(v -> { writeLetter(btn18); });
-        btn19.setOnClickListener(v -> { writeLetter(btn19); });
-        btn20.setOnClickListener(v -> { writeLetter(btn20); });
+        btn1.setOnClickListener(v -> writeLetter(btn1));
+        btn2.setOnClickListener(v -> writeLetter(btn2));
+        btn3.setOnClickListener(v -> writeLetter(btn3));
+        btn4.setOnClickListener(v -> writeLetter(btn4));
+        btn5.setOnClickListener(v -> writeLetter(btn5));
+        btn6.setOnClickListener(v -> writeLetter(btn6));
+        btn7.setOnClickListener(v -> writeLetter(btn7));
+        btn8.setOnClickListener(v -> writeLetter(btn8));
+        btn9.setOnClickListener(v -> writeLetter(btn9));
+        btn10.setOnClickListener(v -> writeLetter(btn10));
+        btn11.setOnClickListener(v -> writeLetter(btn11));
+        btn12.setOnClickListener(v -> writeLetter(btn12));
+        btn13.setOnClickListener(v -> writeLetter(btn13));
+        btn14.setOnClickListener(v -> writeLetter(btn14));
+        btn15.setOnClickListener(v -> writeLetter(btn15));
+        btn16.setOnClickListener(v -> writeLetter(btn16));
+        btn17.setOnClickListener(v -> writeLetter(btn17));
+        btn18.setOnClickListener(v -> writeLetter(btn18));
+        btn19.setOnClickListener(v -> writeLetter(btn19));
+        btn20.setOnClickListener(v -> writeLetter(btn20));
         btnNextQuestion.setOnClickListener(v -> {
             //Go to the Results fragment if we walked through all questions
             if(QuizGameActivity.QUESTION_COUNTER + 1 == QuizGameActivity.QUESTIONS_PER_CHATEGORY*4)
@@ -170,11 +146,6 @@ public class TipPitanjaZastavaFragment extends Fragment {
             }
             disabledButtons.clear();
         });
-        /*btnSpace.setOnClickListener(v -> {
-            if(txbCountryName.getText().toString().length()<MAX_NUM_OF_LETTERS)
-                txbCountryName.setText(txbCountryName.getText().toString().concat(" "));
-        });
-         */
         btnHint.setOnClickListener(v -> {
             if(QuizGameActivity.HINT_COUNTER != 0){
                 mpHint.start();
@@ -250,9 +221,9 @@ public class TipPitanjaZastavaFragment extends Fragment {
         else
             for(int i=0;i<NUM_OF_LETTER_BUTTONS-requiredLetters.length();i++)
                 letters.add((CYRILIC_LETTERS.get(r.nextInt(30))));
-
+        //Shuffle letters in the showd keyboard
         Collections.shuffle(letters);
-
+        //Sett all buttons letters
         btn1.setText(Character.toString(letters.get(0)));
         btn2.setText(Character.toString(letters.get(1)));
         btn3.setText(Character.toString(letters.get(2)));
