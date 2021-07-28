@@ -4,11 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
 import com.example.kvizologapp.util.Constants;
-
 import org.jetbrains.annotations.NotNull;
-
 import java.io.Serializable;
 
 @Entity(tableName = Constants.TABLE_NAME_GRAD)

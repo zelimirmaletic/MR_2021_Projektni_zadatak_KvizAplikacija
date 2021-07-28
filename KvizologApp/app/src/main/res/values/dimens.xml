@@ -64,5 +64,7 @@
     <dimen name="pitanje_card_corectness_image_width">30dp</dimen>
     <dimen name="pitanje_card_corectness_image_height">30dp</dimen>
 
+    <!-- map card -->
+    <dimen name="map_card_size">350dp</dimen>
 
 </resources>

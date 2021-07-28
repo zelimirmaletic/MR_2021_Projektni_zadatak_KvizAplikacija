@@ -1,6 +1,9 @@
 package com.example.kvizologapp;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.fragment.app.FragmentActivity;
 
@@ -10,20 +13,31 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.squareup.picasso.Picasso;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
+    private Marker marker;
+    private String CITY_NAME ="";
+    private String IMG_URL="";
+    private double LAT=0.0;
+    private double LNG=0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Get data from extra
+        CITY_NAME = getIntent().getStringExtra("city_name");
+        IMG_URL = getIntent().getStringExtra("img_url");
+        LAT = getIntent().getDoubleExtra("lat",0.0);
+        LNG = getIntent().getDoubleExtra("lng",0.0);
 
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -41,10 +55,49 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
         mMap.getUiSettings().setZoomControlsEnabled(true);
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng position = new LatLng(LAT, LNG);
+        //marker.setPosition(sydney);
+        mMap.addMarker(new MarkerOptions().position(position).title(CITY_NAME));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(position));
     }
+
+    private class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
+        private View view;
+        public CustomInfoWindowAdapter() {
+            view = getLayoutInflater().inflate(R.layout.maps_info_card,null);
+        }
+        @Override
+        public View getInfoContents(Marker marker) {
+            if (MapsActivity.this.marker != null
+                    && MapsActivity.this.marker.isInfoWindowShown()) {
+                //MapsActivity.this.marker.hideInfoWindow();
+                MapsActivity.this.marker.showInfoWindow();
+            }
+            return null;
+        }
+
+        @Override
+        public View getInfoWindow(final Marker marker) {
+            MapsActivity.this.marker = marker;
+            TextView name = (TextView) view.findViewById(R.id.tv_title);
+            ImageView image = (ImageView) view.findViewById(R.id.iv_image);
+
+            Picasso.with(MapsActivity.this)
+                    .load(IMG_URL)
+                    .error(R.mipmap.ic_launcher) // will be displayed if the image cannot be loaded
+                    .into(image);
+
+            //image.setImageResource(R.drawable.christ_the_saviour);
+
+            //Set card title AKA City name
+            name.setText(CITY_NAME);
+
+            //getInfoContents(marker);
+            return view;
+        }
+    }
+
 }

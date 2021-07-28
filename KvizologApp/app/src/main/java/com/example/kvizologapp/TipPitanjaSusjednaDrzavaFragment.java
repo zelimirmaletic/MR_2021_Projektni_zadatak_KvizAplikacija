@@ -17,52 +17,28 @@ import com.example.kvizologapp.data.database.KvizologDatabase;
 import com.example.kvizologapp.data.model.Pitanje;
 
 public class TipPitanjaSusjednaDrzavaFragment extends Fragment {
-
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
     Button btnNextQuestion, btnHint, btnCheck;
     //Sound efects
     MediaPlayer mpCorrect, mpWrong, mpHint;
     ImageView imgView;
     TextView tvCountryName, txvCornectnessMessage;
-    CheckBox cbAnswer1, cbAnswer2, cbAnswer3, cbAnswer4;
     Pitanje TRENUTNO_PITANJE;
-
-
-    private String mParam1;
-    private String mParam2;
 
     public TipPitanjaSusjednaDrzavaFragment() {
         // Required empty public constructor
     }
-
-    public static TipPitanjaSusjednaDrzavaFragment newInstance(String param1, String param2) {
-        TipPitanjaSusjednaDrzavaFragment fragment = new TipPitanjaSusjednaDrzavaFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view  = inflater.inflate(R.layout.fragment_tip_pitanja_susjedna_drzava, container, false);
-
         //Instatiate database
         KvizologDatabase databaseInstance = ((QuizGameActivity)getActivity()).getDatabaseInstance();
         TRENUTNO_PITANJE = databaseInstance.pitanjeDAO().getById(QuizGameActivity.INT_TRENUTNO_PITANJE);
-
+        //Initialize views
         btnNextQuestion = (Button) view.findViewById(R.id.btnNextQuestion);
         tvCountryName = (TextView) view.findViewById(R.id.txbCountryName);
         txvCornectnessMessage = (TextView) view.findViewById(R.id.tvCorectnessMessage);
@@ -76,7 +52,6 @@ public class TipPitanjaSusjednaDrzavaFragment extends Fragment {
         mpCorrect = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.correct);
         mpWrong = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.wrong);
         mpHint = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.hint);
-
         //Initialize question data
         if("en".equals(MainActivity.lang)){
             tvCountryName.setText(TRENUTNO_PITANJE.getTekstPitanjaEngleski());
@@ -91,8 +66,6 @@ public class TipPitanjaSusjednaDrzavaFragment extends Fragment {
             cbAnswer3.setText(TRENUTNO_PITANJE.getOdgovorBr3Srpski());
             cbAnswer4.setText(TRENUTNO_PITANJE.getOdgovorBr4Srpski());
         }
-
-
         btnNextQuestion.setOnClickListener(v -> {
             //Go to the Results fragment if we walked through all questions
             if(QuizGameActivity.QUESTION_COUNTER + 1 == QuizGameActivity.QUESTIONS_PER_CHATEGORY*4)
@@ -103,8 +76,6 @@ public class TipPitanjaSusjednaDrzavaFragment extends Fragment {
                 ((QuizGameActivity)getActivity()).setViewPager(databaseInstance.pitanjeDAO().getById(QuizGameActivity.INT_TRENUTNO_PITANJE).getTipPitanja());//go to the next question type
             }
         });
-
-
         btnHint.setOnClickListener(v -> {
             if(QuizGameActivity.HINT_COUNTER != 0){
                 mpHint.start();
@@ -180,7 +151,6 @@ public class TipPitanjaSusjednaDrzavaFragment extends Fragment {
             btnCheck.setBackgroundColor(getResources().getColor(R.color.primary_light));
             cbAnswer1.setClickable(false);cbAnswer2.setClickable(false);cbAnswer3.setClickable(false);cbAnswer4.setClickable(false);
         });
-
         return view;
     }
 }

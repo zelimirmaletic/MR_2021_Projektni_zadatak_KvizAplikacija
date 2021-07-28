@@ -106,7 +106,14 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
         btnAnswer2.setOnClickListener(v -> processButtonClick(btnAnswer2));
         btnAnswer3.setOnClickListener(v -> processButtonClick(btnAnswer3));
         btnAnswer4.setOnClickListener(v -> processButtonClick(btnAnswer4));
-        btnMap1.setOnClickListener(v -> startActivity(new Intent(getActivity(),MapsActivity.class)));
+        btnMap1.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), MapsActivity.class);
+            intent.putExtra("city_name",btnAnswer1.getText().toString());
+            intent.putExtra("img_url", "https://cdn.theculturetrip.com/wp-content/uploads/2017/10/saborna_crkva_hrista_spasitelja_banjaluka.jpg");
+            intent.putExtra("lat",34.5);
+            intent.putExtra("lng",45.6);
+            startActivity(intent);
+        });
         btnInfo1.setOnClickListener(v -> processInfoButtonClick(TRENUTNO_PITANJE.getOdgovorBr1Engleski()));
         btnInfo2.setOnClickListener(v -> processInfoButtonClick(TRENUTNO_PITANJE.getOdgovorBr2Engleski()));
         btnInfo3.setOnClickListener(v -> processInfoButtonClick(TRENUTNO_PITANJE.getOdgovorBr3Engleski()));
@@ -182,7 +189,6 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
 
     private void processInfoButtonClick(String cityName){
         Intent intent = new Intent(getActivity(),NewsActivity.class);
-        intent.putExtra("keyword",cityName);
         startActivity(intent);
     }
 }
