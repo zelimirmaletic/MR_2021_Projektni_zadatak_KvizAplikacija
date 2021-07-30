@@ -15,7 +15,6 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.squareup.picasso.Picasso;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -23,7 +22,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ActivityMapsBinding binding;
     private Marker marker;
     private String CITY_NAME ="";
-    private String IMG_URL="";
+    private String IMG="";
     private double LAT=0.0;
     private double LNG=0.0;
 
@@ -32,7 +31,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         //Get data from extra
         CITY_NAME = getIntent().getStringExtra("city_name");
-        IMG_URL = getIntent().getStringExtra("img_url");
+        IMG = getIntent().getStringExtra("img");
         LAT = getIntent().getDoubleExtra("lat",0.0);
         LNG = getIntent().getDoubleExtra("lng",0.0);
 
@@ -55,11 +54,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
         mMap.getUiSettings().setZoomControlsEnabled(true);
         // Add a marker in Sydney and move the camera
         LatLng position = new LatLng(LAT, LNG);
         //marker.setPosition(sydney);
+        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
         mMap.addMarker(new MarkerOptions().position(position).title(CITY_NAME));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(position));
     }
@@ -73,7 +72,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         public View getInfoContents(Marker marker) {
             if (MapsActivity.this.marker != null
                     && MapsActivity.this.marker.isInfoWindowShown()) {
-                //MapsActivity.this.marker.hideInfoWindow();
+                MapsActivity.this.marker.hideInfoWindow();
                 MapsActivity.this.marker.showInfoWindow();
             }
             return null;
@@ -84,17 +83,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             MapsActivity.this.marker = marker;
             TextView name = (TextView) view.findViewById(R.id.tv_title);
             ImageView image = (ImageView) view.findViewById(R.id.iv_image);
-
+            /* LOAD IMAGES FROM THE INTERNET
             Picasso.with(MapsActivity.this)
                     .load(IMG_URL)
                     .error(R.mipmap.ic_launcher) // will be displayed if the image cannot be loaded
                     .into(image);
+             */
 
-            //image.setImageResource(R.drawable.christ_the_saviour);
-
+            //Set image
+            image.setImageResource(getResources().getIdentifier(IMG,"drawable",MapsActivity.this.getPackageName()));
             //Set card title AKA City name
             name.setText(CITY_NAME);
-
             //getInfoContents(marker);
             return view;
         }

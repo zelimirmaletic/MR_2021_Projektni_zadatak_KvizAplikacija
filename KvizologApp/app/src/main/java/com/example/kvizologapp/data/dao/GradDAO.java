@@ -20,13 +20,16 @@ public interface GradDAO {
     List<Grad> readAll();
 
     @Query("SELECT * FROM " + Constants.TABLE_NAME_GRAD + " WHERE nazivSR= :name ")
-    List<Grad> readByNameSR(String name);
+    Grad readByNameSR(String name);
 
     @Query("SELECT * FROM " + Constants.TABLE_NAME_GRAD + " WHERE nazivEN= :name ")
-    List<Grad> readByNameEN(String name);
+    Grad readByNameEN(String name);
 
     @Update
     void update(Grad grad);
+
+    @Insert
+    void insertAll(Grad... listaGradova);
 
     @Delete
     void delete(Grad grad);

@@ -8,9 +8,11 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.kvizologapp.data.dao.GradDAO;
 import com.example.kvizologapp.data.dao.IgraDAO;
 import com.example.kvizologapp.data.dao.Igra_Ima_PitanjeDAO;
 import com.example.kvizologapp.data.dao.PitanjeDAO;
+import com.example.kvizologapp.data.model.Grad;
 import com.example.kvizologapp.data.model.Igra;
 import com.example.kvizologapp.data.model.Igra_ima_Pitanje;
 import com.example.kvizologapp.data.model.Pitanje;
@@ -20,12 +22,13 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.Executors;
 
-@Database(entities = {Pitanje.class, Igra.class, Igra_ima_Pitanje.class}, version = 1, exportSchema = false)
+@Database(entities = {Pitanje.class, Igra.class, Igra_ima_Pitanje.class, Grad.class}, version = 1, exportSchema = false)
 public abstract class KvizologDatabase extends RoomDatabase {
     //Get DAO
     public abstract PitanjeDAO pitanjeDAO();
     public abstract IgraDAO igraDAO();
     public abstract Igra_Ima_PitanjeDAO igra_ima_pitanjeDAO();
+    public abstract GradDAO gradDAO();
 
     //reference
     private static KvizologDatabase kvizologDB;
@@ -51,7 +54,10 @@ public abstract class KvizologDatabase extends RoomDatabase {
                 Executors.newSingleThreadScheduledExecutor().execute(new Runnable() {
                     @Override
                     public void run() {
+                        //Insert all questions
                         getInstance(context).pitanjeDAO().insertAll(Pitanje.populateData());
+                        //Insert all cities
+                        getInstance(context).gradDAO().insertAll(Grad.populateData());
                     }
                 });
             }

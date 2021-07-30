@@ -1,8 +1,8 @@
 package com.example.kvizologapp;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,7 +45,7 @@ public class NewsActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private List<ItemArticle> array = new ArrayList<ItemArticle>();
-
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +69,7 @@ public class NewsActivity extends AppCompatActivity {
         });
 
         //Get the name of the city we want news for
-        KEYWORD = getIntent().getStringExtra("keyword");
+        KEYWORD = getIntent().getStringExtra("city_name");
         //Make an URL
         urlBuilder.append(BASE_URL);urlBuilder.append(API_ACCESS_KEY);urlBuilder.append(KEYWORD_ATTR);urlBuilder.append(KEYWORD);
         urlBuilder.append(LANGUAGE);urlBuilder.append(NUM_OF_ARTICLES_ATTR);urlBuilder.append(NUMBER_OF_ARTICLES);
@@ -82,30 +82,40 @@ public class NewsActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 try {
                     JSONArray articlesArray = response.getJSONArray("data");
-                    for(int i=0;i<articlesArray.length();i++){
-                        JSONObject articleObject = articlesArray.getJSONObject(i);
-                        ItemArticle listItem = new ItemArticle();
-                        listItem.setTitle(articleObject.getString("title"));
-                        listItem.setDescription(articleObject.getString("description"));
-                        listItem.setDate(articleObject.getString("published_at"));
-                        listItem.setImage_url(articleObject.getString("image"));
-                        listItem.setUrl(articleObject.getString("url"));
-                        array.add(listItem);
+                    //Check if there are articles loaded!
+                    if(articlesArray.length()==0)
+                        Toast.makeText(NewsActivity.this, R.string.empty_news_message, Toast.LENGTH_LONG).show();
+                    else{
+                        for(int i=0;i<articlesArray.length();i++){
+                            JSONObject articleObject = articlesArray.getJSONObject(i);
+                            ItemArticle listItem = new ItemArticle();
+                            listItem.setTitle(articleObject.getString("title"));
+                            listItem.setDescription(articleObject.getString("description"));
+                            listItem.setDate(articleObject.getString("published_at"));
+                            listItem.setImage_url(articleObject.getString("image"));
+                            listItem.setUrl(articleObject.getString("url"));
+                            array.add(listItem);
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 // connect RecyclerView with adapter
                 recyclerView.setAdapter(mAdapter);
+                //Dismiss progress dialog when data is loaded!
+                progressDialog.dismiss();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("error", error.toString());
-                Toast.makeText(NewsActivity.this, "GETTING NEWS ERROR OCCURED!!!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NewsActivity.this, R.string.on_restapi_error_response, Toast.LENGTH_SHORT).show();
             }
         });
         queue.add(jsonObjectRequest);
-
+        //initialize the progress dialog and show it
+        progressDialog = new ProgressDialog(NewsActivity.this);
+        progressDialog.setMessage(getResources().getString(R.string.progress_bar_title));
+        progressDialog.show();
     }
+
 }

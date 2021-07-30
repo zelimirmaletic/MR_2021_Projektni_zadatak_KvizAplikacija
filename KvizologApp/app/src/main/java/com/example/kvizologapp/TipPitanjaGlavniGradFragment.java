@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import com.example.kvizologapp.data.database.KvizologDatabase;
+import com.example.kvizologapp.data.model.Grad;
 import com.example.kvizologapp.data.model.Pitanje;
 
 
@@ -30,6 +31,7 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
     ImageButton btnMap1, btnMap2, btnMap3, btnMap4;
     ImageView imgView;
     Pitanje TRENUTNO_PITANJE;
+    KvizologDatabase databaseInstance;
 
     public TipPitanjaGlavniGradFragment() {
         // Required empty public constructor
@@ -45,7 +47,7 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tip_pitanja_glavni_grad, container, false);
         //Instatiate database
-        KvizologDatabase databaseInstance = ((QuizGameActivity)getActivity()).getDatabaseInstance();
+        databaseInstance = ((QuizGameActivity)getActivity()).getDatabaseInstance();
         TRENUTNO_PITANJE = databaseInstance.pitanjeDAO().getById(QuizGameActivity.INT_TRENUTNO_PITANJE);
 
         btnNextQuestion = view.findViewById(R.id.btnNextQuestion);
@@ -106,14 +108,12 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
         btnAnswer2.setOnClickListener(v -> processButtonClick(btnAnswer2));
         btnAnswer3.setOnClickListener(v -> processButtonClick(btnAnswer3));
         btnAnswer4.setOnClickListener(v -> processButtonClick(btnAnswer4));
-        btnMap1.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), MapsActivity.class);
-            intent.putExtra("city_name",btnAnswer1.getText().toString());
-            intent.putExtra("img_url", "https://cdn.theculturetrip.com/wp-content/uploads/2017/10/saborna_crkva_hrista_spasitelja_banjaluka.jpg");
-            intent.putExtra("lat",34.5);
-            intent.putExtra("lng",45.6);
-            startActivity(intent);
-        });
+        //Process MAP buttons
+        btnMap1.setOnClickListener(v -> processMapButtonClick(btnAnswer1));
+        btnMap2.setOnClickListener(v -> processMapButtonClick(btnAnswer2));
+        btnMap3.setOnClickListener(v -> processMapButtonClick(btnAnswer3));
+        btnMap4.setOnClickListener(v -> processMapButtonClick(btnAnswer4));
+
         btnInfo1.setOnClickListener(v -> processInfoButtonClick(TRENUTNO_PITANJE.getOdgovorBr1Engleski()));
         btnInfo2.setOnClickListener(v -> processInfoButtonClick(TRENUTNO_PITANJE.getOdgovorBr2Engleski()));
         btnInfo3.setOnClickListener(v -> processInfoButtonClick(TRENUTNO_PITANJE.getOdgovorBr3Engleski()));
@@ -189,6 +189,26 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
 
     private void processInfoButtonClick(String cityName){
         Intent intent = new Intent(getActivity(),NewsActivity.class);
+        intent.putExtra("city_name",cityName);
+        startActivity(intent);
+    }
+
+    private void processMapButtonClick(Button button){
+        Intent intent = new Intent(getActivity(), MapsActivity.class);
+        //Get city data from the database by city name...
+        Grad grad = databaseInstance.gradDAO().readByNameEN(button.getText().toString());
+        if(grad == null){ //Alternate way to show, unitl the database is fully populated
+            intent.putExtra("city_name","Banja Luka");
+            intent.putExtra("img", "christ_the_saviour");
+            intent.putExtra("lat",44.76890243463244);
+            intent.putExtra("lng",17.188494720752715);
+        }else {
+            intent.putExtra("city_name", button.getText().toString());
+            //intent.putExtra("img", grad.getSlika());
+            intent.putExtra("img", "ic_baseline_location_city_24"); //Temporary image
+            intent.putExtra("lat", grad.getLatitude());
+            intent.putExtra("lng", grad.getLongitude());
+        }
         startActivity(intent);
     }
 }

@@ -250,7 +250,7 @@ public class Pitanje implements Serializable {
                 new Pitanje(0,"Slovenia","Maribor","Ljubljana","Skopje","Belgrade", "Словенија","Марибор","Љубљана","Скопље","Београд", "Ljubljana","Љубљана","Dragon is the most recognizable symbol.","Најпрепознатљивији сибол града је змај.",""),
                 new Pitanje(0,"Serbia","Skopje","Belgrade","Novi Sad","Trebinje","Србија","Скопље","Београд","Нови Сад","Требиње","Belgrade","Београд","Biggest orthodox church in the Balkans","Највећа православна црква на Балкану",""),
                 new Pitanje(0,"United Kingdom","London","Berlin","Edinburg","Paris","Уједињено Краљевств","Лондон","Берлин","Единбург","Париз","London","Лондон","Big eye.","Велико око.","NO_IMAGE"),
-                new Pitanje(0,"Germany", "Hamburg","Berlin","Hanover","Munch","Њемачка","Хамбург","Берлин","Минхен","Хановер","Berlin","Берлин","Used to be divided by a wall.","Био је подијељен зидом.",""),
+                new Pitanje(0,"Germany", "Hamburg","Berlin","Hanover","Munich","Њемачка","Хамбург","Берлин","Минхен","Хановер","Berlin","Берлин","Used to be divided by a wall.","Био је подијељен зидом.",""),
                 new Pitanje(0,"Greece","Heraklion","Athens","Thessaloniki","Berlin","Грчка","Херклион","Атина","Тесалоники","Берлин","Athens","Атина","Partenon","Партенон",""),
                 new Pitanje(0,"Spain","Barcelona","Seville","Madrid","Bilbao","Шпанија","Барселона","Севиља","Мадрид","Билбао","Barcelona","Барселона","The Oldest Restaurant In The World is located here.","Најстарији ресторан на свијету је лоциран у овом граду.",""),
                 new Pitanje(0,"Switzerland","Geneva","Zurich","Lucerne","Bern","Швајцарска","Женева","Цирих","Луцерн","Берн","Bern","Берн","It's not Zurich.","Није Цирих.",""),
