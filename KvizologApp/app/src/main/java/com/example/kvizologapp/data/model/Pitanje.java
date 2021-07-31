@@ -261,11 +261,12 @@ public class Pitanje implements Serializable {
                 new Pitanje(0,"Vietnam","Da Nang","Hanoi","Hue","Ho Chi Minh","Вијетнам","Да Нанг","Ханои","Хуе","Хо Ћи Мин","Hanoi","Ханои","Name starts with H.","Назив почиње словом Х",""),
                 new Pitanje(0,"France","Marseille","Nice","Lyon","Paris","Француска","Марсеј","Ница","Лион","Париз","Paris","Париз","Romance city.","Град романтичара.",""),
                 new Pitanje(0,"China","Shanghai","Schenzen","Beijing","Wuhan","Кина","Шангај","Шенцен","Бејжинг","Вухан","Beijing","Бејжинг","Name does not start with the letter  S","Назив не почиње са словом Ш",""),
-                new Pitanje(0,"Slovenia","Ljubljana","Maribor","Koper","Kranj","Словенија","Љубљана","Марибор","Копер","Крањ","Ljubljana","Љубљана","Prešeren Square","Прешеренов трг",""),
+                new Pitanje(0,"Norway","Oslo","Bergen","Trondheim","Stavanger","Норвешка","Осло","Берген","Тродхајм","Ставангер","Oslo","Осло","Starts with a letter O","Почиње на слово О",""),
                 new Pitanje(0,"Bosnia and Herzegovina","Banja Luka","Sarajevo","Mostar","Trebinje","Босна и Херцеговина","Бања Лука","Сарајево","Мостар","Требиње","Sarajevo","Сарајево","Walter defends...","Валтер брани...",""),
                 new Pitanje(0,"Poland","Krakow","Wroclaw","Warsaw","Poznan","Пољска","Краков","Врошлав","Варшава","Познан","Warsaw","Варшава","Polin Museum","Полин музеј",""),
                 new Pitanje(0,"Italy","Rome","Milan","Venice","Bologna","Италија","Рим","Милано","Венеција","Болоња","Rome","Рим","Another country is located in this town.","Још једна држава се налази у овом граду.",""),
-                new Pitanje(0,"Germany","Munich","Berlin","Hamburg","Dresden", "Њемачка","Минхен","Берлин","Хамбург","Дрезден","Berlin","Берлин","Used to be divided by wall.","Град који је био подијељен зидом.",""),
+                new Pitanje(0,"Austria","Vienna","Berlin","Hamburg","Graz", "Аустрија","Беч","Берлин","Хамбург","Грац","Vienna","Беч","Starts with a letter V","Назив почиње на слово Б",""),
+
                 //PITANJA - ZASTAVE
                 new Pitanje(1,"","GREECE","","","","ГРЧКА","","","","","","","Birthplace of philosopy...","Родно мјесто философије...","ic_greece"),
                 new Pitanje(1,"","SERBIA","","","","СРБИЈА","","","","","","","Biggest orthodox church in the Balkans","Највећа православна црква на Балкану","ic_serbia"),
@@ -309,6 +310,7 @@ public class Pitanje implements Serializable {
                 new Pitanje(2,"","","","","","","","","","","","","","",""),
                 new Pitanje(2,"","","","","","","","","","","","","","",""),
                 new Pitanje(2,"","","","","","","","","","","","","","",""),
+
                 //INSERT TYPE 4 QUESTIONS
                 new Pitanje(3,"Acropolis","China","Greece","Italy","Macedonia","Акропољ","Кина","Грчка","Италија","Македонија","Greece","Грчка","Bitrhplace of phylosophy.","Родно мјесто философије.","acropolis"),
                 new Pitanje(3,"Hegra","Nepal","Saudi Arabia","Kyrgistan","Bhutan","Хегра","Непал","Саудијска Арабија","Киргистан","Бутан","Saudi Arabia","Саудијска Арабија","Yemen is a neigbouring country","Јемен је сусједна држава.","al_hijr_madain"),
@@ -330,10 +332,6 @@ public class Pitanje implements Serializable {
                 new Pitanje(3,"Uluru Kata Tjuta","USA","New Zeland","Australia","Somalia","Улуру Ката Тјута","САД","Нови Зеланд","Аустралија","Сомалија","Australia","Аустралија","Kangaroo!","Кенгур!","uluru_kata_tjuta"),
                 new Pitanje(3,"Yellowstone","Australia","USA","New Zeland","Brazil","Јелоустон","Аустралија","САД","Нови Зеланд","Бразил","USA","САД","Country which bought Alaska.","Земља која је купила Аљаску.","yellowstone"),
                 new Pitanje(3,"Church of Christ The Saviour","Bosnia and Herzegovina","Serbia","Montenegro","North Macedonia","Храм Христа Спаситеља","Босна и Херцеговина","Србија","Црна Гора","Сјеверна Македонија","Bosnia and Herzegovina","Босна и Херцеговина","Sarajevo is a capital city.","Сарајево је главни град.","christ_the_saviour"),
-                //INSERT GRAD data
-                //new Grad("Београд","Belgrade",44.79642985642653,20.471462575664354,"SLIKA_GRBA"),
-                //new Grad("Mосква","Moscow",55.755125454817836, 37.61708451367523,"SLIKA_GRBA")
-
         };
     }
 }
