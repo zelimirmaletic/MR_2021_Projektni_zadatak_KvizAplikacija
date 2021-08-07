@@ -104,9 +104,15 @@ public class Adapter extends RecyclerView.Adapter<com.example.kvizologapp.pitanj
         }
         //Set correct answer text
         if("en".equals(MainActivity.lang))
-            holder.tvTacanOdgovor.setText(holder.tvTacanOdgovor.getText().toString()+" "+pitanje.getTacniOdgovoriEngleski().replace(":"," "));
+            if(pitanje.getTipPitanja()==1)
+                holder.tvTacanOdgovor.setText(holder.tvTacanOdgovor.getText().toString()+" "+pitanje.getOdgovorBr1Engleski());
+            else
+                holder.tvTacanOdgovor.setText(holder.tvTacanOdgovor.getText().toString()+" "+pitanje.getTacniOdgovoriEngleski().replace(":"," "));
         else
-            holder.tvTacanOdgovor.setText(holder.tvTacanOdgovor.getText().toString()+" "+pitanje.getTacniOdgovoriSrpski().replace(":"," "));
+            if(pitanje.getTipPitanja()==1)
+                holder.tvTacanOdgovor.setText(holder.tvTacanOdgovor.getText().toString()+" "+pitanje.getTekstPitanjaSrpski());
+            else
+                holder.tvTacanOdgovor.setText(holder.tvTacanOdgovor.getText().toString()+" "+pitanje.getTacniOdgovoriSrpski().replace(":"," "));
         //Set users answer text
         if(item.getKorisnikovOdgovor().isEmpty())
             //If question is skipped write a message

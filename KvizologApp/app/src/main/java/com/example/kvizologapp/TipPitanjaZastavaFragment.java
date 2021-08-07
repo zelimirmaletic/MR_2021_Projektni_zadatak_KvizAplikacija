@@ -79,7 +79,7 @@ public class TipPitanjaZastavaFragment extends Fragment {
         if("en".equals(MainActivity.lang))
             setAndRandomizeLetterButtons(TRENUTNO_PITANJE.getOdgovorBr1Engleski());
         else
-            setAndRandomizeLetterButtons(TRENUTNO_PITANJE.getOdgovorBr1Srpski());
+            setAndRandomizeLetterButtons(TRENUTNO_PITANJE.getTekstPitanjaSrpski());
         return view;
     }
 
@@ -163,7 +163,7 @@ public class TipPitanjaZastavaFragment extends Fragment {
             boolean corectlyAnswered = false;
             if((txbCountryName.getText()).equals(TRENUTNO_PITANJE.getOdgovorBr1Engleski()))
                 corectlyAnswered = true;
-            if((txbCountryName.getText()).equals(TRENUTNO_PITANJE.getOdgovorBr1Srpski()))
+            if((txbCountryName.getText()).equals(TRENUTNO_PITANJE.getTekstPitanjaSrpski()))
                 corectlyAnswered = true;
             //Save answer to a answer list
             QuizGameActivity.listaStringOdgovora.add(txbCountryName.getText().toString());
@@ -183,7 +183,7 @@ public class TipPitanjaZastavaFragment extends Fragment {
                 mpCorrect.start();
             }else{
                 QuizGameActivity.listaTacnostiOdgovora.add(false);
-                String correctAnswer = "en".equals(MainActivity.lang)?TRENUTNO_PITANJE.getOdgovorBr1Engleski():TRENUTNO_PITANJE.getOdgovorBr1Srpski();
+                String correctAnswer = "en".equals(MainActivity.lang)?TRENUTNO_PITANJE.getOdgovorBr1Engleski():TRENUTNO_PITANJE.getTekstPitanjaSrpski();
                 txvCornectnessMessage.setText(getString(R.string.wrong_answer_message) + " " + correctAnswer);
                 txvCornectnessMessage.setTextColor(getResources().getColor(R.color.accent));
                 txvCornectnessMessage.setVisibility(View.VISIBLE);

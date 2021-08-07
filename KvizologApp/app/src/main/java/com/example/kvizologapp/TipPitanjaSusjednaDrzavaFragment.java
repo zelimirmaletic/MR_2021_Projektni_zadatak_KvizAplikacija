@@ -91,8 +91,10 @@ public class TipPitanjaSusjednaDrzavaFragment extends Fragment {
             btnHint.setVisibility(View.GONE);
             boolean corectlyAnswered = true;
             //Check the corectness of the answer
+            if(!cbAnswer1.isChecked()&&!cbAnswer2.isChecked()&&!cbAnswer3.isChecked()&&!cbAnswer4.isChecked())
+                corectlyAnswered=false;
             if("en".equals(MainActivity.lang)){
-                if(cbAnswer1.isChecked() && ! TRENUTNO_PITANJE.getTacniOdgovoriEngleski().contains(cbAnswer1.getText().toString()))
+                if(cbAnswer1.isChecked() && !TRENUTNO_PITANJE.getTacniOdgovoriEngleski().contains(cbAnswer1.getText().toString()))
                     corectlyAnswered=false;
                 else if(cbAnswer2.isChecked() && ! TRENUTNO_PITANJE.getTacniOdgovoriEngleski().contains(cbAnswer2.getText().toString()))
                     corectlyAnswered=false;
@@ -138,7 +140,7 @@ public class TipPitanjaSusjednaDrzavaFragment extends Fragment {
             }else{
                 QuizGameActivity.listaTacnostiOdgovora.add(false);
                 String correctAnswer = "en".equals(MainActivity.lang)?TRENUTNO_PITANJE.getTacniOdgovoriEngleski():TRENUTNO_PITANJE.getTacniOdgovoriSrpski();
-                txvCornectnessMessage.setText(getString(R.string.wrong_answer_message) + " " + correctAnswer);
+                txvCornectnessMessage.setText(getString(R.string.wrong_answer_message) + " " + correctAnswer.replace(":"," "));
                 txvCornectnessMessage.setTextColor(getResources().getColor(R.color.accent));
                 txvCornectnessMessage.setVisibility(View.VISIBLE);
                 imgView.setImageResource(R.drawable.ic_baseline_cancel_24);
