@@ -15,6 +15,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.squareup.picasso.Picasso;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -83,15 +84,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             MapsActivity.this.marker = marker;
             TextView name = (TextView) view.findViewById(R.id.tv_title);
             ImageView image = (ImageView) view.findViewById(R.id.iv_image);
-            /* LOAD IMAGES FROM THE INTERNET
+            //LOAD IMAGES FROM THE INTERNET
             Picasso.with(MapsActivity.this)
-                    .load(IMG_URL)
+                    .load(IMG)
                     .error(R.mipmap.ic_launcher) // will be displayed if the image cannot be loaded
                     .into(image);
-             */
+
 
             //Set image
-            image.setImageResource(getResources().getIdentifier(IMG,"drawable",MapsActivity.this.getPackageName()));
+            //image.setImageResource(getResources().getIdentifier(IMG,"drawable",MapsActivity.this.getPackageName()));
             //Set card title AKA City name
             name.setText(CITY_NAME);
             //getInfoContents(marker);
