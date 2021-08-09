@@ -188,9 +188,13 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
     }
 
     private void processInfoButtonClick(String cityName){
-        Intent intent = new Intent(getActivity(),NewsActivity.class);
-        intent.putExtra("city_name",cityName);
-        startActivity(intent);
+        //Check if there is an internet connection
+        if(){
+            Intent intent = new Intent(getActivity(),NewsActivity.class);
+            intent.putExtra("city_name",cityName);
+            startActivity(intent);
+        }
+
     }
 
     private void processMapButtonClick(Button button){

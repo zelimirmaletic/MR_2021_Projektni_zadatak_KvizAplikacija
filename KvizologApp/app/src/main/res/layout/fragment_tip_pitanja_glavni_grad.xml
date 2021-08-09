@@ -28,7 +28,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txbCountryName" />
 
-
     <Button
         android:id="@+id/btnAnswer1"
         style="@style/AnswerButton"

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/ic_home_fragment_background"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/login_card_margin_left"
+        android:layout_marginEnd="@dimen/login_card_margin_right"
+        android:layout_marginLeft="@dimen/login_card_margin_left"
+        android:layout_marginRight="@dimen/login_card_margin_right"
+        android:background="@color/login_card_background"
+        app:cardCornerRadius="@dimen/login_card_corner_radius"
+        app:cardElevation="@dimen/login_card_elevation"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/login_card_padding">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/globe"/>
+
+            <TextView
+                android:id="@+id/app_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textColor="@color/login_app_name"
+                android:textStyle="bold"
+                android:textSize="@dimen/login_app_name_size"
+                android:layout_marginBottom="@dimen/login_app_name_bottom_margin"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/login_card_welcome_message"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/login_card_welcome_text"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tbEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/login_card_element_topmargin"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"/>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal">
+               <Button
+                   android:id="@+id/btnLogin"
+                   android:layout_weight="1"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_margin="@dimen/land_home_page_button_margin"
+                   android:layout_gravity="center"
+                   android:text="@string/login_card_login_message"
+                   android:layout_marginTop="@dimen/login_card_element_topmargin"
+                   android:textStyle="bold"
+                   android:textSize="@dimen/login_card_label_text"/>
+
+               <Button
+                   android:id="@+id/btnGuestLogin"
+                   android:layout_weight="0.9"
+                   android:layout_margin="@dimen/land_home_page_button_margin"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center"
+                   android:text="@string/guest_login_button_message"
+                   android:layout_marginTop="@dimen/login_card_element_topmargin"
+                   android:textStyle="bold"
+                   android:backgroundTint="@color/primary_dark"
+                   android:textSize="@dimen/login_card_label_text"/>
+
+               <Button
+                   android:id="@+id/btnRegister"
+                   android:layout_weight="1"
+                   android:layout_margin="@dimen/land_home_page_button_margin"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center"
+                   android:text="@string/login_card_register_message"
+                   android:layout_marginTop="@dimen/login_card_element_topmargin"
+                   android:textStyle="bold"
+                   android:backgroundTint="@color/accent"
+                   android:textSize="@dimen/login_card_label_text"/>
+           </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

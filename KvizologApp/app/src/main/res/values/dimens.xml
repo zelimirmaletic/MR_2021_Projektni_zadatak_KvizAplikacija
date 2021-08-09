@@ -67,4 +67,10 @@
     <!-- map card -->
     <dimen name="map_card_size">350dp</dimen>
 
+
+
+    <!-- LANDSCAPE MODE DIMENSIONS -->
+    <dimen name="land_home_page_button_margin">5dp</dimen>
+    <dimen name="land_element_width">300dp</dimen>
+
 </resources>
