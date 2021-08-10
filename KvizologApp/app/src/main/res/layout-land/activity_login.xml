@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="@drawable/ic_home_fragment_background"
+    android:background="@color/primary_light"
     android:layout_height="match_parent"
     tools:context=".RegisterActivity">
 
@@ -23,26 +23,44 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/land_home_page_button_margin"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|bottom"
+                    android:textStyle="bold"
+                    android:text="@string/login_card_login_message"
+                    android:textColor="@color/primary"
+                    android:textSize="@dimen/login_card_welcome_text"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/globe"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+                android:layout_weight="1"
             android:orientation="vertical"
             android:padding="@dimen/login_card_padding">
-            <ImageView
-                android:layout_width="@dimen/land_element_width"
-                android:layout_gravity="center_horizontal"
-                android:layout_height="wrap_content"
-                android:src="@drawable/globe"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:text="@string/login_card_login_message"
-                android:textColor="@color/primary"
-                android:textSize="@dimen/login_card_welcome_text"/>
 
             <TextView
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_width="@dimen/land_element_width"
                 android:gravity="center"
                 android:textStyle="bold"
                 android:text="@string/login_card_username_message"
@@ -100,11 +118,8 @@
                 android:textStyle="bold"
                 android:onClick="log"
                 android:textSize="@dimen/login_card_label_text"/>
-
-
-
+            </LinearLayout>
         </LinearLayout>
-
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>
