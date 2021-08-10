@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_quiz_question_background"
+    tools:context=".HomeFragment">
+
+    <TextView
+        android:id="@+id/txvWelcomeMessage"
+        style="@style/QuestionTitleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/land_home_page_button_margin"
+        android:text="@string/login_card_welcome_message"
+        app:layout_constraintTop_toBottomOf="@+id/app_name" />
+
+
+    <TextView
+        android:id="@+id/txvUsername"
+        style="@style/UsernameTextBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/txvWelcomeMessage" />
+
+    <TextView
+        android:id="@+id/app_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/land_home_page_button_margin"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@color/login_app_name"
+        android:textSize="@dimen/login_app_name_size"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_marginTop="@dimen/land_home_page_button_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/globe"
+        app:layout_constraintTop_toBottomOf="@+id/txvUsername" />
+
+    <Button
+        android:id="@+id/btnStartQuiz"
+        style="@style/NextQuestionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/land_home_page_button_margin"
+        android:text="@string/home_fragment_start_new_quiz_button_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -72,5 +72,6 @@
     <!-- LANDSCAPE MODE DIMENSIONS -->
     <dimen name="land_home_page_button_margin">5dp</dimen>
     <dimen name="land_element_width">300dp</dimen>
+    <dimen name="land_home_text_top_margin">7dp</dimen>
 
 </resources>
