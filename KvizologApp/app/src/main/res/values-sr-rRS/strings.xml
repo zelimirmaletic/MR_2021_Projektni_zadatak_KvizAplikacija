@@ -69,4 +69,5 @@
     <string name="empty_news_message">Не постоје чланци за овај град.</string>
     <string name="on_restapi_error_response">Дошло је до грешке у добављању новости са удаљеног сервиса</string>
     <string name="progress_bar_title">Учитавање новости</string>
+    <string name="no_internet_available_message">Уређај није конектован на интернет! Молимо Вас да провјерите интернет конекцију.</string>
 </resources>

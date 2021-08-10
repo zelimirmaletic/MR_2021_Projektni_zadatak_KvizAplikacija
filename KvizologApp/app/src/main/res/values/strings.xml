@@ -104,4 +104,7 @@
     <string name="empty_news_message">There are no articles for this city</string>
     <string name="on_restapi_error_response">There was an error in getting articles from News API</string>
     <string name="progress_bar_title">Loading news...</string>
+
+
+    <string name="no_internet_available_message">No internet connection available! Make sure you are connected to the internet.</string>
 </resources>

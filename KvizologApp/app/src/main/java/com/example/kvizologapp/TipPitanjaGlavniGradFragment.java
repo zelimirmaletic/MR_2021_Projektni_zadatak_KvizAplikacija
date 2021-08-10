@@ -2,7 +2,10 @@ package com.example.kvizologapp;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +20,8 @@ import androidx.fragment.app.Fragment;
 import com.example.kvizologapp.data.database.KvizologDatabase;
 import com.example.kvizologapp.data.model.Grad;
 import com.example.kvizologapp.data.model.Pitanje;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 
 public class TipPitanjaGlavniGradFragment extends Fragment {
@@ -189,34 +194,55 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
 
     private void processInfoButtonClick(String cityName){
         //Check if there is an internet connection
-        if(){
-            Intent intent = new Intent(getActivity(),NewsActivity.class);
-            intent.putExtra("city_name",cityName);
+        if(isConnected()) {
+            Intent intent = new Intent(getActivity(), NewsActivity.class);
+            intent.putExtra("city_name", cityName);
             startActivity(intent);
+        }else{
+            //Show a message that there is no internet connection
+            Toast.makeText(getActivity(), R.string.no_internet_available_message , Toast.LENGTH_LONG).show();
         }
-
     }
 
     private void processMapButtonClick(Button button){
-        Intent intent = new Intent(getActivity(), MapsActivity.class);
-        //Get city data from the database by city name...
-        Grad grad = null;
-        if("en"==MainActivity.lang)
-            grad = databaseInstance.gradDAO().readByNameEN(button.getText().toString());
-        else
-            grad = databaseInstance.gradDAO().readByNameSR(button.getText().toString());
-        if(grad == null){ //Alternate way to show, unitl the database is fully populated
-            intent.putExtra("city_name","Banja Luka");
-            intent.putExtra("img", "ic_baseline_location_city_24");
-            intent.putExtra("lat",44.76890243463244);
-            intent.putExtra("lng",17.188494720752715);
-        }else {
-            intent.putExtra("city_name", button.getText().toString());
-            //intent.putExtra("img", grad.getSlika());
-            intent.putExtra("img", grad.getSlika()); //Temporary image
-            intent.putExtra("lat", grad.getLatitude());
-            intent.putExtra("lng", grad.getLongitude());
+        if(isConnected()){
+            Intent intent = new Intent(getActivity(), MapsActivity.class);
+            //Get city data from the database by city name...
+            Grad grad = null;
+            if("en"==MainActivity.lang)
+                grad = databaseInstance.gradDAO().readByNameEN(button.getText().toString());
+            else
+                grad = databaseInstance.gradDAO().readByNameSR(button.getText().toString());
+            if(grad == null){ //Alternate way to show, unitl the database is fully populated
+                intent.putExtra("city_name","Banja Luka");
+                intent.putExtra("img", "ic_baseline_location_city_24");
+                intent.putExtra("lat",44.76890243463244);
+                intent.putExtra("lng",17.188494720752715);
+            }else {
+                intent.putExtra("city_name", button.getText().toString());
+                //intent.putExtra("img", grad.getSlika());
+                intent.putExtra("img", grad.getSlika()); //Temporary image
+                intent.putExtra("lat", grad.getLatitude());
+                intent.putExtra("lng", grad.getLongitude());
+            }
+            startActivity(intent);
+        }else{
+            //Show a message that there is no internet connection
+            Toast.makeText(getActivity(), R.string.no_internet_available_message , Toast.LENGTH_LONG).show();
         }
-        startActivity(intent);
+    }
+
+
+    public boolean isConnected() {
+        boolean connected = false;
+        try {
+            ConnectivityManager cm = (ConnectivityManager)getApplicationContext().getSystemService(getContext().CONNECTIVITY_SERVICE);
+            NetworkInfo nInfo = cm.getActiveNetworkInfo();
+            connected = nInfo != null && nInfo.isAvailable() && nInfo.isConnected();
+            return connected;
+        } catch (Exception e) {
+            Log.e("Connectivity Exception", e.getMessage());
+        }
+        return connected;
     }
 }
