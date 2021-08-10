@@ -63,6 +63,12 @@ public class Adapter extends RecyclerView.Adapter<com.example.kvizologapp.news_r
         holder.tvTitle.setText(item.getTitle());
         holder.tvDescription.setText(item.getDescription());
         holder.tvDate.setText(item.getDate());
+
+        //TO-DO
+        //Check if there is an internet connection
+        //If connection is available grab the imege from the internet
+        //Otherwise hide image view and do not call Glide library
+
         //Set image using Glide
         Glide.with(holder.ivImage.getContext()).load(item.getImage_url()).into(holder.ivImage);
 

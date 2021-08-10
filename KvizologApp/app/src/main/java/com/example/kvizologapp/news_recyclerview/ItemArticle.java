@@ -1,6 +1,8 @@
 package com.example.kvizologapp.news_recyclerview;
 
-public class ItemArticle {
+import java.io.Serializable;
+
+public class ItemArticle implements Serializable {
     private String title = "";
     private String description = "";
     private String url = "";

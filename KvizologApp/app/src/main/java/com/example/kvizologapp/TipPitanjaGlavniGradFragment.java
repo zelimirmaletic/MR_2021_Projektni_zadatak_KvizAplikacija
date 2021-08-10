@@ -199,6 +199,8 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
             intent.putExtra("city_name", cityName);
             startActivity(intent);
         }else{
+            //TO-DO Check if the news for that city are cached!!!!
+            //.............IMPLEMENT HERE..........
             //Show a message that there is no internet connection
             Toast.makeText(getActivity(), R.string.no_internet_available_message , Toast.LENGTH_LONG).show();
         }

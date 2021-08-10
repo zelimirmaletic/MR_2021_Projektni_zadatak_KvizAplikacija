@@ -2,6 +2,7 @@ package com.example.kvizologapp;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -22,6 +23,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -116,6 +121,31 @@ public class NewsActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(NewsActivity.this);
         progressDialog.setMessage(getResources().getString(R.string.progress_bar_title));
         progressDialog.show();
+    }
+
+    //Cache news locally in an AsyncTask
+    public class AsyncCacheNews extends AsyncTask<String, String, String> {
+        @Override
+        protected String doInBackground(String... strings) {
+            String current ="";
+            //Serialize data in folder
+            try
+            {
+                //Name serialization file as city name
+                FileOutputStream fos = new FileOutputStream(KEYWORD);
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                oos.writeObject(array);
+                oos.close();
+                fos.close();
+            }
+            catch (FileNotFoundException ioe)
+            {
+                ioe.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return current;
+        }
     }
 
 }
