@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_quiz_question_background"
+    tools:context=".TipPitanjaZastavaFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/imgFlag"
+                style="@style/FlagImageStyle"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/great_wall"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/textView3"
+                style="@style/AnswerMessageText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/flags_question_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgFlag" />
+
+            <TextView
+                android:id="@+id/txbCountryName"
+                style="@style/FlagNameTitle"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:layout_gravity="center_horizontal"
+                app:layout_constraintBottom_toTopOf="@id/btnHint"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnCheck"
+                android:src="@drawable/ic_baseline_check_circle_outline_24" />
+
+            <TextView
+                android:id="@+id/txbCorectnessMessage"
+                style="@style/AnswerMessageText"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:text="@string/wrong_answer_message"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+
+            <Button
+                android:id="@+id/btnNextQuestion"
+                style="@style/NextQuestionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/next_question_string"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1">
+
+            <TableLayout
+                android:id="@+id/tableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txbCountryName">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/btnLetter1"
+                        style="@style/letter_button"
+                        android:layout_width="@dimen/letter_button_width"
+                        android:layout_height="wrap_content"
+                        android:text="A" />
+
+                    <Button
+                        android:id="@+id/btnLetter2"
+                        style="@style/letter_button"
+                        android:layout_width="@dimen/letter_button_width"
+                        android:layout_height="wrap_content"
+                        android:text="B" />
+
+                    <Button
+                        android:id="@+id/btnLetter3"
+                        style="@style/letter_button"
+                        android:layout_width="@dimen/letter_button_width"
+                        android:layout_height="wrap_content"
+                        android:text="C" />
+
+                    <Button
+                        android:id="@+id/btnLetter4"
+                        style="@style/letter_button"
+                        android:layout_width="@dimen/letter_button_width"
+                        android:layout_height="wrap_content"
+                        android:text="D" />
+
+                    <Button
+                        android:id="@+id/btnLetter5"
+                        style="@style/letter_button"
+                        android:layout_width="@dimen/letter_button_width"
+                        android:layout_height="wrap_content"
+                        android:text="A" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/btnLetter6"
+                        style="@style/letter_button"
+                        android:layout_width="@dimen/letter_button_width"
+                        android:layout_height="wrap_content"
+                        android:text="B" />
+
+                    <Button
+                        android:id="@+id/btnLetter7"
+
+                        style="@style/letter_button"
+                        android:layout_width="@dimen/letter_button_width"
+                        android:layout_height="wrap_content"
+                        android:text="C" />
+
+                    <Button
+                        android:id="@+id/btnLetter8"
+
+                        style="@style/letter_button"
+                        android:layout_width="@dimen/letter_button_width"
+                        android:layout_height="wrap_content"
+                        android:text="D" />
+
+                    <Button
+                        android:id="@+id/btnLetter9"
+                        style="@style/letter_button"
+                        android:layout_width="@dimen/letter_button_width"
+                        android:layout_height="wrap_content"
+                        android:text="A" />
+
+                    <Button
+                        android:id="@+id/btnLetter10"
+                        style="@style/letter_button"
+                        android:layout_width="@dimen/letter_button_width"
+                        android:layout_height="wrap_content"
+                        android:text="B" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/btnLette11"
+
+                        style="@style/letter_button"
+                        android:layout_width="@dimen/letter_button_width"
+                        android:layout_height="wrap_content"
+                        android:text="C" />
+
+                    <Button
+                        android:id="@+id/btnLetter12"
+
+                        style="@style/letter_button"
+                        android:layout_width="@dimen/letter_button_width"
+                        android:layout_height="wrap_content"
+                        android:text="D" />
+
+                    <Button
+                        android:id="@+id/btnLetter13"
+                        style="@style/letter_button"
+                        android:layout_width="@dimen/letter_button_width"
+                        android:layout_height="wrap_content"
+                        android:text="A" />
+
+                    <Button
+                        android:id="@+id/btnLetter14"
+                        style="@style/letter_button"
+                        android:layout_width="@dimen/letter_button_width"
+                        android:layout_height="wrap_content"
+                        android:text="B" />
+
+                    <Button
+                        android:id="@+id/btnLetter15"
+
+                        style="@style/letter_button"
+                        android:layout_width="@dimen/letter_button_width"
+                        android:layout_height="wrap_content"
+                        android:text="C" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/btnLetter16"
+
+                        style="@style/letter_button"
+                        android:layout_width="@dimen/letter_button_width"
+                        android:layout_height="wrap_content"
+                        android:text="D" />
+
+                    <Button
+                        android:id="@+id/btnLetter17"
+                        style="@style/letter_button"
+                        android:layout_width="@dimen/letter_button_width"
+                        android:layout_height="wrap_content"
+                        android:text="A" />
+
+                    <Button
+                        android:id="@+id/btnLetter18"
+                        style="@style/letter_button"
+                        android:layout_width="@dimen/letter_button_width"
+                        android:layout_height="wrap_content"
+                        android:text="B" />
+
+                    <Button
+                        android:id="@+id/btnLetter19"
+
+                        style="@style/letter_button"
+                        android:layout_width="@dimen/letter_button_width"
+                        android:layout_height="wrap_content"
+                        android:text="C" />
+
+                    <Button
+                        android:id="@+id/btnLetter20"
+
+                        style="@style/letter_button"
+                        android:layout_width="@dimen/letter_button_width"
+                        android:layout_height="wrap_content"
+                        android:text="D" />
+                </TableRow>
+
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </TableLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnClear"
+                    style="@style/clearEntryButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/clear_entry"
+                    android:layout_margin="@dimen/land_home_page_button_margin"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+
+                <Button
+                    android:id="@+id/btnCheck"
+                    style="@style/checkAnswerButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/land_home_page_button_margin"
+                    android:text="@string/check_entry_button_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnClear" />
+
+                <Button
+                    android:id="@+id/btnHint"
+                    style="@style/checkAnswerButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/land_home_page_button_margin"
+                    android:text="@string/hint"
+                    app:layout_constraintBottom_toTopOf="@+id/btnNextQuestion"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+    <!--
+    <Button
+        android:id="@+id/btnSpace"
+        style="@style/SpaceButtonStyle"
+        android:layout_width="@dimen/space_button_width"
+        android:layout_height="wrap_content"
+        android:text="@string/space_button_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tableLayout" />
+    -->
+</androidx.constraintlayout.widget.ConstraintLayout>
