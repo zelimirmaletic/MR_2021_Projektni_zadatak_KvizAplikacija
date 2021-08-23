@@ -1,6 +1,7 @@
 package com.example.kvizologapp;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -171,8 +172,12 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
             txvCornectnessMessage.setText(strBuilder.toString());
             txvCornectnessMessage.setTextColor(getResources().getColor(R.color.accent));
             txvCornectnessMessage.setVisibility(View.VISIBLE);
-            imgView.setImageResource(R.drawable.ic_baseline_cancel_24);
-            imgView.setVisibility(View.VISIBLE);
+            //Check if the phone is in portrait mode
+            int orientation = getResources().getConfiguration().orientation;
+            if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+                imgView.setImageResource(R.drawable.ic_baseline_cancel_24);
+                imgView.setVisibility(View.VISIBLE);
+            }
             //SOUND EFFECT
             mpWrong.start();
         }
@@ -211,19 +216,19 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
             Intent intent = new Intent(getActivity(), MapsActivity.class);
             //Get city data from the database by city name...
             Grad grad = null;
-            if("en"==MainActivity.lang)
+            if("en".equals(MainActivity.lang))
                 grad = databaseInstance.gradDAO().readByNameEN(button.getText().toString());
             else
                 grad = databaseInstance.gradDAO().readByNameSR(button.getText().toString());
-            if(grad == null){ //Alternate way to show, unitl the database is fully populated
+            if(grad == null){
+                //Load Banja Luka, if there is no city available...
                 intent.putExtra("city_name","Banja Luka");
                 intent.putExtra("img", "ic_baseline_location_city_24");
                 intent.putExtra("lat",44.76890243463244);
                 intent.putExtra("lng",17.188494720752715);
             }else {
                 intent.putExtra("city_name", button.getText().toString());
-                //intent.putExtra("img", grad.getSlika());
-                intent.putExtra("img", grad.getSlika()); //Temporary image
+                intent.putExtra("img", grad.getSlika());
                 intent.putExtra("lat", grad.getLatitude());
                 intent.putExtra("lng", grad.getLongitude());
             }

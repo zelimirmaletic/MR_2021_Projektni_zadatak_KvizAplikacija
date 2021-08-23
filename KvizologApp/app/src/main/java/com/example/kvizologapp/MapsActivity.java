@@ -6,7 +6,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.FragmentActivity;
-
 import com.example.kvizologapp.databinding.ActivityMapsBinding;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -89,9 +88,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     .load(IMG)
                     .error(R.mipmap.ic_launcher) // will be displayed if the image cannot be loaded
                     .into(image);
-
-
-            //Set image
+            //Set image locally
             //image.setImageResource(getResources().getIdentifier(IMG,"drawable",MapsActivity.this.getPackageName()));
             //Set card title AKA City name
             name.setText(CITY_NAME);

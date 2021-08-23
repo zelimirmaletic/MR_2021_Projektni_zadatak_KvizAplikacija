@@ -14,4 +14,5 @@
     <color name="login_card_darker_text_color">#363A43</color>
     <color name="login_card_lighter_text_color">#7A8089</color>
     <color name="yellow">#f9d104</color>
+    <color name="pale_green">#f5fff2</color>
 </resources>
