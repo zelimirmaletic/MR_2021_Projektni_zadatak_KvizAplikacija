@@ -69,8 +69,8 @@ public class Adapter extends RecyclerView.Adapter<com.example.kvizologapp.news_r
         //If connection is available grab the imege from the internet
         //Otherwise hide image view and do not call Glide library
 
-        //Set image using Glide
-        Glide.with(holder.ivImage.getContext()).load(item.getImage_url()).into(holder.ivImage);
+        //Set image using Glide (if there is a connection to the internet!)
+        Glide.with(holder.ivImage.getContext()).load(item.getImage_url()).error(R.drawable.ic_baseline_broken_image_24).into(holder.ivImage);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {

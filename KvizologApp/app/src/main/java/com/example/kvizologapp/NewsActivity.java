@@ -1,11 +1,20 @@
 package com.example.kvizologapp;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,10 +32,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,19 +54,23 @@ public class NewsActivity extends AppCompatActivity {
     private String KEYWORD;
     private String KEYWORD_ATTR = "&keywords=";
 
-    StringBuilder urlBuilder = new StringBuilder();
-    RequestQueue queue;
+    private StringBuilder urlBuilder = new StringBuilder();
+    private RequestQueue queue;
+    private JSONArray articlesArray;
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private List<ItemArticle> array = new ArrayList<ItemArticle>();
     ProgressDialog progressDialog;
+    private TextView tvTitle;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
+        tvTitle = findViewById(R.id.txvNewsTitle);
         // take a reference to RecyclerView
         recyclerView = findViewById(R.id.rv_recyclerView);
         // optimization
@@ -67,85 +82,180 @@ public class NewsActivity extends AppCompatActivity {
         mAdapter = new Adapter(array, new Adapter.OnItemClickListener() {
             @Override
             public void onItemClick(ItemArticle item) {
-                Intent intent = new Intent(NewsActivity.this, WebViewActivity.class);
-                intent.putExtra("url",item.getUrl());
-                startActivity(intent);
+                if(isConnected()){
+                    Intent intent = new Intent(NewsActivity.this, WebViewActivity.class);
+                    intent.putExtra("url",item.getUrl());
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(NewsActivity.this, "There is no internet connection, please make sure to be connected to the Internet to se full article.", Toast.LENGTH_LONG).show();
+                }
             }
         });
-
         //Get the name of the city we want news for
         KEYWORD = getIntent().getStringExtra("city_name");
-        //Make an URL
-        urlBuilder.append(BASE_URL);urlBuilder.append(API_ACCESS_KEY);urlBuilder.append(KEYWORD_ATTR);urlBuilder.append(KEYWORD);
-        urlBuilder.append(LANGUAGE);urlBuilder.append(NUM_OF_ARTICLES_ATTR);urlBuilder.append(NUMBER_OF_ARTICLES);
-        urlBuilder.append(SORT_TYPE);
 
-        queue = Volley.newRequestQueue(this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
-                urlBuilder.toString(), null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    JSONArray articlesArray = response.getJSONArray("data");
-                    //Check if there are articles loaded!
-                    if(articlesArray.length()==0)
-                        Toast.makeText(NewsActivity.this, R.string.empty_news_message, Toast.LENGTH_LONG).show();
-                    else{
-                        for(int i=0;i<articlesArray.length();i++){
-                            JSONObject articleObject = articlesArray.getJSONObject(i);
-                            ItemArticle listItem = new ItemArticle();
-                            listItem.setTitle(articleObject.getString("title"));
-                            listItem.setDescription(articleObject.getString("description"));
-                            listItem.setDate(articleObject.getString("published_at"));
-                            listItem.setImage_url(articleObject.getString("image"));
-                            listItem.setUrl(articleObject.getString("url"));
-                            array.add(listItem);
+        if(isConnected()){
+            //Make an URL
+            urlBuilder.append(BASE_URL);urlBuilder.append(API_ACCESS_KEY);urlBuilder.append(KEYWORD_ATTR);urlBuilder.append(KEYWORD);
+            urlBuilder.append(LANGUAGE);urlBuilder.append(NUM_OF_ARTICLES_ATTR);urlBuilder.append(NUMBER_OF_ARTICLES);
+            urlBuilder.append(SORT_TYPE);
+
+            queue = Volley.newRequestQueue(this);
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
+                    urlBuilder.toString(), null, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        articlesArray = response.getJSONArray("data");
+                        //Check if there are articles loaded!
+                        if(articlesArray.length()==0)
+                            Toast.makeText(NewsActivity.this, R.string.empty_news_message, Toast.LENGTH_LONG).show();
+                        else{
+                            for(int i=0;i<articlesArray.length();i++){
+                                JSONObject articleObject = articlesArray.getJSONObject(i);
+                                ItemArticle listItem = new ItemArticle();
+                                listItem.setTitle(articleObject.getString("title"));
+                                listItem.setDescription(articleObject.getString("description"));
+                                listItem.setDate(articleObject.getString("published_at"));
+                                listItem.setImage_url(articleObject.getString("image"));
+                                listItem.setUrl(articleObject.getString("url"));
+                                array.add(listItem);
+                            }
                         }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    // connect RecyclerView with adapter
+                    recyclerView.setAdapter(mAdapter);
+                    //Dismiss progress dialog when data is loaded!
+                    progressDialog.dismiss();
+                    //If caching is enabled save JSON to a file for later use!
+                    if("On".equals(readPreference("key_caching"))){
+                        AsyncCacheNews cacher = new AsyncCacheNews();
+                        cacher.execute();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(NewsActivity.this, R.string.on_restapi_error_response, Toast.LENGTH_SHORT).show();
+                }
+            });
+            queue.add(jsonObjectRequest);
+            //initialize the progress dialog and show it
+            progressDialog = new ProgressDialog(NewsActivity.this);
+            progressDialog.setMessage(getResources().getString(R.string.progress_bar_title));
+            progressDialog.show();
+        }
+        //Check if there is cached version
+        else if(readFromFile(getBaseContext(),KEYWORD + ".json") != null){
+            try {
+                //Update title
+                tvTitle.setText("Cached " + tvTitle.getText());
+                //Read JSON from the local storage
+                articlesArray = new JSONArray(readFromFile(getBaseContext(),KEYWORD + ".json"));
+                //Check if there are articles loaded!
+                if(articlesArray.length()==0)
+                    Toast.makeText(NewsActivity.this, R.string.empty_news_message, Toast.LENGTH_LONG).show();
+                else{
+                    for(int i=0;i<articlesArray.length();i++){
+                        JSONObject articleObject = articlesArray.getJSONObject(i);
+                        ItemArticle listItem = new ItemArticle();
+                        listItem.setTitle(articleObject.getString("title"));
+                        listItem.setDescription(articleObject.getString("description"));
+                        listItem.setDate(articleObject.getString("published_at"));
+                        listItem.setImage_url(articleObject.getString("image"));
+                        listItem.setUrl(articleObject.getString("url"));
+                        array.add(listItem);
+                    }
                 }
                 // connect RecyclerView with adapter
                 recyclerView.setAdapter(mAdapter);
-                //Dismiss progress dialog when data is loaded!
-                progressDialog.dismiss();
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(NewsActivity.this, R.string.on_restapi_error_response, Toast.LENGTH_SHORT).show();
-            }
-        });
-        queue.add(jsonObjectRequest);
-        //initialize the progress dialog and show it
-        progressDialog = new ProgressDialog(NewsActivity.this);
-        progressDialog.setMessage(getResources().getString(R.string.progress_bar_title));
-        progressDialog.show();
+        }
+        else{
+            Toast.makeText(this, "There is no connection to the internet nor the data was cached in the local storage!", Toast.LENGTH_LONG).show();
+        }
+
     }
 
-    //Cache news locally in an AsyncTask
-    public class AsyncCacheNews extends AsyncTask<String, String, String> {
+    //Cache news locally using AsyncTask
+    private class AsyncCacheNews extends AsyncTask<String, String, String> {
         @Override
         protected String doInBackground(String... strings) {
             String current ="";
-            //Serialize data in folder
-            try
-            {
-                //Name serialization file as city name
-                FileOutputStream fos = new FileOutputStream(KEYWORD);
-                ObjectOutputStream oos = new ObjectOutputStream(fos);
-                oos.writeObject(array);
-                oos.close();
-                fos.close();
-            }
-            catch (FileNotFoundException ioe)
-            {
-                ioe.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            //Save JSON data in the local storage
+            writeToFile(articlesArray.toString(), getBaseContext());
             return current;
         }
     }
 
+    private void writeToFile(String data,Context context) {
+        try {
+            //Check if there is a JSON file contence
+            if(!data.isEmpty()) {
+                String fileName = KEYWORD + ".json";
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(fileName, Context.MODE_PRIVATE));
+                outputStreamWriter.write(data);
+                outputStreamWriter.close();
+                //Log.e("Success", "File written! ");
+            }
+        }
+        catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+        }
+    }
+
+    private String readFromFile(Context context, String fileName) {
+
+        String ret = "";
+
+        try {
+            InputStream inputStream = context.openFileInput(fileName);
+
+            if ( inputStream != null ) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString = "";
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while ( (receiveString = bufferedReader.readLine()) != null ) {
+                    stringBuilder.append("\n").append(receiveString);
+                }
+
+                inputStream.close();
+                ret = stringBuilder.toString();
+            }
+        }
+        catch (FileNotFoundException e) {
+            //Log.e("login activity", "File not found: " + e.toString());
+            return null;
+        } catch (IOException e) {
+            //Log.e("login activity", "Can not read file: " + e.toString());
+            return null;
+        }
+        //Log.e("JSON",ret);
+        return ret;
+    }
+
+    public String readPreference(String key){
+        SharedPreferences shPreferences = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
+        String value = shPreferences.getString(key, "");
+        return value;
+    }
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public boolean isConnected() {
+        boolean connected = false;
+        try {
+            ConnectivityManager cm = (ConnectivityManager)getApplicationContext().getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
+            NetworkInfo nInfo = cm.getActiveNetworkInfo();
+            connected = nInfo != null && nInfo.isAvailable() && nInfo.isConnected();
+            return connected;
+        } catch (Exception e) {
+            Log.e("Connectivity Exception", e.getMessage());
+        }
+        return connected;
+    }
 }

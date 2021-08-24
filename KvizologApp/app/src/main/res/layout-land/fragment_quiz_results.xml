@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:background="@drawable/ic_quiz_question_background"
+    android:background="@color/pale_green"
     tools:context=".QuizResultsFragment">
 
     <TextView

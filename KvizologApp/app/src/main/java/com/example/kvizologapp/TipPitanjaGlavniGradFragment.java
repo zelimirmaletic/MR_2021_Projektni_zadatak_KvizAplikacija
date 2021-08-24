@@ -199,16 +199,16 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
 
     private void processInfoButtonClick(String cityName){
         //Check if there is an internet connection
-        if(isConnected()) {
+        //if(isConnected()) {
             Intent intent = new Intent(getActivity(), NewsActivity.class);
             intent.putExtra("city_name", cityName);
             startActivity(intent);
-        }else{
+        //}else{
             //TO-DO Check if the news for that city are cached!!!!
             //.............IMPLEMENT HERE..........
             //Show a message that there is no internet connection
-            Toast.makeText(getActivity(), R.string.no_internet_available_message , Toast.LENGTH_LONG).show();
-        }
+            //Toast.makeText(getActivity(), R.string.no_internet_available_message , Toast.LENGTH_LONG).show();
+        //}
     }
 
     private void processMapButtonClick(Button button){
