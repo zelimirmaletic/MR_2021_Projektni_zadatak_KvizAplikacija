@@ -105,6 +105,9 @@
     <string name="on_restapi_error_response">There was an error in getting articles from News API</string>
     <string name="progress_bar_title">Loading news...</string>
 
+    <string name="question_not_answered">Not answered</string>
 
     <string name="no_internet_available_message">No internet connection available! Make sure you are connected to the internet.</string>
+    <string name="no_internet_available_message_login">No internet connection available! Make sure you are connected to the internet or try offline login!</string>
+
 </resources>

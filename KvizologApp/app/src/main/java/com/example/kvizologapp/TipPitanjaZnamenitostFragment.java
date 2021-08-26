@@ -24,8 +24,7 @@ public class TipPitanjaZnamenitostFragment extends Fragment {
     ImageView imgHeritage, imgView;
     TextView txvHeritageName,txvCornectnessMessage;
     Pitanje TRENUTNO_PITANJE;
-
-
+    private static boolean isAnsweredQuestion = false;
 
     public TipPitanjaZnamenitostFragment() {
         // Required empty public constructor
@@ -39,6 +38,7 @@ public class TipPitanjaZnamenitostFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Toast.makeText(getContext(), "PITANJE: "+QuizGameActivity.INT_TRENUTNO_PITANJE, Toast.LENGTH_SHORT).show();
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_tip_pitanja_znamenitost, container, false);
         //Get a reference to database
@@ -78,6 +78,13 @@ public class TipPitanjaZnamenitostFragment extends Fragment {
         }
         //Set listeners
         btnNextQuestion.setOnClickListener(v -> {
+            //If check button is not clicked
+            if(isAnsweredQuestion==false){
+                QuizGameActivity.listaTacnostiOdgovora.add(false);
+                QuizGameActivity.listaStringOdgovora.add(getString(R.string.question_not_answered));
+            }
+            //Reset variable for next question
+            isAnsweredQuestion = false;
             //Go to the Results fragment if we walked through all questions
             if(QuizGameActivity.QUESTION_COUNTER + 1 == QuizGameActivity.QUESTIONS_PER_CHATEGORY*4)
                 ((QuizGameActivity)getActivity()).setViewPager(4);
@@ -107,6 +114,7 @@ public class TipPitanjaZnamenitostFragment extends Fragment {
     }
     //Process answer button click
     private void processButtonClick(Button btnAnswer){
+        isAnsweredQuestion = true;
         btnHint.setVisibility(View.GONE);
         //Check the answer
         boolean corectlyAnswered = false;

@@ -34,6 +34,7 @@ public class TipPitanjaZastavaFragment extends Fragment {
     private final static short VIBRATION_DURATION = 50;
     private static final int MAX_NUM_OF_LETTERS = 20;
     private static final int NUM_OF_LETTER_BUTTONS = 20;
+    private static boolean isAnsweredQuestion = false;
     Pitanje TRENUTNO_PITANJE;
     KvizologDatabase databaseInstance;
 
@@ -128,6 +129,13 @@ public class TipPitanjaZastavaFragment extends Fragment {
         btn19.setOnClickListener(v -> writeLetter(btn19));
         btn20.setOnClickListener(v -> writeLetter(btn20));
         btnNextQuestion.setOnClickListener(v -> {
+            //If check button is not clicked
+            if(isAnsweredQuestion==false){
+                QuizGameActivity.listaTacnostiOdgovora.add(false);
+                QuizGameActivity.listaStringOdgovora.add(getString(R.string.question_not_answered));
+            }
+            //Reset variable for next question
+            isAnsweredQuestion = false;
             //Go to the Results fragment if we walked through all questions
             if(QuizGameActivity.QUESTION_COUNTER + 1 == QuizGameActivity.QUESTIONS_PER_CHATEGORY*4)
                 ((QuizGameActivity)getActivity()).setViewPager(4);
@@ -159,6 +167,7 @@ public class TipPitanjaZastavaFragment extends Fragment {
         });
         btnCheck.setOnClickListener(v -> {
             btnHint.setVisibility(View.GONE);
+            isAnsweredQuestion = true;
             //Check the answer
             boolean corectlyAnswered = false;
             if((txbCountryName.getText()).equals(TRENUTNO_PITANJE.getOdgovorBr1Engleski()))

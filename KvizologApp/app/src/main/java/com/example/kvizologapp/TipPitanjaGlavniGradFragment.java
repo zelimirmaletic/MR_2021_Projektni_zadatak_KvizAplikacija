@@ -26,8 +26,6 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 
 public class TipPitanjaGlavniGradFragment extends Fragment {
-
-
     //Sound efects
     MediaPlayer mpCorrect, mpWrong, mpHint;
     Button btnNextQuestion, btnHint;
@@ -38,6 +36,7 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
     ImageView imgView;
     Pitanje TRENUTNO_PITANJE;
     KvizologDatabase databaseInstance;
+    private static boolean isAnsweredQuestion = false;
 
     public TipPitanjaGlavniGradFragment() {
         // Required empty public constructor
@@ -99,6 +98,13 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
             btnAnswer4.setText(TRENUTNO_PITANJE.getOdgovorBr4Srpski());
         }
         btnNextQuestion.setOnClickListener(v -> {
+            //If check button is not clicked
+            if(isAnsweredQuestion==false){
+                QuizGameActivity.listaTacnostiOdgovora.add(false);
+                QuizGameActivity.listaStringOdgovora.add(getString(R.string.question_not_answered));
+            }
+            //Reset variable for next question
+            isAnsweredQuestion = false;
             //Go to the Results fragment if we walked through all questions
             if(QuizGameActivity.QUESTION_COUNTER + 1 == QuizGameActivity.QUESTIONS_PER_CHATEGORY*4)
                 ((QuizGameActivity)getActivity()).setViewPager(4);
@@ -139,6 +145,7 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
     }
 
     private void processButtonClick(Button btnAnswer){
+        isAnsweredQuestion = true;
         btnHint.setVisibility(View.GONE);
         setAdditionalInfoButtonsVisible();
         //Check the answer
@@ -159,8 +166,10 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
             txvCornectnessMessage.setText(getString(R.string.correct_answer_message));
             txvCornectnessMessage.setTextColor(getResources().getColor(R.color.primary));
             txvCornectnessMessage.setVisibility(View.VISIBLE);
-            imgView.setImageResource(R.drawable.ic_baseline_check_circle_outline_24);
-            imgView.setVisibility(View.VISIBLE);
+            if(imgView!=null) {
+                imgView.setImageResource(R.drawable.ic_baseline_check_circle_outline_24);
+                imgView.setVisibility(View.VISIBLE);
+            }
             //SOUND EFFECT
             mpCorrect.start();
         }else{
@@ -238,7 +247,6 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
             Toast.makeText(getActivity(), R.string.no_internet_available_message , Toast.LENGTH_LONG).show();
         }
     }
-
 
     public boolean isConnected() {
         boolean connected = false;

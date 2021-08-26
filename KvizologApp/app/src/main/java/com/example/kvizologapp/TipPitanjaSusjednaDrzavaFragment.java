@@ -22,7 +22,9 @@ public class TipPitanjaSusjednaDrzavaFragment extends Fragment {
     MediaPlayer mpCorrect, mpWrong, mpHint;
     ImageView imgView;
     TextView tvCountryName, txvCornectnessMessage;
+    CheckBox cbAnswer1,cbAnswer2,cbAnswer3,cbAnswer4;
     Pitanje TRENUTNO_PITANJE;
+    private static boolean isAnsweredQuestion = false;
 
     public TipPitanjaSusjednaDrzavaFragment() {
         // Required empty public constructor
@@ -31,6 +33,15 @@ public class TipPitanjaSusjednaDrzavaFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //Clear all check boxes
+        cbAnswer1.setChecked(false);cbAnswer2.setChecked(false);
+        cbAnswer3.setChecked(false);cbAnswer4.setChecked(false);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -39,19 +50,22 @@ public class TipPitanjaSusjednaDrzavaFragment extends Fragment {
         KvizologDatabase databaseInstance = ((QuizGameActivity)getActivity()).getDatabaseInstance();
         TRENUTNO_PITANJE = databaseInstance.pitanjeDAO().getById(QuizGameActivity.INT_TRENUTNO_PITANJE);
         //Initialize views
-        btnNextQuestion = (Button) view.findViewById(R.id.btnNextQuestion);
-        tvCountryName = (TextView) view.findViewById(R.id.txbCountryName);
-        txvCornectnessMessage = (TextView) view.findViewById(R.id.tvCorectnessMessage);
-        CheckBox cbAnswer1 = (CheckBox) view.findViewById(R.id.cbAnswer1);
-        CheckBox cbAnswer2 = (CheckBox) view.findViewById(R.id.cbAnswer2);
-        CheckBox cbAnswer3 = (CheckBox) view.findViewById(R.id.cbAnswer3);
-        CheckBox cbAnswer4 = (CheckBox) view.findViewById(R.id.cbAnswer4);
-        btnCheck = (Button) view.findViewById(R.id.btnCheck);
-        imgView =(ImageView) view.findViewById(R.id.imageView);
-        btnHint = (Button) view.findViewById(R.id.btnHint);
-        mpCorrect = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.correct);
-        mpWrong = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.wrong);
-        mpHint = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.hint);
+        btnNextQuestion = view.findViewById(R.id.btnNextQuestion);
+        tvCountryName = view.findViewById(R.id.txbCountryName);
+        txvCornectnessMessage = view.findViewById(R.id.tvCorectnessMessage);
+        cbAnswer1 = view.findViewById(R.id.cbAnswer1);
+        cbAnswer2 = view.findViewById(R.id.cbAnswer2);
+        cbAnswer3 = view.findViewById(R.id.cbAnswer3);
+        cbAnswer4 = view.findViewById(R.id.cbAnswer4);
+        btnCheck = view.findViewById(R.id.btnCheck);
+        imgView = view.findViewById(R.id.imageView);
+        btnHint = view.findViewById(R.id.btnHint);
+        mpCorrect = MediaPlayer.create(getActivity(),R.raw.correct);
+        mpWrong = MediaPlayer.create(getActivity(),R.raw.wrong);
+        mpHint = MediaPlayer.create(getActivity(),R.raw.hint);
+        //Clear all check boxes
+        cbAnswer1.setChecked(false);cbAnswer2.setChecked(false);
+        cbAnswer3.setChecked(false);cbAnswer4.setChecked(false);
         //Initialize question data
         if("en".equals(MainActivity.lang)){
             tvCountryName.setText(TRENUTNO_PITANJE.getTekstPitanjaEngleski());
@@ -67,6 +81,13 @@ public class TipPitanjaSusjednaDrzavaFragment extends Fragment {
             cbAnswer4.setText(TRENUTNO_PITANJE.getOdgovorBr4Srpski());
         }
         btnNextQuestion.setOnClickListener(v -> {
+            //If check button is not clicked
+            if(isAnsweredQuestion==false){
+                QuizGameActivity.listaTacnostiOdgovora.add(false);
+                QuizGameActivity.listaStringOdgovora.add(getString(R.string.question_not_answered));
+            }
+            //Reset variable for next question
+            isAnsweredQuestion = false;
             //Go to the Results fragment if we walked through all questions
             if(QuizGameActivity.QUESTION_COUNTER + 1 == QuizGameActivity.QUESTIONS_PER_CHATEGORY*4)
                 ((QuizGameActivity)getActivity()).setViewPager(4);
@@ -89,6 +110,7 @@ public class TipPitanjaSusjednaDrzavaFragment extends Fragment {
         });
         btnCheck.setOnClickListener(v -> {
             btnHint.setVisibility(View.GONE);
+            isAnsweredQuestion = true;
             boolean corectlyAnswered = true;
             //Check the corectness of the answer
             if(!cbAnswer1.isChecked()&&!cbAnswer2.isChecked()&&!cbAnswer3.isChecked()&&!cbAnswer4.isChecked())
@@ -96,11 +118,11 @@ public class TipPitanjaSusjednaDrzavaFragment extends Fragment {
             if("en".equals(MainActivity.lang)){
                 if(cbAnswer1.isChecked() && !TRENUTNO_PITANJE.getTacniOdgovoriEngleski().contains(cbAnswer1.getText().toString()))
                     corectlyAnswered=false;
-                else if(cbAnswer2.isChecked() && ! TRENUTNO_PITANJE.getTacniOdgovoriEngleski().contains(cbAnswer2.getText().toString()))
+                if(cbAnswer2.isChecked() && !TRENUTNO_PITANJE.getTacniOdgovoriEngleski().contains(cbAnswer2.getText().toString()))
                     corectlyAnswered=false;
-                else if(cbAnswer3.isChecked() && ! TRENUTNO_PITANJE.getTacniOdgovoriEngleski().contains(cbAnswer3.getText().toString()))
+                if(cbAnswer3.isChecked() && !TRENUTNO_PITANJE.getTacniOdgovoriEngleski().contains(cbAnswer3.getText().toString()))
                     corectlyAnswered=false;
-                else if(cbAnswer4.isChecked() && ! TRENUTNO_PITANJE.getTacniOdgovoriEngleski().contains(cbAnswer4.getText().toString()))
+                if(cbAnswer4.isChecked() && !TRENUTNO_PITANJE.getTacniOdgovoriEngleski().contains(cbAnswer4.getText().toString()))
                     corectlyAnswered=false;
             }else{
                 if(cbAnswer1.isChecked() && ! TRENUTNO_PITANJE.getTacniOdgovoriSrpski().contains(cbAnswer1.getText().toString()))
@@ -119,8 +141,8 @@ public class TipPitanjaSusjednaDrzavaFragment extends Fragment {
                 userAnswer += cbAnswer2.getText().toString()+" ";
             if(cbAnswer3.isChecked())
                 userAnswer += cbAnswer3.getText().toString()+" ";
-            if(cbAnswer1.isChecked())
-                userAnswer += cbAnswer1.getText().toString()+" ";
+            if(cbAnswer4.isChecked())
+                userAnswer += cbAnswer4.getText().toString()+" ";
             //Add answer to a answer list
             QuizGameActivity.listaStringOdgovora.add(userAnswer);
             //Show message about corectness
@@ -133,8 +155,10 @@ public class TipPitanjaSusjednaDrzavaFragment extends Fragment {
                 txvCornectnessMessage.setText(getString(R.string.correct_answer_message));
                 txvCornectnessMessage.setTextColor(getResources().getColor(R.color.primary));
                 txvCornectnessMessage.setVisibility(View.VISIBLE);
-                imgView.setImageResource(R.drawable.ic_baseline_check_circle_outline_24);
-                imgView.setVisibility(View.VISIBLE);
+                if(imgView!=null) {
+                    imgView.setImageResource(R.drawable.ic_baseline_check_circle_outline_24);
+                    imgView.setVisibility(View.VISIBLE);
+                }
                 //SOUND EFFECT
                 mpCorrect.start();
             }else{
@@ -151,6 +175,7 @@ public class TipPitanjaSusjednaDrzavaFragment extends Fragment {
             //DISABLE CHECK BUTTON
             btnCheck.setEnabled(false);
             btnCheck.setBackgroundColor(getResources().getColor(R.color.primary_light));
+            //Disable checkboxes
             cbAnswer1.setClickable(false);cbAnswer2.setClickable(false);cbAnswer3.setClickable(false);cbAnswer4.setClickable(false);
         });
         return view;

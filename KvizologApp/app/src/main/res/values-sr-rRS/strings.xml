@@ -70,4 +70,6 @@
     <string name="on_restapi_error_response">Дошло је до грешке у добављању новости са удаљеног сервиса</string>
     <string name="progress_bar_title">Учитавање новости</string>
     <string name="no_internet_available_message">Уређај није конектован на интернет! Молимо Вас да провјерите интернет конекцију.</string>
+    <string name="question_not_answered">Није одговорено</string>
+    <string name="no_internet_available_message_login">Интернет конекција није доступна. Конектујте се на интернет или се пријавите кроз офлајн пријаву!</string>
 </resources>

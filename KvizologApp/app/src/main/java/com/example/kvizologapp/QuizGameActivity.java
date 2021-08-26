@@ -2,6 +2,7 @@ package com.example.kvizologapp;
 
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -30,7 +32,7 @@ public class QuizGameActivity extends AppCompatActivity {
     public static int QUESTION_COUNTER = 0;
     LinearLayout pointsBannerLayout;
     KvizologDatabase databaseInstance;
-    static List<Integer> listaPitanja = new ArrayList();
+    static List<Integer> listaPitanja;
     public static List<Boolean> listaTacnostiOdgovora = new ArrayList();
     public static List<String> listaStringOdgovora = new ArrayList();
 
@@ -39,8 +41,17 @@ public class QuizGameActivity extends AppCompatActivity {
     TextView txvPoints;
     MediaPlayer mpResults;
 
+
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Toast.makeText(this, MainActivity.lang, Toast.LENGTH_SHORT).show();
+        MainActivity.setLocale(this,MainActivity.lang);
+
+        if(savedInstanceState!=null){
+            Toast.makeText(this, "BUNDLE NOT NULL", Toast.LENGTH_SHORT).show();
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_game);
         //Instatiate database
@@ -52,37 +63,54 @@ public class QuizGameActivity extends AppCompatActivity {
         pointsBannerLayout = findViewById(R.id.pointsBannerLayout);
         //Get the number of questions per chategory from PreferenceAPI
         SharedPreferences shPreferences = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
-
-        //String value = shPreferences.getString("key_num_of_questions", "5");
-        QUESTIONS_PER_CHATEGORY = 2;//Integer.parseInt(value);
+        if(savedInstanceState==null) {
+            Toast.makeText(this, "Clearing lists...", Toast.LENGTH_SHORT).show();
+            //Clear question arrays
+            if (listaStringOdgovora != null)
+                listaStringOdgovora.clear();
+            if (listaPitanja != null)
+                listaPitanja.clear();
+            if (listaTacnostiOdgovora != null)
+                listaTacnostiOdgovora.clear();
+        }
+        //Read preference about the number of questions per quiz per category
+        String value = shPreferences.getString("key_num_of_questions", "5");
+        QUESTIONS_PER_CHATEGORY = Integer.parseInt(value);
 
 
         //Disable scroll on view pager
         viewPager.setOnTouchListener((v, event) -> true);
 
-        //Select random questions from each chategory
-        Random rand = new Random();
-        int randomNumber=0;
-        for(int i=1;i<=4*QUESTIONS_PER_CHATEGORY;i++){
-            randomNumber = rand.nextInt(NUMBER_OF_QUESTIONS_PER_CHATEGORY)+1;
-            //Make sure all questions are unique
-            if(listaPitanja.contains(randomNumber)){
-                --i;
-                continue;
+        if(savedInstanceState==null){
+            //Select random questions from each chategory
+            Toast.makeText(this, "Kreiranje liste pitanja....", Toast.LENGTH_SHORT).show();
+            HINT_COUNTER=3;
+            POINTS_COUNTER=0;
+            QUESTION_COUNTER = 0;
+            listaPitanja = new ArrayList();
+            Random rand = new Random();
+            int randomNumber=0;
+            for(int i=1;i<=4*QUESTIONS_PER_CHATEGORY;i++){
+                randomNumber = rand.nextInt(NUMBER_OF_QUESTIONS_PER_CHATEGORY)+1;
+                //Make sure all questions are unique
+                if(listaPitanja.contains(randomNumber)){
+                    --i;
+                    continue;
+                }
+                if(i<=QUESTIONS_PER_CHATEGORY)
+                    listaPitanja.add(randomNumber);
+                else if(i>QUESTIONS_PER_CHATEGORY && i<=2*QUESTIONS_PER_CHATEGORY)
+                    listaPitanja.add(NUMBER_OF_QUESTIONS_PER_CHATEGORY + randomNumber);
+                else if(i>2*QUESTIONS_PER_CHATEGORY && i<=3*QUESTIONS_PER_CHATEGORY)
+                    listaPitanja.add(2*NUMBER_OF_QUESTIONS_PER_CHATEGORY + randomNumber);
+                else
+                    listaPitanja.add(3*NUMBER_OF_QUESTIONS_PER_CHATEGORY + randomNumber);
             }
-            if(i<=QUESTIONS_PER_CHATEGORY)
-                listaPitanja.add(rand.nextInt(NUMBER_OF_QUESTIONS_PER_CHATEGORY)+1);
-            else if(i>QUESTIONS_PER_CHATEGORY && i<=2*QUESTIONS_PER_CHATEGORY)
-                listaPitanja.add(NUMBER_OF_QUESTIONS_PER_CHATEGORY + rand.nextInt(NUMBER_OF_QUESTIONS_PER_CHATEGORY)+1);
-            else if(i>2*QUESTIONS_PER_CHATEGORY && i<=3*QUESTIONS_PER_CHATEGORY)
-                listaPitanja.add(2*NUMBER_OF_QUESTIONS_PER_CHATEGORY + rand.nextInt(NUMBER_OF_QUESTIONS_PER_CHATEGORY)+1);
-            else
-                listaPitanja.add(3*NUMBER_OF_QUESTIONS_PER_CHATEGORY + rand.nextInt(NUMBER_OF_QUESTIONS_PER_CHATEGORY)+1);
+            //Shuffle list
+            Collections.shuffle(listaPitanja);
+            //Set initial question
+            INT_TRENUTNO_PITANJE = listaPitanja.get(0);
         }
-        //Shuffle list
-        Collections.shuffle(listaPitanja);
-        //Set initial question
-        INT_TRENUTNO_PITANJE = listaPitanja.get(0);
         setupViewPager(viewPager);
         setViewPager(databaseInstance.pitanjeDAO().getById(QuizGameActivity.INT_TRENUTNO_PITANJE).getTipPitanja());//go to the next question type
     }
@@ -90,13 +118,7 @@ public class QuizGameActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        listaTacnostiOdgovora.clear();
-        listaStringOdgovora.clear();
-        listaPitanja.clear();
-        Toast.makeText(this, "ON DESTROY", Toast.LENGTH_SHORT).show();
-        HINT_COUNTER=3;
-        POINTS_COUNTER=0;
-        QUESTION_COUNTER = 0;
+        Toast.makeText(this, "ON DESTROY QuizGameActivity", Toast.LENGTH_SHORT).show();
     }
 
     private void setupViewPager(ViewPager viewPager){
@@ -141,5 +163,17 @@ public class QuizGameActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        HINT_COUNTER=3;
+        POINTS_COUNTER=0;
+        QUESTION_COUNTER = 0;
+        //Clear question arrays
+        if (listaStringOdgovora != null)
+            listaStringOdgovora.clear();
+        if (listaPitanja != null)
+            listaPitanja.clear();
+        if (listaTacnostiOdgovora != null)
+            listaTacnostiOdgovora.clear();
+        this.finish();
     }
+
 }
