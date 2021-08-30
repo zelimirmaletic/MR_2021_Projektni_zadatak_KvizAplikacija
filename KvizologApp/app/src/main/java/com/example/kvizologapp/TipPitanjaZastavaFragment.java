@@ -71,7 +71,7 @@ public class TipPitanjaZastavaFragment extends Fragment {
         disabledButtons = new ArrayList<>();
         //Hide hint if it is already used 3 times
         if(QuizGameActivity.HINT_COUNTER == 0)
-            btnHint.setVisibility(View.GONE);
+            btnHint.setClickable(false);
         //Initialize views from Pitanje object
         imgFlag.setImageResource(getResources().getIdentifier(TRENUTNO_PITANJE.getSlika(),"drawable",((QuizGameActivity)getActivity()).getPackageName()));
         initializeLetterButtons(view);
@@ -163,7 +163,7 @@ public class TipPitanjaZastavaFragment extends Fragment {
                 else
                     Toast.makeText(getContext(), TRENUTNO_PITANJE.getHintSrpski(), Toast.LENGTH_LONG).show();
             }
-            btnHint.setVisibility(View.INVISIBLE);
+            btnHint.setClickable(false);
         });
         btnCheck.setOnClickListener(v -> {
             btnHint.setVisibility(View.GONE);

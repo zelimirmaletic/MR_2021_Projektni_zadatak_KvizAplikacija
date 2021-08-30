@@ -81,7 +81,7 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
         ((QuizGameActivity)getActivity()).incrementPointsView();
         //Hide hint if it is already used 3 times
         if(QuizGameActivity.HINT_COUNTER == 0)
-            btnHint.setVisibility(View.GONE);
+            btnHint.setClickable(false);
 
         //Fill question data
         if("en".equals(MainActivity.lang)){
@@ -139,7 +139,7 @@ public class TipPitanjaGlavniGradFragment extends Fragment {
                 else
                     Toast.makeText(getContext(), TRENUTNO_PITANJE.getHintSrpski(), Toast.LENGTH_LONG).show();
             }
-            btnHint.setVisibility(View.INVISIBLE);
+            btnHint.setClickable(false);
         });
         return view;
     }

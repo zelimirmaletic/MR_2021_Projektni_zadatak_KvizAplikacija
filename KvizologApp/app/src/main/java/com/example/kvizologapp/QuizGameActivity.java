@@ -49,9 +49,6 @@ public class QuizGameActivity extends AppCompatActivity {
         Toast.makeText(this, MainActivity.lang, Toast.LENGTH_SHORT).show();
         MainActivity.setLocale(this,MainActivity.lang);
 
-        if(savedInstanceState!=null){
-            Toast.makeText(this, "BUNDLE NOT NULL", Toast.LENGTH_SHORT).show();
-        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_game);
         //Instatiate database
@@ -64,7 +61,6 @@ public class QuizGameActivity extends AppCompatActivity {
         //Get the number of questions per chategory from PreferenceAPI
         SharedPreferences shPreferences = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
         if(savedInstanceState==null) {
-            Toast.makeText(this, "Clearing lists...", Toast.LENGTH_SHORT).show();
             //Clear question arrays
             if (listaStringOdgovora != null)
                 listaStringOdgovora.clear();
@@ -83,7 +79,6 @@ public class QuizGameActivity extends AppCompatActivity {
 
         if(savedInstanceState==null){
             //Select random questions from each chategory
-            Toast.makeText(this, "Kreiranje liste pitanja....", Toast.LENGTH_SHORT).show();
             HINT_COUNTER=3;
             POINTS_COUNTER=0;
             QUESTION_COUNTER = 0;
@@ -118,7 +113,6 @@ public class QuizGameActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Toast.makeText(this, "ON DESTROY QuizGameActivity", Toast.LENGTH_SHORT).show();
     }
 
     private void setupViewPager(ViewPager viewPager){

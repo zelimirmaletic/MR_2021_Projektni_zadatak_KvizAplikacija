@@ -11,10 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import org.jetbrains.annotations.NotNull;
@@ -53,13 +50,10 @@ public class RegisterActivity extends AppCompatActivity {
 
         if(!email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()){
              if(!password.isEmpty()){
-                mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull @org.jetbrains.annotations.NotNull Task<AuthResult> task) {
-                        //Insert a toast message of success
-                        startActivity(new Intent(RegisterActivity.this, MainActivity.class));
-                        finish();
-                    }
+                mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(task -> {
+                    //Insert a toast message of success
+                    startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                    finish();
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull @NotNull Exception e) {

@@ -63,6 +63,9 @@ public class TipPitanjaSusjednaDrzavaFragment extends Fragment {
         mpCorrect = MediaPlayer.create(getActivity(),R.raw.correct);
         mpWrong = MediaPlayer.create(getActivity(),R.raw.wrong);
         mpHint = MediaPlayer.create(getActivity(),R.raw.hint);
+        //Hide hint if it is already used 3 times
+        if(QuizGameActivity.HINT_COUNTER == 0)
+            btnHint.setClickable(false);
         //Clear all check boxes
         cbAnswer1.setChecked(false);cbAnswer2.setChecked(false);
         cbAnswer3.setChecked(false);cbAnswer4.setChecked(false);
@@ -106,7 +109,7 @@ public class TipPitanjaSusjednaDrzavaFragment extends Fragment {
                 else
                     Toast.makeText(getContext(), TRENUTNO_PITANJE.getHintSrpski(), Toast.LENGTH_LONG).show();
             }
-            btnHint.setVisibility(View.INVISIBLE);
+            btnHint.setClickable(false);
         });
         btnCheck.setOnClickListener(v -> {
             btnHint.setVisibility(View.GONE);

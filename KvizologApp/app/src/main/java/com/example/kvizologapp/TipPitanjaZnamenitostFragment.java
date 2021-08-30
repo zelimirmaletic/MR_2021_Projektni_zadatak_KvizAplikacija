@@ -60,7 +60,7 @@ public class TipPitanjaZnamenitostFragment extends Fragment {
         mpHint = MediaPlayer.create(((QuizGameActivity)getActivity()),R.raw.hint);
         //Hide hint if it is already used 3 times
         if(QuizGameActivity.HINT_COUNTER == 0)
-            btnHint.setVisibility(View.GONE);
+            btnHint.setClickable(false);
         //Show question data
         imgHeritage.setImageResource(getResources().getIdentifier(TRENUTNO_PITANJE.getSlika(),"drawable",((QuizGameActivity)getActivity()).getPackageName()));
         if("en".equals(MainActivity.lang)){
@@ -103,7 +103,7 @@ public class TipPitanjaZnamenitostFragment extends Fragment {
                     else
                         Toast.makeText(getContext(), TRENUTNO_PITANJE.getHintSrpski(), Toast.LENGTH_LONG).show();
                 }
-                btnHint.setVisibility(View.INVISIBLE);
+                btnHint.setClickable(false);
             });
         btnAnswer1.setOnClickListener(v -> processButtonClick(btnAnswer1));
         btnAnswer2.setOnClickListener(v -> processButtonClick(btnAnswer2));
