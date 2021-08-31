@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.kvizologapp">
+    package="com.quizolog.kvizologapp">
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -20,20 +20,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KvizologApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AnsweredQuestionsListActivity"
+        <activity android:name="com.quizolog.kvizologapp.AnsweredQuestionsListActivity"
             android:theme="@style/NoActionBarTheme"></activity>
         <activity
-            android:name=".WebViewActivity"
+            android:name="com.quizolog.kvizologapp.WebViewActivity"
             android:theme="@style/NoActionBarTheme" />
         <activity
-            android:name=".NewsActivity"
+            android:name="com.quizolog.kvizologapp.NewsActivity"
             android:theme="@style/NoActionBarTheme" />
         <activity
-            android:name=".GuestLoginActivity"
+            android:name="com.quizolog.kvizologapp.GuestLoginActivity"
             android:theme="@style/NoActionBarTheme"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".LoginActivity"
+            android:name="com.quizolog.kvizologapp.LoginActivity"
             android:theme="@style/NoActionBarTheme"
             android:windowSoftInputMode="adjustResize" />
         <!--
@@ -49,7 +49,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name="com.quizolog.kvizologapp.MapsActivity"
             android:label="@string/title_activity_maps" />
 
         <meta-data
@@ -78,18 +78,18 @@
             android:exported="true" />
 
         <activity
-            android:name=".QuizGameActivity"
+            android:name="com.quizolog.kvizologapp.QuizGameActivity"
             android:theme="@style/NoActionBarTheme"
             />
         <activity
-            android:name=".MainScreenAcitivty"
+            android:name="com.quizolog.kvizologapp.MainScreenAcitivty"
             android:theme="@style/NoActionBarTheme" />
         <activity
-            android:name=".RegisterActivity"
+            android:name="com.quizolog.kvizologapp.RegisterActivity"
             android:theme="@style/NoActionBarTheme"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.quizolog.kvizologapp.MainActivity"
             android:theme="@style/NoActionBarTheme"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
